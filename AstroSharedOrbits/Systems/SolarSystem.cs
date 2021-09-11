@@ -17,7 +17,7 @@ namespace AstroSharedOrbits.Systems
     /// <summary>
     /// Solar System.
     /// </summary>
-    /// <seealso cref="AstroSharedOrbits.Systems.PlanetarySystem" />
+    /// <seealso cref="AstroSharedOrbits.PlanetarySystem" />
     public class SolarSystem : PlanetarySystem
     {
         #region Fields
@@ -39,8 +39,8 @@ namespace AstroSharedOrbits.Systems
             this.AddPlanets(AlgVariant.VarBretagnon87);
             this.ComputeTotalMass();
 
-            //// 2018 OrbitPlanet = new Orbits.Orbit[(int)AstPlanet.Count];
-            //// 2018 OrbitMoon = new Orbits.Orbit[(int)AstMoon.Count];
+            //// 2018 OrbitPlanet = new Orbit[(int)AstPlanet.Count];
+            //// 2018 OrbitMoon = new Orbit[(int)AstMoon.Count];
             this.Influences = false; //// Kalenda           
             this.Perturbations = false;
         }

@@ -14,9 +14,10 @@ namespace AstroSharedOrbits.Planets {
     using AstroSharedClasses.Computation;
     using AstroSharedClasses.OrbitalElements;
     using AstroSharedClasses.Enums;
+    using AstroSharedOrbits.Orbits;
 
     /// <summary> Orbit Body Earth. </summary>
-    public sealed class BodyEarth : Orbits.Orbit {
+    public sealed class BodyEarth : Orbit {
         /// <summary>
         /// The obliquity of the ecliptic
         /// double ie = 23.452294 - 0.0130125 * timeT - 0.00000164 * Math.Pow(timeT, 2) + 0.000000503 * Math.Pow(timeT, 3).
@@ -566,7 +567,7 @@ namespace AstroSharedOrbits.Planets {
                     this.InitBretagnon82();
                     break;
                 case AlgVariant.VarBretagnon87:
-                    this.InitBretagnon87(Systems.SystemManager.VsopPath);
+                    this.InitBretagnon87(SystemManager.VsopPath);
                     break;
                 case AlgVariant.VarSchlyter:
                     this.InitSchlyter();
@@ -593,13 +594,13 @@ namespace AstroSharedOrbits.Planets {
             this.EclipticObliquity = Angles.Mod360(AstroMath.HornerSum(this.ie, this.Time.Jecy));   //// The obliquity of the ecliptic
 
             double sunAsc = 0, sunDec = 0;
-            if (Systems.SystemManager.CurrentSystem == AstSystem.Earth)
+            if (SystemManager.CurrentSystem == AstSystem.Earth)
             {
-                sunAsc = Angles.Mod360(Systems.EarthSystem.Earth.Longitude + 180);
-                sunDec = Angles.Mod360(-Systems.EarthSystem.Earth.Point.Latitude);
+                sunAsc = Angles.Mod360(EarthSystem.Earth.Longitude + 180);
+                sunDec = Angles.Mod360(-EarthSystem.Earth.Point.Latitude);
             }
 
-            if (Systems.SystemManager.CurrentSystem == AstSystem.Solar) {
+            if (SystemManager.CurrentSystem == AstSystem.Solar) {
                 sunAsc = Angles.Mod360(SolarSystem.Singleton.Earth.Longitude + 180);
                 sunDec = Angles.Mod360(-SolarSystem.Singleton.Earth.Point.Latitude);
             }

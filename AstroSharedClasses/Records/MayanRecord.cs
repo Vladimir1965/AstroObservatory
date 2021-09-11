@@ -8,6 +8,8 @@
 
 namespace AstroSharedClasses.Records
 {
+    using AstroSharedClasses.Calendars;
+    using AstroSharedClasses.Enums;
     using JetBrains.Annotations;
     using System.Globalization;
     using System.Text;
@@ -256,7 +258,7 @@ namespace AstroSharedClasses.Records
         public double MayanCorrectedDay()
         {
             var d = this.MayanDay;
-            return d / 260.0 * Calendars.Julian.Tzolkin;
+            return d / 260.0 * Julian.Tzolkin;
         }
 
         #endregion
@@ -288,7 +290,7 @@ namespace AstroSharedClasses.Records
         {
             var d = this.MayanDay;
             var z = (int)(1 + (d + 3) % 13);
-            var kinName = (Enums.KinName)this.Kin;
+            var kinName = (KinName)this.Kin;
             return $"{z} {kinName}";
         }
 
@@ -307,7 +309,7 @@ namespace AstroSharedClasses.Records
             var haabDay = (int)((d + haabShift) % 365);
             var day = haabDay % 20; //// -1
             var month = haabDay / 20; //// +1
-            var monthName = (Enums.HaabMonth)month;
+            var monthName = (HaabMonth)month;
             return $"{day} {monthName}";
         }
 

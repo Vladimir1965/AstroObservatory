@@ -8,11 +8,12 @@
 
 using AstroSharedClasses.Computation;
 using AstroSharedClasses.OrbitalElements;
+using AstroSharedOrbits.Orbits;
 
 namespace AstroSharedOrbits.Dwarfs
 {
     /// <summary> Orbit Body Makemake. </summary>
-    public sealed class BodyMakemake : Orbits.Orbit {
+    public sealed class BodyMakemake : Orbit {
         /// <summary>
         /// Initializes a new instance of the <see cref="BodyMakemake"/> class.
         /// </summary>

@@ -6,6 +6,8 @@
 // <date>2021-09-01</date>
 // <summary>Part of Astro Observatory</summary>
 
+using AstroSharedClasses.Enums;
+
 namespace AstroSharedClasses.Calendars {
     /// <summary>
     /// Astronomical Date.
@@ -21,7 +23,7 @@ namespace AstroSharedClasses.Calendars {
         /// Gets or sets the month.
         /// </summary>
         /// <value>The month.</value>
-        public Enums.Month Month { get; set; }
+        public Month Month { get; set; }
 
         /// <summary>
         /// Gets or sets the day.

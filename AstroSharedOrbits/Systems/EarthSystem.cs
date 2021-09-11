@@ -29,7 +29,7 @@ namespace AstroSharedOrbits.Systems {
         /// </summary>
         /// <value> Property description. </value>
         //// [UsedImplicitly]
-        //// public static Orbits.Orbit[] OrbitPlanet { get; private set; }
+        //// public static Orbit[] OrbitPlanet { get; private set; }
         */
 
         /// <summary>

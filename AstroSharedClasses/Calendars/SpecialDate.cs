@@ -8,6 +8,7 @@
 
 namespace AstroSharedClasses.Calendars {
     using JetBrains.Annotations;
+    using System;
 
     /// <summary>
     /// Special Date.
@@ -149,8 +150,8 @@ namespace AstroSharedClasses.Calendars {
         /// </summary>
         /// <returns> Returns value. </returns>
         [UsedImplicitly]
-        public Enums.DayOfWeek DayOfWeek() {
-            return (Enums.DayOfWeek)((long)(this.MDblJulian + 1.5) % 7);
+        public DayOfWeek DayOfWeek() {
+            return (DayOfWeek)((long)(this.MDblJulian + 1.5) % 7);
         }
 
         /// <summary>
@@ -273,7 +274,7 @@ namespace AstroSharedClasses.Calendars {
             //// if (Z >= 2299161)       //// The Meeus implementation automatically assumes the Gregorian Calendar 
             //// came into effect on 15 October 1582 (julianDay: 2299161), while the Date
             //// implementation has a "m_bGregorianCalendar" value to decide if the date
-            //// was specified in the Gregorian or Julian Calendars. This difference
+            //// was specified in the Gregorian or Julian  This difference
             //// means in effect that Date fully supports a prophylactic version of the
             //// Julian calendar. This allows you to construct Julian dates after the Papal
             //// reform in 1582. This is useful if you want to construct dates in countries

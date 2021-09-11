@@ -9,10 +9,11 @@
 namespace AstroSharedOrbits.Planets {
     using AstroSharedClasses.Computation;
     using AstroSharedClasses.OrbitalElements;
+    using AstroSharedOrbits.Orbits;
     using System;
 
     /// <summary> Orbit Body Hypos. </summary>
-    public sealed class BodyHypos : Orbits.Orbit {
+    public sealed class BodyHypos : Orbit {
         /// <summary>
         /// Initializes a new instance of the <see cref="BodyHypos"/> class.
         /// </summary>

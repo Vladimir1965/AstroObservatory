@@ -8,11 +8,12 @@
 
 using AstroSharedClasses.Computation;
 using AstroSharedClasses.OrbitalElements;
+using AstroSharedOrbits.Orbits;
 
 namespace AstroSharedOrbits.Dwarfs
 {
     /// <summary> Orbit Body Haumea. </summary>
-    public sealed class BodyHaumea : Orbits.Orbit {
+    public sealed class BodyHaumea : Orbit {
         /// <summary>
         /// Initializes a new instance of the <see cref="BodyHaumea"/> class.
         /// </summary>

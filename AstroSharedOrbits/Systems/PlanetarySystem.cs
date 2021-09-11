@@ -26,7 +26,7 @@ namespace AstroSharedOrbits.Systems
         {
             this.Time = new AstroTime();
             this.Sun = new BodySun(string.Empty);
-            this.Orbit = new List<Orbits.Orbit>();
+            this.Orbit = new List<Orbit>();
 
             this.Barycentre = new SpacePoint();
             this.Planetcentre = new SpacePoint();            

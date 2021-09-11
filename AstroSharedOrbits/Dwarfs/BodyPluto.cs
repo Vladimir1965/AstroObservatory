@@ -11,11 +11,12 @@ namespace AstroSharedOrbits.Dwarfs
     using System;
     using AstroSharedClasses.Computation;
     using AstroSharedClasses.OrbitalElements;
+    using AstroSharedOrbits.Orbits;
     using JetBrains.Annotations;
 
     /// <summary> Initializes a new instance of the BodyPluto class. </summary>
     [UsedImplicitly]
-    public sealed class BodyPluto : Orbits.Orbit {
+    public sealed class BodyPluto : Orbit {
         /// <summary>
         /// Initializes a new instance of the <see cref="BodyPluto"/> class.
         /// </summary>

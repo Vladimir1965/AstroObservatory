@@ -12,6 +12,7 @@ namespace AstroSharedOrbits.Planets
     using AstroSharedClasses.Coordinates;
     using AstroSharedClasses.Records;
     using AstroSharedOrbits.OrbitalData;
+    using AstroSharedOrbits.Systems;
     using JetBrains.Annotations;
     using System;
 
@@ -238,8 +239,8 @@ namespace AstroSharedOrbits.Planets
             details.P = Angles.Mod360(Angles.RadDeg(Math.Atan2(Math.Cos(delta0dash) * Math.Sin(alpha0dash - alphadash), Math.Sin(delta0dash) * Math.Cos(deltadash) - Math.Cos(delta0dash) * Math.Sin(deltadash) * Math.Cos(alpha0dash - alphadash))));
 
             //// Step 18
-            var sunLambda = Systems.BodySun.GeometricEclipticLongitude(julianDay);
-            var sunBeta = Systems.BodySun.GeometricEclipticLatitude(julianDay);
+            var sunLambda = BodySun.GeometricEclipticLongitude(julianDay);
+            var sunBeta = BodySun.GeometricEclipticLatitude(julianDay);
             var eclipticSun = new CoordinateEcliptic2D { Lambda = sunLambda, Beta = sunBeta };
 
             var sunEquatorial = eclipticSun.ToEquatorial(e0);
@@ -410,8 +411,8 @@ namespace AstroSharedOrbits.Planets
             double beta;
             double epsilon;
             var details = CalculateHelper(julianDay, out lambda, out beta, out epsilon, out var equatorial);
-            Systems.EarthSystem.Moon.SetJulianDate(julianDay);
-            var r = Systems.EarthSystem.Moon.RadiusVector;
+            EarthSystem.Moon.SetJulianDate(julianDay);
+            var r = EarthSystem.Moon.RadiusVector;
             var pi = Moons.BodyMoonMeeus.RadiusVectorToHorizontalParallax(r);
             var alpha = equatorial.AlphaRadians;
             var delta = equatorial.DeltaRadians;
@@ -442,12 +443,12 @@ namespace AstroSharedOrbits.Planets
         /// <param name="julianDay">The julianDay.</param>
         /// <returns> Returns value. </returns>
         private static SelenographicMoonDetails CalculateSelenographicPositionOfSun(double julianDay) {
-            Systems.EarthSystem.Moon.SetJulianDate(julianDay);
+            EarthSystem.Moon.SetJulianDate(julianDay);
             var r = BodyEarth.RadiusVector(julianDay) * 149597970;
-            var delta = Systems.EarthSystem.Moon.RadiusVector;
-            var lambda0 = Systems.BodySun.ApparentEclipticLongitude(julianDay);
-            var lambda = Systems.EarthSystem.Moon.EclipticLongitude;
-            var beta = Systems.EarthSystem.Moon.EclipticLatitude;
+            var delta = EarthSystem.Moon.RadiusVector;
+            var lambda0 = BodySun.ApparentEclipticLongitude(julianDay);
+            var lambda = EarthSystem.Moon.EclipticLongitude;
+            var beta = EarthSystem.Moon.EclipticLatitude;
 
             var lambdah = Angles.Mod360(lambda0 + 180 + delta / r * 57.296 * Math.Cos(Angles.DegRad(beta)) * Math.Sin(Angles.DegRad(lambda0 - lambda)));
             var betah = delta / r * beta;
@@ -533,14 +534,14 @@ namespace AstroSharedOrbits.Planets
         /// <param name="inclinI">The inclinI.</param>
         /// <param name="rho">The rho.</param>
         private static void CalculateOpticalLibration(double julianDay, double lambda, double beta, out double ldash, out double bdash, out double ldash2, out double bdash2, out double epsilon, out double omega, out double deltaU, out double sigma, out double inclinI, out double rho) {
-            Systems.EarthSystem.Moon.SetJulianDate(julianDay);
+            EarthSystem.Moon.SetJulianDate(julianDay);
             //// Calculate the initial quantities
             var lambdaRad = Angles.DegRad(lambda);
             var betaRad = Angles.DegRad(beta);
             inclinI = Angles.DegRad(1.54242);
             deltaU = Angles.DegRad(Nutation.NutationInLongitude(julianDay) / 3600);
             var latitudeF = Angles.DegRad(Moons.BodyMoonMeeus.ArgumentOfLatitude(julianDay));
-            omega = Angles.DegRad(Systems.EarthSystem.Moon.LW); //// MeanLongitudeAscendingNode
+            omega = Angles.DegRad(EarthSystem.Moon.LW); //// MeanLongitudeAscendingNode
             epsilon = Nutation.MeanObliquityOfEcliptic(julianDay) + Nutation.NutationInObliquity(julianDay) / 3600;
 
             //// Calculate the optical librations
@@ -562,9 +563,9 @@ namespace AstroSharedOrbits.Planets
 
             var anomalyM = BodyEarth.SunMeanAnomaly(julianDay);
             anomalyM = Angles.DegRad(anomalyM);
-            var mdash = Systems.EarthSystem.Moon.MeanAnomaly;
+            var mdash = EarthSystem.Moon.MeanAnomaly;
             mdash = Angles.DegRad(mdash);
-            var elongD = Systems.EarthSystem.Moon.MeanElongation;
+            var elongD = EarthSystem.Moon.MeanElongation;
             elongD = Angles.DegRad(elongD);
             var eccentricE = BodyEarth.Eccentricity(julianDay);
 
@@ -632,10 +633,10 @@ namespace AstroSharedOrbits.Planets
         private static PhysicalMoonDetails CalculateHelper(double julianDay, out double lambda, out double beta, out double epsilon, out CoordinateEquatorial2D equatorial) {
             //// What will be the return value
             var details = new PhysicalMoonDetails();
-            Systems.EarthSystem.Moon.SetJulianDate(julianDay);
+            EarthSystem.Moon.SetJulianDate(julianDay);
             //// Calculate the initial quantities
-            lambda = Systems.EarthSystem.Moon.EclipticLongitude;
-            beta = Systems.EarthSystem.Moon.EclipticLatitude;
+            lambda = EarthSystem.Moon.EclipticLongitude;
+            beta = EarthSystem.Moon.EclipticLatitude;
 
             //// Calculate the optical libration
             CalculateOpticalLibration(julianDay, lambda, beta, out var ldash, out var bdash, out var ldash2, out var bdash2, out epsilon, out var omega, out var deltaU, out var sigma, out var inclinI, out var rho);

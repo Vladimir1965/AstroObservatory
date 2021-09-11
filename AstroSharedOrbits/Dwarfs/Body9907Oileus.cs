@@ -8,11 +8,12 @@
 
 using AstroSharedClasses.Computation;
 using AstroSharedClasses.OrbitalElements;
+using AstroSharedOrbits.Orbits;
 
 namespace AstroSharedOrbits.Dwarfs
 {
     /// <summary> Orbit Body Oileus. </summary>
-    public sealed class Body9907Oileus : Orbits.Orbit {
+    public sealed class Body9907Oileus : Orbit {
         /// <summary>
         /// Initializes a new instance of the <see cref="Body9907Oileus"/> class.
         /// </summary>

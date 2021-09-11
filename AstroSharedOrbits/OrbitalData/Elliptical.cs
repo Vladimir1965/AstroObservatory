@@ -30,6 +30,8 @@ namespace AstroSharedOrbits.OrbitalData
     using AstroSharedClasses.Coordinates;
     using AstroSharedClasses.Enums;
     using AstroSharedClasses.OrbitalElements;
+    using AstroSharedOrbits.Orbits;
+    using AstroSharedOrbits.Systems;
     using JetBrains.Annotations;
 
     /// <summary>
@@ -149,9 +151,9 @@ namespace AstroSharedOrbits.OrbitalData
             var vA = Math.Atan2(vF, vP);
             var vB = Math.Atan2(vG, vQ);
             var vC = Math.Atan2(vH, vR);
-            var n = Orbits.Orbit.MeanMotionFromSemiMajorAxis(elements.A);
+            var n = Orbit.MeanMotionFromSemiMajorAxis(elements.A);
 
-            var sunCoord = Systems.BodySun.EquatorialRectangularCoordinatesAnyEquinox(julianDay, elements.JulianDayEquinox);
+            var sunCoord = BodySun.EquatorialRectangularCoordinatesAnyEquinox(julianDay, elements.JulianDayEquinox);
 
             for (var j = 0; j < 2; j++) {
                 var vM = n * (julianDay0 - elements.T);
@@ -241,8 +243,8 @@ namespace AstroSharedOrbits.OrbitalData
         private static void CurrentValues(SolarSystemObject obj, ref double longL, double julianDay0, ref double lattB, ref double radiusR) {
             switch (obj) {
                 case SolarSystemObject.Sun: {
-                        longL = Systems.BodySun.GeometricEclipticLongitude(julianDay0);
-                        lattB = Systems.BodySun.GeometricEclipticLatitude(julianDay0);
+                        longL = BodySun.GeometricEclipticLongitude(julianDay0);
+                        lattB = BodySun.GeometricEclipticLatitude(julianDay0);
                         radiusR = Planets.BodyEarth.RadiusVector(julianDay0);
                         break;
                     }
@@ -384,8 +386,8 @@ namespace AstroSharedOrbits.OrbitalData
             radiusR = 0;
             switch (obj) {
                 case SolarSystemObject.Sun: {
-                        longL = Systems.BodySun.GeometricEclipticLongitude(julianDay0);
-                        lattB = Systems.BodySun.GeometricEclipticLatitude(julianDay0);
+                        longL = BodySun.GeometricEclipticLongitude(julianDay0);
+                        lattB = BodySun.GeometricEclipticLatitude(julianDay0);
                         radiusR = Planets.BodyEarth.RadiusVector(julianDay0);
                         break;
                     }

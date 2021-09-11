@@ -6,6 +6,8 @@
 // <date>2021-09-01</date>
 // <summary>Part of Astro Observatory</summary>
 
+using AstroSharedClasses.Calendars;
+
 namespace AstroSharedClasses.Records
 {
     /// <summary>
@@ -23,7 +25,7 @@ namespace AstroSharedClasses.Records
         /// <param name="givenDescription">The given description.</param>
         public GeoRecord(char givenGeoType, int givenDay, int givenMonth, int givenYear, string givenDescription) {
             this.GeoType = givenGeoType;
-            this.JulianDate = Calendars.Julian.JulianDay(givenDay, givenMonth, givenYear);
+            this.JulianDate = Julian.JulianDay(givenDay, givenMonth, givenYear);
             this.Description = givenDescription;
         }
 

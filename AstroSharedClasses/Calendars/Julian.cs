@@ -11,6 +11,7 @@ namespace AstroSharedClasses.Calendars {
     using System.Diagnostics;
     using System.Globalization;
     using System.Text;
+    using AstroSharedClasses.Enums;
     using JetBrains.Annotations;
 
     /// <summary>
@@ -405,9 +406,9 @@ namespace AstroSharedClasses.Calendars {
             var e = (int)((b - d) / 30.6001);
             ad.Day = b - d - (int)(30.6001 * e) + f;
             ad.Day = Math.Round(ad.Day, 5);
-            ad.Month = e < 14 ? (Enums.Month)e - 1 : (Enums.Month)e - 13;
+            ad.Month = e < 14 ? (Month)e - 1 : (Month)e - 13;
 
-            ad.Year = ad.Month == Enums.Month.January || ad.Month == Enums.Month.February ? c - 4715 : c - 4716;
+            ad.Year = ad.Month == Month.January || ad.Month == Month.February ? c - 4715 : c - 4716;
 
             Debug.WriteLine("A\t= " + yearA);
             Debug.WriteLine("B\t= " + b);
@@ -570,21 +571,21 @@ namespace AstroSharedClasses.Calendars {
         /// </returns>
         /// <exception cref="System.ArgumentOutOfRangeException">Y - CE 1582 October 5-14 are not real dates</exception>
         /// <exception cref="ArgumentOutOfRangeException">CE 1582 October 5-14 are not real dates.</exception>
-        private static double FromDate(int y, Enums.Month m, double d) {
+        private static double FromDate(int y, Month m, double d) {
             int b;
 
-            if (m == Enums.Month.January || m == Enums.Month.February) {
+            if (m == Month.January || m == Month.February) {
                 y = y - 1; m = m + 12;
             }
 
             //// First, is this a Julian or Gregorian Date?
             //// Julian Dates are before CE 1582 October 15
-            if (y > 1582 || (y == 1582 && m > Enums.Month.October) || (y == 1582 && m == Enums.Month.October && d >= 15)) {
+            if (y > 1582 || (y == 1582 && m > Month.October) || (y == 1582 && m == Month.October && d >= 15)) {
                 var a = y / 100;
                 b = 2 - a + (a / 4);
                 Debug.WriteLine("A\t= " + a);
             }
-            else if (y < 1582 || (y == 1582 && m < Enums.Month.October) || (y == 1582 && m == Enums.Month.October && d <= 4)) { //// Gregorian dates are after CE 1582 October 4
+            else if (y < 1582 || (y == 1582 && m < Month.October) || (y == 1582 && m == Month.October && d <= 4)) { //// Gregorian dates are after CE 1582 October 4
                 b = 0;
             }
             else { //// CE 1582 October 5-14 do not exist, there was a ten day overlay between the Gregorian and Julian calendars

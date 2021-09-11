@@ -8,11 +8,12 @@
 
 using AstroSharedClasses.Computation;
 using AstroSharedClasses.OrbitalElements;
+using AstroSharedOrbits.Orbits;
 
 namespace AstroSharedOrbits.Dwarfs
 {
     /// <summary> Orbit Body Quaoar. </summary>
-    public sealed class BodyQuaoar : Orbits.Orbit {
+    public sealed class BodyQuaoar : Orbit {
         /// <summary>
         /// Initializes a new instance of the <see cref="BodyQuaoar"/> class.
         /// </summary>

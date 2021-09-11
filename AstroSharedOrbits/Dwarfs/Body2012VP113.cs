@@ -8,11 +8,12 @@
 
 using AstroSharedClasses.Computation;
 using AstroSharedClasses.OrbitalElements;
+using AstroSharedOrbits.Orbits;
 
 namespace AstroSharedOrbits.Dwarfs
 {
     /// <summary> Orbit Body Eris. </summary>
-    public sealed class Body2012VP113 : Orbits.Orbit {
+    public sealed class Body2012VP113 : Orbit {
         /// <summary>
         /// Initializes a new instance of the <see cref="Body2012VP113"/> class.
         /// </summary>

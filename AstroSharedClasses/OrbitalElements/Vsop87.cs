@@ -7,6 +7,7 @@
 // <summary>Part of Astro Observatory</summary>
 
 namespace AstroSharedClasses.OrbitalElements {
+    using AstroSharedClasses.Records;
     using System;
     using System.Collections.Generic;
     using System.Globalization;
@@ -20,7 +21,7 @@ namespace AstroSharedClasses.OrbitalElements {
         /// <summary>
         /// Raw Vsop Data.
         /// </summary>
-        private List<Records.VsopRecord> rawData;
+        private List<VsopRecord> rawData;
 
         /// <summary>
         /// Current Line Num.
@@ -132,7 +133,7 @@ namespace AstroSharedClasses.OrbitalElements {
             this.time[3] = 0; 
             this.time[4] = 0; 
             this.time[5] = 0;
-            this.rawData = new List<Records.VsopRecord>();
+            this.rawData = new List<VsopRecord>();
             try {
                 //// TextReader sr
                 using (var sr = new StreamReader(this.FileName)) {
@@ -278,7 +279,7 @@ namespace AstroSharedClasses.OrbitalElements {
         /// </summary>
         /// <param name="line">The Vsop line.</param>
         private void AddRecord(string line) {
-            var rec = new Records.VsopRecord();
+            var rec = new VsopRecord();
             //// rec._Line = line;
             var ctst = new char[2]; 
             line.CopyTo(0, ctst, 0, 2);

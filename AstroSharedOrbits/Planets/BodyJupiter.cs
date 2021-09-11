@@ -14,11 +14,12 @@ namespace AstroSharedOrbits.Planets {
     using AstroSharedClasses.OrbitalElements;
     using AstroSharedClasses.Enums;
     using AstroSharedClasses.Computation;
+    using AstroSharedOrbits.Orbits;
 
     /// <summary>
     /// Body Jupiter.
     /// </summary>
-    public sealed class BodyJupiter : Orbits.Orbit {
+    public sealed class BodyJupiter : Orbit {
         /// <summary>
         /// Initializes a new instance of the BodyJupiter class.
         /// </summary>
@@ -523,7 +524,7 @@ namespace AstroSharedOrbits.Planets {
                     }
 
                 case AlgVariant.VarBretagnon87: {
-                        this.InitBretagnon87(Systems.SystemManager.VsopPath);
+                        this.InitBretagnon87(SystemManager.VsopPath);
                         break;
                     }
 

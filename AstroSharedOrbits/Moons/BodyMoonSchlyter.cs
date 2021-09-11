@@ -9,6 +9,7 @@
 namespace AstroSharedOrbits.Moons {
     using AstroSharedClasses.Computation;
     using AstroSharedClasses.OrbitalElements;
+    using AstroSharedOrbits.Systems;
     using JetBrains.Annotations;
 
     /// <summary>
@@ -62,7 +63,7 @@ namespace AstroSharedOrbits.Moons {
         [UsedImplicitly]
         private void PerturbateDistance() {
             const double value = 23455.65184;
-            var lme = Systems.EarthSystem.Earth.LM;     ////   double VMe=Earth->VM;
+            var lme = EarthSystem.Earth.LM;     ////   double VMe=Earth->VM;
             this.D = this.LM - lme;                        //// // Moon's mean elongation
             ////   double this.LatitudeF= LM-LW;             //// Moon's argument of latitude
             var d01 = -0.580 / value * Angles.Cosin(VM - (2 * this.D));
@@ -75,8 +76,8 @@ namespace AstroSharedOrbits.Moons {
         /// Perturbate Schlyter Longitude.
         /// </summary>
         private void PerturbateLongitude() {
-            var lme = Systems.EarthSystem.Earth.LM;
-            var vme = Systems.EarthSystem.Earth.VM;
+            var lme = EarthSystem.Earth.LM;
+            var vme = EarthSystem.Earth.VM;
             this.D = this.LM - lme;       //// Moon's mean elongation
             this.LatitudeF = this.LM - this.LW;        //// Moon's argument of latitude
             var d01 = -1.274 * Angles.Sinus(VM - (2 * this.D));
@@ -100,7 +101,7 @@ namespace AstroSharedOrbits.Moons {
         /// Perturbate Schlyter Latitude.
         /// </summary>
         private void PerturbateLatitude() {
-            var lme = Systems.EarthSystem.Earth.LM;     ////   double VMe=Earth.VM;
+            var lme = EarthSystem.Earth.LM;     ////   double VMe=Earth.VM;
             this.D = this.LM - lme;                        //// // Moon's mean elongation
             this.LatitudeF = this.LM - this.LW;                         //// // Moon's argument of latitude
 

@@ -8,6 +8,8 @@
 
 namespace AstroSharedClasses.Computation
 {
+    using AstroSharedClasses.Calendars;
+    using AstroSharedClasses.Records;
     using JetBrains.Annotations;
     using System;
     using System.Collections.Generic;
@@ -17,7 +19,7 @@ namespace AstroSharedClasses.Computation
     /// <summary>
     /// Date List.
     /// </summary>
-    public partial class DateList  //// : AstroConfiguration
+    public partial class DateList  //// : Constellation
     {
         #region Fields
 
@@ -62,7 +64,7 @@ namespace AstroSharedClasses.Computation
         /// <summary>
         /// Gets List.
         /// </summary>
-        private List<string> Info { get; }
+        public List<string> Info { get; }
 
         #endregion
 
@@ -84,7 +86,7 @@ namespace AstroSharedClasses.Computation
         [UsedImplicitly]
         public void AddSelectedDates(IEnumerable<float> dates, double dateFrom, double dateTo) {
             foreach (var date in dates.Where(date => dateFrom <= date && date <= dateTo)) {
-                this.AddDate(Calendars.Julian.JulYear(date));
+                this.AddDate(Julian.JulYear(date));
             }
         }
 
@@ -94,7 +96,7 @@ namespace AstroSharedClasses.Computation
         /// <param name="records">The records.</param>
         /// <param name="c">The c.</param>
         [UsedImplicitly]
-        public void AddMayanDates(IEnumerable<Records.MayanRecord> records, long c) {
+        public void AddMayanDates(IEnumerable<MayanRecord> records, long c) {
             foreach (var r in records) {
                 this.AddMayanDate(c, r.Baktun, r.Katun, r.Tun, r.Uinal, r.Kin, r.Info);
             }
@@ -110,7 +112,7 @@ namespace AstroSharedClasses.Computation
         public void AddDates(double fromDate, double toDate, double step) {
             ////  ALL CYCLES MAX
             for (var t = fromDate; t < toDate; t += step) {
-                this.Date.Add(Calendars.Julian.JulYear(t));
+                this.Date.Add(Julian.JulYear(t));
             }
         }
 
@@ -129,7 +131,7 @@ namespace AstroSharedClasses.Computation
         /// <param name="info">The info text.</param>
         private void AddMayanDate(long c, int baktun, int katun, int tun, int uinal, int kin, string info) {
             this.Info.Add(info);
-            this.AddDate(c + Calendars.Julian.MayanCorrectedDay(baktun, katun, tun, uinal, kin));
+            this.AddDate(c + Julian.MayanCorrectedDay(baktun, katun, tun, uinal, kin));
         }
 
         #endregion

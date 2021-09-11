@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstroSharedClasses", "Astro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstroSharedOrbits", "AstroSharedOrbits\AstroSharedOrbits.csproj", "{00FB5F98-B949-40C1-8F2E-C2E9D1A8F04F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstroSharedEvents", "AstroSharedEvents\AstroSharedEvents.csproj", "{3163D219-CEFA-49B9-B7B0-20322D3B2A8C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{00FB5F98-B949-40C1-8F2E-C2E9D1A8F04F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00FB5F98-B949-40C1-8F2E-C2E9D1A8F04F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00FB5F98-B949-40C1-8F2E-C2E9D1A8F04F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3163D219-CEFA-49B9-B7B0-20322D3B2A8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3163D219-CEFA-49B9-B7B0-20322D3B2A8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3163D219-CEFA-49B9-B7B0-20322D3B2A8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3163D219-CEFA-49B9-B7B0-20322D3B2A8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -11,6 +11,7 @@ namespace AstroSharedOrbits.OrbitalData
     using AstroSharedClasses.Calendars;
     using AstroSharedClasses.Computation;
     using AstroSharedClasses.Enums;
+    using AstroSharedOrbits.Systems;
     using JetBrains.Annotations;
     using System;
     using System.Collections.Generic;
@@ -48,7 +49,7 @@ namespace AstroSharedOrbits.OrbitalData
 
             double correction;
             do {
-                var sunLongitude = Systems.BodySun.ApparentEclipticLongitude(julianDayE);
+                var sunLongitude = BodySun.ApparentEclipticLongitude(julianDayE);
                 correction = 58 * Math.Sin(Angles.DegRad(-sunLongitude));
                 julianDayE += correction;
             }
@@ -84,7 +85,7 @@ namespace AstroSharedOrbits.OrbitalData
 
             double correction;
             do {
-                var sunLongitude = Systems.BodySun.ApparentEclipticLongitude(julianDayE);
+                var sunLongitude = BodySun.ApparentEclipticLongitude(julianDayE);
                 correction = 58 * Math.Sin(Angles.DegRad(90 - sunLongitude));
                 julianDayE += correction;
             }
@@ -120,7 +121,7 @@ namespace AstroSharedOrbits.OrbitalData
 
             double correction;
             do {
-                var sunLongitude = Systems.BodySun.ApparentEclipticLongitude(julianDayE);
+                var sunLongitude = BodySun.ApparentEclipticLongitude(julianDayE);
                 correction = 58 * Math.Sin(Angles.DegRad(180 - sunLongitude));
                 julianDayE += correction;
             }
@@ -156,7 +157,7 @@ namespace AstroSharedOrbits.OrbitalData
 
             double correction;
             do {
-                var sunLongitude = Systems.BodySun.ApparentEclipticLongitude(julianDayE);
+                var sunLongitude = BodySun.ApparentEclipticLongitude(julianDayE);
                 correction = 58 * Math.Sin(Angles.DegRad(270 - sunLongitude));
                 julianDayE += correction;
             }

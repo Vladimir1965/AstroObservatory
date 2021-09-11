@@ -8,11 +8,12 @@
 
 using AstroSharedClasses.Computation;
 using AstroSharedClasses.OrbitalElements;
+using AstroSharedOrbits.Orbits;
 
 namespace AstroSharedOrbits.Dwarfs
 {
     /// <summary> Orbit Body Sedna. </summary>
-    public sealed class BodySedna : Orbits.Orbit {
+    public sealed class BodySedna : Orbit {
         /// <summary>
         /// Initializes a new instance of the <see cref="BodySedna"/> class.
         /// https://en.wikipedia.org/wiki/90377_Sedna#Orbit_and_rotation

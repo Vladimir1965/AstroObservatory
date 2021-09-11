@@ -19,6 +19,7 @@ namespace AstroSharedOrbits.Moons {
     using AstroSharedClasses.Coordinates;
     using AstroSharedClasses.OrbitalElements;
     using AstroSharedOrbits.OrbitalData;
+    using AstroSharedOrbits.Systems;
     using JetBrains.Annotations;
 
     /// <summary>
@@ -169,7 +170,7 @@ namespace AstroSharedOrbits.Moons {
             this.A3 = Angles.Mod360(313.45 + (481266.484 * this.Time.Jecy));
 
             this.PrepareNormal();
-            this.EclipticObliquity = Systems.EarthSystem.Earth.EclipticObliquity;
+            this.EclipticObliquity = EarthSystem.Earth.EclipticObliquity;
 
             //// Then calculate the angles L', M, M', D and F by means of the following formulae, 
             //// in which the various constants are expressed in degrees and decimals.

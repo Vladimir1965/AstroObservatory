@@ -7,11 +7,12 @@
 // <summary>Part of Astro Observatory</summary>
 
 namespace AstroSharedOrbits.Planets {
+    using AstroSharedOrbits.Orbits;
     using JetBrains.Annotations;
 
     /// <summary> Initializes a new instance of the BodyKalenda class. </summary>
     [UsedImplicitly]
-    public sealed class BodyKalenda : Orbits.Orbit {
+    public sealed class BodyKalenda : Orbit {
         /// <summary>
         /// Initializes a new instance of the <see cref="BodyKalenda"/> class.
         /// </summary>

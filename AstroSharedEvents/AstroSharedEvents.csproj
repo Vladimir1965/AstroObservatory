@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3163D219-CEFA-49B9-B7B0-20322D3B2A8C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AstroSharedEvents</RootNamespace>
+    <AssemblyName>AstroSharedEvents</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="JetBrains.Annotations">
+      <HintPath>..\ExternalLibs\JetBrains.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\ExternalLibs\Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Crossing\Constellation.cs" />
+    <Compile Include="Crossing\Relation.cs" />
+    <Compile Include="Geology\DateListEarthquake.cs" />
+    <Compile Include="Geology\EarthLocation.cs" />
+    <Compile Include="Geology\Earthquake.cs" />
+    <Compile Include="Geology\EarthquakeRecord.cs" />
+    <Compile Include="Geology\EruptionRecord.cs" />
+    <Compile Include="Geology\GeoEvent.cs" />
+    <Compile Include="Geology\ImportBackgrounds.cs" />
+    <Compile Include="Geology\ImportEarthquakes.cs" />
+    <Compile Include="Geology\ImportEruptions.cs" />
+    <Compile Include="Geology\ImportLocations.cs" />
+    <Compile Include="Geology\ImportVolcanoes.cs" />
+    <Compile Include="Geology\MoonInfluence.cs" />
+    <Compile Include="Geology\SolveEarthquakes.cs" />
+    <Compile Include="Geology\SolveVolcanoes.cs" />
+    <Compile Include="Geology\VolcanoeRecord.cs" />
+    <Compile Include="Lists\DateListMayan.cs" />
+    <Compile Include="Lists\DateListOutput.cs" />
+    <Compile Include="Lists\DateListSolar.cs" />
+    <Compile Include="Lists\DateListTidalBands.cs" />
+    <Compile Include="Lists\Interval.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AstroSharedClasses\AstroSharedClasses.csproj">
+      <Project>{082a0f0e-c377-478d-acc5-631b46ce738b}</Project>
+      <Name>AstroSharedClasses</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AstroSharedOrbits\AstroSharedOrbits.csproj">
+      <Project>{00fb5f98-b949-40c1-8f2e-c2e9d1a8f04f}</Project>
+      <Name>AstroSharedOrbits</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

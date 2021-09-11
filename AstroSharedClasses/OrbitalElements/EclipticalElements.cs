@@ -8,6 +8,7 @@
 
 namespace AstroSharedClasses.OrbitalElements {
     using System;
+    using AstroSharedClasses.Records;
     using JetBrains.Annotations;
 
     /// <summary>
@@ -25,7 +26,7 @@ namespace AstroSharedClasses.OrbitalElements {
         /// <param name="julianDay">The julianDay.</param>
         /// <returns> Returns value. </returns>
         [UsedImplicitly]
-        public static Records.EclipticalElementDetails Calculate(double i0, double w0, double omega0, double julianDay0, double julianDay) {
+        public static EclipticalElementDetails Calculate(double i0, double w0, double omega0, double julianDay0, double julianDay) {
             var timeT = (julianDay0 - 2451545.0) / 36525;
             var dTsquared = timeT * timeT;
             var t = (julianDay - julianDay0) / 36525;
@@ -55,7 +56,7 @@ namespace AstroSharedClasses.OrbitalElements {
             var b = -sineta * cosi0rad + coseta * sini0rad * cosomega0radPi;
             var irad = Math.Asin(Math.Sqrt(a * a + b * b));
 
-            var details = new Records.EclipticalElementDetails {
+            var details = new EclipticalElementDetails {
                 I = Computation.Angles.RadDeg(irad)
             };
 
@@ -83,7 +84,7 @@ namespace AstroSharedClasses.OrbitalElements {
         /// <param name="omega0">The omega0.</param>
         /// <returns> Returns value. </returns>
         [UsedImplicitly]
-        public static Records.EclipticalElementDetails FK4B1950ToFK5J2000(double i0, double w0, double omega0) {
+        public static EclipticalElementDetails FK4B1950ToFK5J2000(double i0, double w0, double omega0) {
             //// convert to radians
             var longL = Computation.Angles.DegRad(5.19856209);
             var angleJ = Computation.Angles.DegRad(0.00651966);
@@ -102,7 +103,7 @@ namespace AstroSharedClasses.OrbitalElements {
             var b = sini0rad * cosJ + cosi0rad * sinJ * cosW;
 
             //// Calculate the values 
-            var details = new Records.EclipticalElementDetails {
+            var details = new EclipticalElementDetails {
                 I = Computation.Angles.RadDeg(Math.Asin(Math.Sqrt(a * a + b * b)))
             };
 

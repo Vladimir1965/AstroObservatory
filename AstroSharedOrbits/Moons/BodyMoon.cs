@@ -10,13 +10,14 @@ namespace AstroSharedOrbits.Moons {
     using System;
     using AstroSharedClasses.Computation;
     using AstroSharedClasses.Coordinates;
+    using AstroSharedOrbits.Orbits;
     using JetBrains.Annotations;
 
     /// <summary>
     /// Initializes a new instance of the BodyMoon class.
     /// </summary>
     [UsedImplicitly]
-    public class BodyMoon : Orbits.Orbit {
+    public class BodyMoon : Orbit {
         #region Fields
 
         #endregion
