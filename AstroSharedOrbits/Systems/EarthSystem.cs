@@ -9,6 +9,7 @@
 namespace AstroSharedOrbits.Systems {
     using AstroSharedClasses.Computation;
     using AstroSharedClasses.Enums;
+    using AstroSharedOrbits.Planets;
     using JetBrains.Annotations;
 
     /// <summary>
@@ -36,7 +37,7 @@ namespace AstroSharedOrbits.Systems {
         /// Gets Earth.
         /// </summary>
         /// <value> Property description. </value>
-        public static Planets.BodyEarth Earth { get; private set; }
+        public static BodyEarth Earth { get; private set; }
 
         /// <summary>
         /// Gets the moon.
@@ -176,7 +177,7 @@ namespace AstroSharedOrbits.Systems {
         /// Make Bodies.
         /// </summary>
         private static void MakeBodies() {
-            Earth = new Planets.BodyEarth();
+            Earth = new BodyEarth();
             MoonMeeus = new Moons.BodyMoonMeeus();
             MoonSchlyter = new Moons.BodyMoonSchlyter();
             ////MoonChapront = new BodyMoonChapront();

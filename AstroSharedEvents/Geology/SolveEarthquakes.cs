@@ -124,7 +124,7 @@ namespace AstroSharedEvents.Geology
             /*
             //// List earthquakes in connection to Moon
             var list = ImportEarthquakes.List;
-            LargoBaseAstronomy.Computation.DateList dateList = new LargoBaseAstronomy.Computation.DateList();
+            DateList dateList = new DateList();
             Interval interval = new Interval(dateList);
             dateList.AddEarthquakeDates(list);
 
@@ -169,11 +169,11 @@ namespace AstroSharedEvents.Geology
         /// Lists the earthquakes.
         /// </summary>
         private void ListEarthQuakes() {
-            LargoBaseAstronomy.Computation.DateList dateList = new LargoBaseAstronomy.Computation.DateList();
+            DateList dateList = new DateList();
             Interval interval = new Interval(dateList);
 
             //// var list = DateList.EarthquakeDatesAustralia;
-            var list = LargoBaseAstronomy.Computation.DateList.EarthquakeDates;
+            var list = DateList.EarthquakeDates;
             interval.DateList.AddEarthquakeDates(list);
             this.Text = interval.DateList.PrintCharacteristic(LargoBaseAstronomy.AstCharacteristic.DateDiffs); //// AstSystem.Solar
             foreach (var julianDate in interval.DateList.Date) {

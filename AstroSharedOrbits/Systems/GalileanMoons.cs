@@ -11,6 +11,7 @@ namespace AstroSharedOrbits.Systems
     using AstroSharedClasses.Computation;
     using AstroSharedClasses.OrbitalElements;
     using AstroSharedOrbits.OrbitalData;
+    using AstroSharedOrbits.Planets;
     using JetBrains.Annotations;
     using System;
 
@@ -33,7 +34,7 @@ namespace AstroSharedOrbits.Systems
             var sunlongrad = Angles.DegRad(sunlong);
             var beta = BodySun.GeometricEclipticLatitude(julianDay);
             var betaRad = Angles.DegRad(beta);
-            var radiusR = Planets.BodyEarth.RadiusVector(julianDay);
+            var radiusR = BodyEarth.RadiusVector(julianDay);
 
             //// Calculate the the light travel time from Jupiter to the Earth
             double delta = 5;
@@ -47,11 +48,11 @@ namespace AstroSharedOrbits.Systems
             while (bIterate)
             {
                 //// Calculate the position of Jupiter
-                var l = Planets.BodyJupiter.EclipticLongitude(julianDay1);
+                var l = BodyJupiter.EclipticLongitude(julianDay1);
                 var longitudeRadian = Angles.DegRad(l);
-                var b = Planets.BodyJupiter.EclipticLatitude(julianDay1);
+                var b = BodyJupiter.EclipticLatitude(julianDay1);
                 var latitudeRadian = Angles.DegRad(b);
-                var r = Planets.BodyJupiter.RadiusVector(julianDay1);
+                var r = BodyJupiter.RadiusVector(julianDay1);
 
                 x = r * Math.Cos(latitudeRadian) * Math.Cos(longitudeRadian) + radiusR * Math.Cos(sunlongrad);
                 y = r * Math.Cos(latitudeRadian) * Math.Sin(longitudeRadian) + radiusR * Math.Sin(sunlongrad);
@@ -80,11 +81,11 @@ namespace AstroSharedOrbits.Systems
             {
                 //// Calculate the the light travel time from Jupiter to the Sun
                 julianDay1 = julianDay - earthLightTravelTime;
-                var l = Planets.BodyJupiter.EclipticLongitude(julianDay1);
+                var l = BodyJupiter.EclipticLongitude(julianDay1);
                 var longitudeRadian = Angles.DegRad(l);
-                var b = Planets.BodyJupiter.EclipticLatitude(julianDay1);
+                var b = BodyJupiter.EclipticLatitude(julianDay1);
                 var latitudeRadian = Angles.DegRad(b);
-                var r = Planets.BodyJupiter.RadiusVector(julianDay1);
+                var r = BodyJupiter.RadiusVector(julianDay1);
                 x = r * Math.Cos(latitudeRadian) * Math.Cos(longitudeRadian);
                 y = r * Math.Cos(latitudeRadian) * Math.Sin(longitudeRadian);
                 z = r * Math.Sin(latitudeRadian);
@@ -135,11 +136,11 @@ namespace AstroSharedOrbits.Systems
             var bIterate = true;
             while (bIterate) {
                 //// Calculate the position of Jupiter
-                var l = Planets.BodyJupiter.EclipticLongitude(julianDay1);
+                var l = BodyJupiter.EclipticLongitude(julianDay1);
                 var longitudeRadian = Angles.DegRad(l);
-                var b = Planets.BodyJupiter.EclipticLatitude(julianDay1);
+                var b = BodyJupiter.EclipticLatitude(julianDay1);
                 var latitudeRadian = Angles.DegRad(b);
-                var r = Planets.BodyJupiter.RadiusVector(julianDay1);
+                var r = BodyJupiter.RadiusVector(julianDay1);
 
                 x = r * Math.Cos(latitudeRadian) * Math.Cos(longitudeRadian) + radiusR * Math.Cos(sunlongrad);
                 y = r * Math.Cos(latitudeRadian) * Math.Sin(longitudeRadian) + radiusR * Math.Sin(sunlongrad);
@@ -512,8 +513,8 @@ namespace AstroSharedOrbits.Systems
             const double z5 = 1;
 
             //// Now do the rotations, first for the fictive 5th satellite, so that we can calculate elongD
-            var omega = Angles.DegRad(Planets.BodyJupiter.JupiterLongitudeAscendingNode(julianDay));
-            var i = Angles.DegRad(Planets.BodyJupiter.JupiterInclination(julianDay));
+            var omega = Angles.DegRad(BodyJupiter.JupiterLongitudeAscendingNode(julianDay));
+            var i = Angles.DegRad(BodyJupiter.JupiterInclination(julianDay));
             Rotations(x5, y5, z5, irad, psi, i, omega, lambda0, x5, out var a6, out var b6, out var c6);
             var elongD = Math.Atan2(a6, c6);
 

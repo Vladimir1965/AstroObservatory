@@ -50,14 +50,14 @@ namespace AstroSharedOrbits.OrbitalData
             var omega = 125.04452 - 1934.136261 * julianCentury + 0.0020708 * timeSquared + timeCubed / 450000;
             omega = Angles.Mod360(omega);
 
-            var nCoefficients = OrbitalData.NutationQuotients.NutationCoefficients.Length;
+            var nCoefficients = NutationQuotients.NutationCoefficients.Length;
             double value = 0;
             for (var i = 0; i < nCoefficients; i++) {
-                var argument = OrbitalData.NutationQuotients.NutationCoefficients[i].D * elongD + OrbitalData.NutationQuotients.NutationCoefficients[i].M * anomalyM +
-                                OrbitalData.NutationQuotients.NutationCoefficients[i].Mprime * anomalyMprime + OrbitalData.NutationQuotients.NutationCoefficients[i].LatitudeF * latitudeF +
-                                OrbitalData.NutationQuotients.NutationCoefficients[i].Omega * omega;
+                var argument = NutationQuotients.NutationCoefficients[i].D * elongD + NutationQuotients.NutationCoefficients[i].M * anomalyM +
+                                NutationQuotients.NutationCoefficients[i].Mprime * anomalyMprime + NutationQuotients.NutationCoefficients[i].LatitudeF * latitudeF +
+                                NutationQuotients.NutationCoefficients[i].Omega * omega;
                 var radargument = Angles.DegRad(argument);
-                value += (OrbitalData.NutationQuotients.NutationCoefficients[i].Sincoeff1 + OrbitalData.NutationQuotients.NutationCoefficients[i].Sincoeff2 * julianCentury) * Math.Sin(radargument) * 0.0001;
+                value += (NutationQuotients.NutationCoefficients[i].Sincoeff1 + NutationQuotients.NutationCoefficients[i].Sincoeff2 * julianCentury) * Math.Sin(radargument) * 0.0001;
             }
 
             return value;
@@ -88,14 +88,14 @@ namespace AstroSharedOrbits.OrbitalData
             var omega = 125.04452 - 1934.136261 * julianCentury + 0.0020708 * timeSquared + timeCubed / 450000;
             omega = Angles.Mod360(omega);
 
-            var nCoefficients = OrbitalData.NutationQuotients.NutationCoefficients.Length;
+            var nCoefficients = NutationQuotients.NutationCoefficients.Length;
             double value = 0;
             for (var i = 0; i < nCoefficients; i++) {
-                var argument = OrbitalData.NutationQuotients.NutationCoefficients[i].D * elongD + OrbitalData.NutationQuotients.NutationCoefficients[i].M * anomalyM +
-                                OrbitalData.NutationQuotients.NutationCoefficients[i].Mprime * mprime + OrbitalData.NutationQuotients.NutationCoefficients[i].LatitudeF * latitudeF +
-                                OrbitalData.NutationQuotients.NutationCoefficients[i].Omega * omega;
+                var argument = NutationQuotients.NutationCoefficients[i].D * elongD + NutationQuotients.NutationCoefficients[i].M * anomalyM +
+                                NutationQuotients.NutationCoefficients[i].Mprime * mprime + NutationQuotients.NutationCoefficients[i].LatitudeF * latitudeF +
+                                NutationQuotients.NutationCoefficients[i].Omega * omega;
                 var radargument = Angles.DegRad(argument);
-                value += (OrbitalData.NutationQuotients.NutationCoefficients[i].Coscoeff1 + OrbitalData.NutationQuotients.NutationCoefficients[i].Coscoeff2 * julianCentury) * Math.Cos(radargument) * 0.0001;
+                value += (NutationQuotients.NutationCoefficients[i].Coscoeff1 + NutationQuotients.NutationCoefficients[i].Coscoeff2 * julianCentury) * Math.Cos(radargument) * 0.0001;
             }
 
             return value;

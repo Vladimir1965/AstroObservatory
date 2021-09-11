@@ -15,6 +15,7 @@ namespace AstroSharedOrbits.Planets {
     using AstroSharedClasses.OrbitalElements;
     using AstroSharedClasses.Enums;
     using AstroSharedOrbits.Orbits;
+    using AstroSharedOrbits.OrbitalData;
 
     /// <summary> Orbit Body Earth. </summary>
     public sealed class BodyEarth : Orbit {
@@ -263,46 +264,46 @@ namespace AstroSharedOrbits.Planets {
             var rho5 = rho4 * rho;
 
             //// Calculate L0
-            var nL0Coefficients = OrbitalData.VsopData.L0EarthCoefficients.Length;
+            var nL0Coefficients = VsopData.L0EarthCoefficients.Length;
             double l0 = 0;
             for (var i = 0; i < nL0Coefficients; i++) {
-                l0 += OrbitalData.VsopData.L0EarthCoefficients[i].A *
-                      Math.Cos(OrbitalData.VsopData.L0EarthCoefficients[i].B + OrbitalData.VsopData.L0EarthCoefficients[i].C * rho);
+                l0 += VsopData.L0EarthCoefficients[i].A *
+                      Math.Cos(VsopData.L0EarthCoefficients[i].B + VsopData.L0EarthCoefficients[i].C * rho);
             }
 
             //// Calculate L1
-            var nL1Coefficients = OrbitalData.VsopData.L1EarthCoefficients.Length;
+            var nL1Coefficients = VsopData.L1EarthCoefficients.Length;
             double l1 = 0;
             for (var i = 0; i < nL1Coefficients; i++) {
-                l1 += OrbitalData.VsopData.L1EarthCoefficients[i].A * Math.Cos(OrbitalData.VsopData.L1EarthCoefficients[i].B + OrbitalData.VsopData.L1EarthCoefficients[i].C * rho);
+                l1 += VsopData.L1EarthCoefficients[i].A * Math.Cos(VsopData.L1EarthCoefficients[i].B + VsopData.L1EarthCoefficients[i].C * rho);
             }
 
             //// Calculate L2
-            var nL2Coefficients = OrbitalData.VsopData.L2EarthCoefficients.Length;
+            var nL2Coefficients = VsopData.L2EarthCoefficients.Length;
             double l2 = 0;
             for (var i = 0; i < nL2Coefficients; i++) {
-                l2 += OrbitalData.VsopData.L2EarthCoefficients[i].A * Math.Cos(OrbitalData.VsopData.L2EarthCoefficients[i].B + OrbitalData.VsopData.L2EarthCoefficients[i].C * rho);
+                l2 += VsopData.L2EarthCoefficients[i].A * Math.Cos(VsopData.L2EarthCoefficients[i].B + VsopData.L2EarthCoefficients[i].C * rho);
             }
 
             //// Calculate L3
-            var nL3Coefficients = OrbitalData.VsopData.L3EarthCoefficients.Length;
+            var nL3Coefficients = VsopData.L3EarthCoefficients.Length;
             double l3 = 0;
             for (var i = 0; i < nL3Coefficients; i++) {
-                l3 += OrbitalData.VsopData.L3EarthCoefficients[i].A * Math.Cos(OrbitalData.VsopData.L3EarthCoefficients[i].B + OrbitalData.VsopData.L3EarthCoefficients[i].C * rho);
+                l3 += VsopData.L3EarthCoefficients[i].A * Math.Cos(VsopData.L3EarthCoefficients[i].B + VsopData.L3EarthCoefficients[i].C * rho);
             }
 
             //// Calculate L4
-            var nL4Coefficients = OrbitalData.VsopData.L4EarthCoefficients.Length;
+            var nL4Coefficients = VsopData.L4EarthCoefficients.Length;
             double l4 = 0;
             for (var i = 0; i < nL4Coefficients; i++) {
-                l4 += OrbitalData.VsopData.L4EarthCoefficients[i].A * Math.Cos(OrbitalData.VsopData.L4EarthCoefficients[i].B + OrbitalData.VsopData.L4EarthCoefficients[i].C * rho);
+                l4 += VsopData.L4EarthCoefficients[i].A * Math.Cos(VsopData.L4EarthCoefficients[i].B + VsopData.L4EarthCoefficients[i].C * rho);
             }
 
             //// Calculate L5
-            var nL5Coefficients = OrbitalData.VsopData.L5EarthCoefficients.Length;
+            var nL5Coefficients = VsopData.L5EarthCoefficients.Length;
             double l5 = 0;
             for (var i = 0; i < nL5Coefficients; i++) {
-                l5 += OrbitalData.VsopData.L5EarthCoefficients[i].A * Math.Cos(OrbitalData.VsopData.L5EarthCoefficients[i].B + OrbitalData.VsopData.L5EarthCoefficients[i].C * rho);
+                l5 += VsopData.L5EarthCoefficients[i].A * Math.Cos(VsopData.L5EarthCoefficients[i].B + VsopData.L5EarthCoefficients[i].C * rho);
             }
 
             var val = (l0 + l1 * rho + l2 * rhoSquared + l3 * rhoCubed + l4 * rho4 + l5 * rho5) / 100000000.0;
@@ -324,39 +325,39 @@ namespace AstroSharedOrbits.Planets {
             var rho4 = rhoCubed * rho;
 
             //// Calculate B0
-            var nB0Coefficients = OrbitalData.VsopData.B0EarthCoefficients.Length;
+            var nB0Coefficients = VsopData.B0EarthCoefficients.Length;
             double b0 = 0;
             for (var i = 0; i < nB0Coefficients; i++) {
-                b0 += OrbitalData.VsopData.B0EarthCoefficients[i].A *
-                      Math.Cos(OrbitalData.VsopData.B0EarthCoefficients[i].B + OrbitalData.VsopData.B0EarthCoefficients[i].C * rho);
+                b0 += VsopData.B0EarthCoefficients[i].A *
+                      Math.Cos(VsopData.B0EarthCoefficients[i].B + VsopData.B0EarthCoefficients[i].C * rho);
             }
 
             //// Calculate B1
-            var nB1Coefficients = OrbitalData.VsopData.B1EarthCoefficients.Length;
+            var nB1Coefficients = VsopData.B1EarthCoefficients.Length;
             double b1 = 0;
             for (var i = 0; i < nB1Coefficients; i++) {
-                b1 += OrbitalData.VsopData.B1EarthCoefficients[i].A * Math.Cos(OrbitalData.VsopData.B1EarthCoefficients[i].B + OrbitalData.VsopData.B1EarthCoefficients[i].C * rho);
+                b1 += VsopData.B1EarthCoefficients[i].A * Math.Cos(VsopData.B1EarthCoefficients[i].B + VsopData.B1EarthCoefficients[i].C * rho);
             }
 
             //// Calculate B2
-            var nB2Coefficients = OrbitalData.VsopData.B2EarthCoefficients.Length;
+            var nB2Coefficients = VsopData.B2EarthCoefficients.Length;
             double b2 = 0;
             for (var i = 0; i < nB2Coefficients; i++) {
-                b2 += OrbitalData.VsopData.B2EarthCoefficients[i].A * Math.Cos(OrbitalData.VsopData.B2EarthCoefficients[i].B + OrbitalData.VsopData.B2EarthCoefficients[i].C * rho);
+                b2 += VsopData.B2EarthCoefficients[i].A * Math.Cos(VsopData.B2EarthCoefficients[i].B + VsopData.B2EarthCoefficients[i].C * rho);
             }
 
             //// Calculate B3
-            var nB3Coefficients = OrbitalData.VsopData.B3EarthCoefficients.Length;
+            var nB3Coefficients = VsopData.B3EarthCoefficients.Length;
             double b3 = 0;
             for (var i = 0; i < nB3Coefficients; i++) {
-                b3 += OrbitalData.VsopData.B3EarthCoefficients[i].A * Math.Cos(OrbitalData.VsopData.B3EarthCoefficients[i].B + OrbitalData.VsopData.B3EarthCoefficients[i].C * rho);
+                b3 += VsopData.B3EarthCoefficients[i].A * Math.Cos(VsopData.B3EarthCoefficients[i].B + VsopData.B3EarthCoefficients[i].C * rho);
             }
 
             //// Calculate B4
-            var nB4Coefficients = OrbitalData.VsopData.B4EarthCoefficients.Length;
+            var nB4Coefficients = VsopData.B4EarthCoefficients.Length;
             double b4 = 0;
             for (var i = 0; i < nB4Coefficients; i++) {
-                b4 += OrbitalData.VsopData.B4EarthCoefficients[i].A * Math.Cos(OrbitalData.VsopData.B4EarthCoefficients[i].B + OrbitalData.VsopData.B4EarthCoefficients[i].C * rho);
+                b4 += VsopData.B4EarthCoefficients[i].A * Math.Cos(VsopData.B4EarthCoefficients[i].B + VsopData.B4EarthCoefficients[i].C * rho);
             }
 
             var val = (b0 + b1 * rho + b2 * rhoSquared + b3 * rhoCubed + b4 * rho4) / 100000000.0;
@@ -378,39 +379,39 @@ namespace AstroSharedOrbits.Planets {
             var rho4 = rhoCubed * rho;
 
             //// Calculate R0
-            var nR0Coefficients = OrbitalData.VsopData.R0EarthCoefficients.Length;
+            var nR0Coefficients = VsopData.R0EarthCoefficients.Length;
             double r0 = 0;
             for (var i = 0; i < nR0Coefficients; i++) {
-                r0 += OrbitalData.VsopData.R0EarthCoefficients[i].A * Math.Cos(OrbitalData.VsopData.R0EarthCoefficients[i].B + OrbitalData.VsopData.R0EarthCoefficients[i].C * rho);
+                r0 += VsopData.R0EarthCoefficients[i].A * Math.Cos(VsopData.R0EarthCoefficients[i].B + VsopData.R0EarthCoefficients[i].C * rho);
             }
 
             //// Calculate R1
-            var nR1Coefficients = OrbitalData.VsopData.R1EarthCoefficients.Length;
+            var nR1Coefficients = VsopData.R1EarthCoefficients.Length;
             double r1 = 0;
             for (var i = 0; i < nR1Coefficients; i++) {
-                r1 += OrbitalData.VsopData.R1EarthCoefficients[i].A * Math.Cos(OrbitalData.VsopData.R1EarthCoefficients[i].B + OrbitalData.VsopData.R1EarthCoefficients[i].C * rho);
+                r1 += VsopData.R1EarthCoefficients[i].A * Math.Cos(VsopData.R1EarthCoefficients[i].B + VsopData.R1EarthCoefficients[i].C * rho);
             }
 
             //// Calculate R2
-            var nR2Coefficients = OrbitalData.VsopData.R2EarthCoefficients.Length;
+            var nR2Coefficients = VsopData.R2EarthCoefficients.Length;
             double r2 = 0;
             for (var i = 0; i < nR2Coefficients; i++) {
-                r2 += OrbitalData.VsopData.R2EarthCoefficients[i].A * Math.Cos(OrbitalData.VsopData.R2EarthCoefficients[i].B + OrbitalData.VsopData.R2EarthCoefficients[i].C * rho);
+                r2 += VsopData.R2EarthCoefficients[i].A * Math.Cos(VsopData.R2EarthCoefficients[i].B + VsopData.R2EarthCoefficients[i].C * rho);
             }
 
             //// Calculate R3
-            var nR3Coefficients = OrbitalData.VsopData.R3EarthCoefficients.Length;
+            var nR3Coefficients = VsopData.R3EarthCoefficients.Length;
             double r3 = 0;
             for (var i = 0; i < nR3Coefficients; i++) {
-                r3 += OrbitalData.VsopData.R3EarthCoefficients[i].A * Math.Cos(OrbitalData.VsopData.R3EarthCoefficients[i].B + OrbitalData.VsopData.R3EarthCoefficients[i].C * rho);
+                r3 += VsopData.R3EarthCoefficients[i].A * Math.Cos(VsopData.R3EarthCoefficients[i].B + VsopData.R3EarthCoefficients[i].C * rho);
             }
 
             //// Calculate R4
-            var nR4Coefficients = OrbitalData.VsopData.R4EarthCoefficients.Length;
+            var nR4Coefficients = VsopData.R4EarthCoefficients.Length;
             double r4 = 0;
             for (var i = 0; i < nR4Coefficients; i++) {
-                r4 += OrbitalData.VsopData.R4EarthCoefficients[i].A *
-                      Math.Cos(OrbitalData.VsopData.R4EarthCoefficients[i].B + OrbitalData.VsopData.R4EarthCoefficients[i].C * rho);
+                r4 += VsopData.R4EarthCoefficients[i].A *
+                      Math.Cos(VsopData.R4EarthCoefficients[i].B + VsopData.R4EarthCoefficients[i].C * rho);
             }
 
             return (r0 + r1 * rho + r2 * rhoSquared + r3 * rhoCubed + r4 * rho4) / 100000000.0;
@@ -428,38 +429,38 @@ namespace AstroSharedOrbits.Planets {
             var rho4 = rhoCubed * rho;
 
             //// Calculate L0
-            var nL0Coefficients = OrbitalData.VsopData.L0EarthCoefficients.Length;
+            var nL0Coefficients = VsopData.L0EarthCoefficients.Length;
             double l0 = 0;
             for (var i = 0; i < nL0Coefficients; i++) {
-                l0 += OrbitalData.VsopData.L0EarthCoefficients[i].A * Math.Cos(OrbitalData.VsopData.L0EarthCoefficients[i].B + OrbitalData.VsopData.L0EarthCoefficients[i].C * rho);
+                l0 += VsopData.L0EarthCoefficients[i].A * Math.Cos(VsopData.L0EarthCoefficients[i].B + VsopData.L0EarthCoefficients[i].C * rho);
             }
 
             //// Calculate L1
-            var nL1Coefficients = OrbitalData.VsopData.L1EarthCoefficientsJ2000.Length;
+            var nL1Coefficients = VsopData.L1EarthCoefficientsJ2000.Length;
             double l1 = 0;
             for (var i = 0; i < nL1Coefficients; i++) {
-                l1 += OrbitalData.VsopData.L1EarthCoefficientsJ2000[i].A * Math.Cos(OrbitalData.VsopData.L1EarthCoefficientsJ2000[i].B + OrbitalData.VsopData.L1EarthCoefficientsJ2000[i].C * rho);
+                l1 += VsopData.L1EarthCoefficientsJ2000[i].A * Math.Cos(VsopData.L1EarthCoefficientsJ2000[i].B + VsopData.L1EarthCoefficientsJ2000[i].C * rho);
             }
 
             //// Calculate L2
-            var nL2Coefficients = OrbitalData.VsopData.L2EarthCoefficientsJ2000.Length;
+            var nL2Coefficients = VsopData.L2EarthCoefficientsJ2000.Length;
             double l2 = 0;
             for (var i = 0; i < nL2Coefficients; i++) {
-                l2 += OrbitalData.VsopData.L2EarthCoefficientsJ2000[i].A * Math.Cos(OrbitalData.VsopData.L2EarthCoefficientsJ2000[i].B + OrbitalData.VsopData.L2EarthCoefficientsJ2000[i].C * rho);
+                l2 += VsopData.L2EarthCoefficientsJ2000[i].A * Math.Cos(VsopData.L2EarthCoefficientsJ2000[i].B + VsopData.L2EarthCoefficientsJ2000[i].C * rho);
             }
 
             //// Calculate L3
-            var nL3Coefficients = OrbitalData.VsopData.L3EarthCoefficientsJ2000.Length;
+            var nL3Coefficients = VsopData.L3EarthCoefficientsJ2000.Length;
             double l3 = 0;
             for (var i = 0; i < nL3Coefficients; i++) {
-                l3 += OrbitalData.VsopData.L3EarthCoefficientsJ2000[i].A * Math.Cos(OrbitalData.VsopData.L3EarthCoefficientsJ2000[i].B + OrbitalData.VsopData.L3EarthCoefficientsJ2000[i].C * rho);
+                l3 += VsopData.L3EarthCoefficientsJ2000[i].A * Math.Cos(VsopData.L3EarthCoefficientsJ2000[i].B + VsopData.L3EarthCoefficientsJ2000[i].C * rho);
             }
 
             //// Calculate L4
-            var nL4Coefficients = OrbitalData.VsopData.L4EarthCoefficientsJ2000.Length;
+            var nL4Coefficients = VsopData.L4EarthCoefficientsJ2000.Length;
             double l4 = 0;
             for (var i = 0; i < nL4Coefficients; i++) {
-                l4 += OrbitalData.VsopData.L4EarthCoefficientsJ2000[i].A * Math.Cos(OrbitalData.VsopData.L4EarthCoefficientsJ2000[i].B + OrbitalData.VsopData.L4EarthCoefficientsJ2000[i].C * rho);
+                l4 += VsopData.L4EarthCoefficientsJ2000[i].A * Math.Cos(VsopData.L4EarthCoefficientsJ2000[i].B + VsopData.L4EarthCoefficientsJ2000[i].C * rho);
             }
 
             var val = (l0 + l1 * rho + l2 * rhoSquared + l3 * rhoCubed + l4 * rho4) / 100000000.0;
@@ -481,38 +482,38 @@ namespace AstroSharedOrbits.Planets {
             var rho4 = rhoCubed * rho;
 
             //// Calculate B0
-            var nB0Coefficients = OrbitalData.VsopData.B0EarthCoefficients.Length;
+            var nB0Coefficients = VsopData.B0EarthCoefficients.Length;
             double b0 = 0;
             for (var i = 0; i < nB0Coefficients; i++) {
-                b0 += OrbitalData.VsopData.B0EarthCoefficients[i].A * Math.Cos(OrbitalData.VsopData.B0EarthCoefficients[i].B + OrbitalData.VsopData.B0EarthCoefficients[i].C * rho);
+                b0 += VsopData.B0EarthCoefficients[i].A * Math.Cos(VsopData.B0EarthCoefficients[i].B + VsopData.B0EarthCoefficients[i].C * rho);
             }
 
             //// Calculate B1
-            var nB1Coefficients = OrbitalData.VsopData.B1EarthCoefficientsJ2000.Length;
+            var nB1Coefficients = VsopData.B1EarthCoefficientsJ2000.Length;
             double b1 = 0;
             for (var i = 0; i < nB1Coefficients; i++) {
-                b1 += OrbitalData.VsopData.B1EarthCoefficientsJ2000[i].A * Math.Cos(OrbitalData.VsopData.B1EarthCoefficientsJ2000[i].B + OrbitalData.VsopData.B1EarthCoefficientsJ2000[i].C * rho);
+                b1 += VsopData.B1EarthCoefficientsJ2000[i].A * Math.Cos(VsopData.B1EarthCoefficientsJ2000[i].B + VsopData.B1EarthCoefficientsJ2000[i].C * rho);
             }
 
             //// Calculate B2
-            var nB2Coefficients = OrbitalData.VsopData.B2EarthCoefficientsJ2000.Length;
+            var nB2Coefficients = VsopData.B2EarthCoefficientsJ2000.Length;
             double b2 = 0;
             for (var i = 0; i < nB2Coefficients; i++) {
-                b2 += OrbitalData.VsopData.B2EarthCoefficientsJ2000[i].A * Math.Cos(OrbitalData.VsopData.B2EarthCoefficientsJ2000[i].B + OrbitalData.VsopData.B2EarthCoefficientsJ2000[i].C * rho);
+                b2 += VsopData.B2EarthCoefficientsJ2000[i].A * Math.Cos(VsopData.B2EarthCoefficientsJ2000[i].B + VsopData.B2EarthCoefficientsJ2000[i].C * rho);
             }
 
             //// Calculate B3
-            var nB3Coefficients = OrbitalData.VsopData.B3EarthCoefficientsJ2000.Length;
+            var nB3Coefficients = VsopData.B3EarthCoefficientsJ2000.Length;
             double b3 = 0;
             for (var i = 0; i < nB3Coefficients; i++) {
-                b3 += OrbitalData.VsopData.B3EarthCoefficientsJ2000[i].A * Math.Cos(OrbitalData.VsopData.B3EarthCoefficientsJ2000[i].B + OrbitalData.VsopData.B3EarthCoefficientsJ2000[i].C * rho);
+                b3 += VsopData.B3EarthCoefficientsJ2000[i].A * Math.Cos(VsopData.B3EarthCoefficientsJ2000[i].B + VsopData.B3EarthCoefficientsJ2000[i].C * rho);
             }
 
             //// Calculate B4
-            var nB4Coefficients = OrbitalData.VsopData.B4EarthCoefficientsJ2000.Length;
+            var nB4Coefficients = VsopData.B4EarthCoefficientsJ2000.Length;
             double b4 = 0;
             for (var i = 0; i < nB4Coefficients; i++) {
-                b4 += OrbitalData.VsopData.B4EarthCoefficientsJ2000[i].A * Math.Cos(OrbitalData.VsopData.B4EarthCoefficientsJ2000[i].B + OrbitalData.VsopData.B4EarthCoefficientsJ2000[i].C * rho);
+                b4 += VsopData.B4EarthCoefficientsJ2000[i].A * Math.Cos(VsopData.B4EarthCoefficientsJ2000[i].B + VsopData.B4EarthCoefficientsJ2000[i].C * rho);
             }
 
             var val = (b0 + b1 * rho + b2 * rhoSquared + b3 * rhoCubed + b4 * rho4) / 100000000.0;

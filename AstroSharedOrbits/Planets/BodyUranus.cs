@@ -12,6 +12,7 @@ namespace AstroSharedOrbits.Planets {
     using AstroSharedClasses.Computation;
     using AstroSharedClasses.Enums;
     using AstroSharedClasses.OrbitalElements;
+    using AstroSharedOrbits.OrbitalData;
     using AstroSharedOrbits.Orbits;
     using AstroSharedOrbits.Systems;
     using JetBrains.Annotations;
@@ -275,33 +276,33 @@ namespace AstroSharedOrbits.Planets {
             //// Calculate L0
             double l0 = 0;
             int i;
-            for (i = 0; i < OrbitalData.VsopData.L0UranusCoefficients.Length; i++) {
-                l0 += OrbitalData.VsopData.L0UranusCoefficients[i].A *
-                      Math.Cos(OrbitalData.VsopData.L0UranusCoefficients[i].B + OrbitalData.VsopData.L0UranusCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.L0UranusCoefficients.Length; i++) {
+                l0 += VsopData.L0UranusCoefficients[i].A *
+                      Math.Cos(VsopData.L0UranusCoefficients[i].B + VsopData.L0UranusCoefficients[i].C * rho);
             }
 
             //// Calculate L1
             double l1 = 0;
-            for (i = 0; i < OrbitalData.VsopData.L1UranusCoefficients.Length; i++) {
-                l1 += OrbitalData.VsopData.L1UranusCoefficients[i].A * Math.Cos(OrbitalData.VsopData.L1UranusCoefficients[i].B + OrbitalData.VsopData.L1UranusCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.L1UranusCoefficients.Length; i++) {
+                l1 += VsopData.L1UranusCoefficients[i].A * Math.Cos(VsopData.L1UranusCoefficients[i].B + VsopData.L1UranusCoefficients[i].C * rho);
             }
 
             //// Calculate L2
             double l2 = 0;
-            for (i = 0; i < OrbitalData.VsopData.L2UranusCoefficients.Length; i++) {
-                l2 += OrbitalData.VsopData.L2UranusCoefficients[i].A * Math.Cos(OrbitalData.VsopData.L2UranusCoefficients[i].B + OrbitalData.VsopData.L2UranusCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.L2UranusCoefficients.Length; i++) {
+                l2 += VsopData.L2UranusCoefficients[i].A * Math.Cos(VsopData.L2UranusCoefficients[i].B + VsopData.L2UranusCoefficients[i].C * rho);
             }
 
             //// Calculate L3
             double l3 = 0;
-            for (i = 0; i < OrbitalData.VsopData.L3UranusCoefficients.Length; i++) {
-                l3 += OrbitalData.VsopData.L3UranusCoefficients[i].A * Math.Cos(OrbitalData.VsopData.L3UranusCoefficients[i].B + OrbitalData.VsopData.L3UranusCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.L3UranusCoefficients.Length; i++) {
+                l3 += VsopData.L3UranusCoefficients[i].A * Math.Cos(VsopData.L3UranusCoefficients[i].B + VsopData.L3UranusCoefficients[i].C * rho);
             }
 
             //// Calculate L4
             double l4 = 0;
-            for (i = 0; i < OrbitalData.VsopData.L4UranusCoefficients.Length; i++) {
-                l4 += OrbitalData.VsopData.L4UranusCoefficients[i].A * Math.Cos(OrbitalData.VsopData.L4UranusCoefficients[i].B + OrbitalData.VsopData.L4UranusCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.L4UranusCoefficients.Length; i++) {
+                l4 += VsopData.L4UranusCoefficients[i].A * Math.Cos(VsopData.L4UranusCoefficients[i].B + VsopData.L4UranusCoefficients[i].C * rho);
             }
 
             var value = (l0 + l1 * rho + l2 * rhoSquared + l3 * rhoCubed + l4 * rho4) / 100000000;
@@ -325,32 +326,32 @@ namespace AstroSharedOrbits.Planets {
             //// Calculate B0
             double b0 = 0;
             int i;
-            for (i = 0; i < OrbitalData.VsopData.B0UranusCoefficients.Length; i++) {
-                b0 += OrbitalData.VsopData.B0UranusCoefficients[i].A * Math.Cos(OrbitalData.VsopData.B0UranusCoefficients[i].B + OrbitalData.VsopData.B0UranusCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.B0UranusCoefficients.Length; i++) {
+                b0 += VsopData.B0UranusCoefficients[i].A * Math.Cos(VsopData.B0UranusCoefficients[i].B + VsopData.B0UranusCoefficients[i].C * rho);
             }
 
             //// Calculate B1
             double b1 = 0;
-            for (i = 0; i < OrbitalData.VsopData.B1UranusCoefficients.Length; i++) {
-                b1 += OrbitalData.VsopData.B1UranusCoefficients[i].A * Math.Cos(OrbitalData.VsopData.B1UranusCoefficients[i].B + OrbitalData.VsopData.B1UranusCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.B1UranusCoefficients.Length; i++) {
+                b1 += VsopData.B1UranusCoefficients[i].A * Math.Cos(VsopData.B1UranusCoefficients[i].B + VsopData.B1UranusCoefficients[i].C * rho);
             }
 
             //// Calculate B2
             double b2 = 0;
-            for (i = 0; i < OrbitalData.VsopData.B2UranusCoefficients.Length; i++) {
-                b2 += OrbitalData.VsopData.B2UranusCoefficients[i].A * Math.Cos(OrbitalData.VsopData.B2UranusCoefficients[i].B + OrbitalData.VsopData.B2UranusCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.B2UranusCoefficients.Length; i++) {
+                b2 += VsopData.B2UranusCoefficients[i].A * Math.Cos(VsopData.B2UranusCoefficients[i].B + VsopData.B2UranusCoefficients[i].C * rho);
             }
 
             //// Calculate B3
             double b3 = 0;
-            for (i = 0; i < OrbitalData.VsopData.B3UranusCoefficients.Length; i++) {
-                b3 += OrbitalData.VsopData.B3UranusCoefficients[i].A * Math.Cos(OrbitalData.VsopData.B3UranusCoefficients[i].B + OrbitalData.VsopData.B3UranusCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.B3UranusCoefficients.Length; i++) {
+                b3 += VsopData.B3UranusCoefficients[i].A * Math.Cos(VsopData.B3UranusCoefficients[i].B + VsopData.B3UranusCoefficients[i].C * rho);
             }
 
             //// Calculate B4
             double b4 = 0;
-            for (i = 0; i < OrbitalData.VsopData.B4UranusCoefficients.Length; i++) {
-                b4 += OrbitalData.VsopData.B4UranusCoefficients[i].A * Math.Cos(OrbitalData.VsopData.B4UranusCoefficients[i].B + OrbitalData.VsopData.B4UranusCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.B4UranusCoefficients.Length; i++) {
+                b4 += VsopData.B4UranusCoefficients[i].A * Math.Cos(VsopData.B4UranusCoefficients[i].B + VsopData.B4UranusCoefficients[i].C * rho);
             }
 
             var value = (b0 + b1 * rho + b2 * rhoSquared + b3 * rhoCubed + b4 * rho4) / 100000000;
@@ -374,32 +375,32 @@ namespace AstroSharedOrbits.Planets {
             //// Calculate R0
             double r0 = 0;
             int i;
-            for (i = 0; i < OrbitalData.VsopData.R0UranusCoefficients.Length; i++) {
-                r0 += OrbitalData.VsopData.R0UranusCoefficients[i].A * Math.Cos(OrbitalData.VsopData.R0UranusCoefficients[i].B + OrbitalData.VsopData.R0UranusCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.R0UranusCoefficients.Length; i++) {
+                r0 += VsopData.R0UranusCoefficients[i].A * Math.Cos(VsopData.R0UranusCoefficients[i].B + VsopData.R0UranusCoefficients[i].C * rho);
             }
 
             //// Calculate R1
             double r1 = 0;
-            for (i = 0; i < OrbitalData.VsopData.R1UranusCoefficients.Length; i++) {
-                r1 += OrbitalData.VsopData.R1UranusCoefficients[i].A * Math.Cos(OrbitalData.VsopData.R1UranusCoefficients[i].B + OrbitalData.VsopData.R1UranusCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.R1UranusCoefficients.Length; i++) {
+                r1 += VsopData.R1UranusCoefficients[i].A * Math.Cos(VsopData.R1UranusCoefficients[i].B + VsopData.R1UranusCoefficients[i].C * rho);
             }
 
             //// Calculate R2
             double r2 = 0;
-            for (i = 0; i < OrbitalData.VsopData.R2UranusCoefficients.Length; i++) {
-                r2 += OrbitalData.VsopData.R2UranusCoefficients[i].A * Math.Cos(OrbitalData.VsopData.R2UranusCoefficients[i].B + OrbitalData.VsopData.R2UranusCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.R2UranusCoefficients.Length; i++) {
+                r2 += VsopData.R2UranusCoefficients[i].A * Math.Cos(VsopData.R2UranusCoefficients[i].B + VsopData.R2UranusCoefficients[i].C * rho);
             }
 
             //// Calculate R3
             double r3 = 0;
-            for (i = 0; i < OrbitalData.VsopData.R3UranusCoefficients.Length; i++) {
-                r3 += OrbitalData.VsopData.R3UranusCoefficients[i].A * Math.Cos(OrbitalData.VsopData.R3UranusCoefficients[i].B + OrbitalData.VsopData.R3UranusCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.R3UranusCoefficients.Length; i++) {
+                r3 += VsopData.R3UranusCoefficients[i].A * Math.Cos(VsopData.R3UranusCoefficients[i].B + VsopData.R3UranusCoefficients[i].C * rho);
             }
 
             //// Calculate R4
             double r4 = 0;
-            for (i = 0; i < OrbitalData.VsopData.R4UranusCoefficients.Length; i++) {
-                r4 += OrbitalData.VsopData.R4UranusCoefficients[i].A * Math.Cos(OrbitalData.VsopData.R4UranusCoefficients[i].B + OrbitalData.VsopData.R4UranusCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.R4UranusCoefficients.Length; i++) {
+                r4 += VsopData.R4UranusCoefficients[i].A * Math.Cos(VsopData.R4UranusCoefficients[i].B + VsopData.R4UranusCoefficients[i].C * rho);
             }
 
             return (r0 + r1 * rho + r2 * rhoSquared + r3 * rhoCubed + r4 * rho4) / 100000000;

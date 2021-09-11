@@ -26,7 +26,7 @@ namespace AstroSharedEvents.Lists {
         /// Initializes a new instance of the <see cref="Interval"/> class.
         /// </summary>
         /// <param name="dateList">The date list.</param>
-        public Interval(AstroSharedClasses.Computation.DateList dateList) {
+        public Interval(EventList dateList) {
             this.DateList = dateList;
         }
         #endregion
@@ -36,7 +36,7 @@ namespace AstroSharedEvents.Lists {
         /// Gets or sets Date List.
         /// </summary>
         /// <value> Property description. </value>
-        public AstroSharedClasses.Computation.DateList DateList { get; set; }
+        public EventList DateList { get; set; }
 
         /// <summary>
         /// Gets or sets Date From.

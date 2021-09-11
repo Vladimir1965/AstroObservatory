@@ -12,6 +12,7 @@ namespace AstroSharedOrbits.Planets {
     using AstroSharedClasses.Computation;
     using AstroSharedClasses.Enums;
     using AstroSharedClasses.OrbitalElements;
+    using AstroSharedOrbits.OrbitalData;
     using AstroSharedOrbits.Orbits;
     using AstroSharedOrbits.Systems;
     using JetBrains.Annotations;
@@ -275,32 +276,32 @@ namespace AstroSharedOrbits.Planets {
             //// Calculate L0
             double l0 = 0;
             int i;
-            for (i = 0; i < OrbitalData.VsopData.L0NeptuneCoefficients.Length; i++) {
-                l0 += OrbitalData.VsopData.L0NeptuneCoefficients[i].A * Math.Cos(OrbitalData.VsopData.L0NeptuneCoefficients[i].B + OrbitalData.VsopData.L0NeptuneCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.L0NeptuneCoefficients.Length; i++) {
+                l0 += VsopData.L0NeptuneCoefficients[i].A * Math.Cos(VsopData.L0NeptuneCoefficients[i].B + VsopData.L0NeptuneCoefficients[i].C * rho);
             }
 
             //// Calculate L1
             double l1 = 0;
-            for (i = 0; i < OrbitalData.VsopData.L1NeptuneCoefficients.Length; i++) {
-                l1 += OrbitalData.VsopData.L1NeptuneCoefficients[i].A * Math.Cos(OrbitalData.VsopData.L1NeptuneCoefficients[i].B + OrbitalData.VsopData.L1NeptuneCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.L1NeptuneCoefficients.Length; i++) {
+                l1 += VsopData.L1NeptuneCoefficients[i].A * Math.Cos(VsopData.L1NeptuneCoefficients[i].B + VsopData.L1NeptuneCoefficients[i].C * rho);
             }
 
             //// Calculate L2
             double l2 = 0;
-            for (i = 0; i < OrbitalData.VsopData.L2NeptuneCoefficients.Length; i++) {
-                l2 += OrbitalData.VsopData.L2NeptuneCoefficients[i].A * Math.Cos(OrbitalData.VsopData.L2NeptuneCoefficients[i].B + OrbitalData.VsopData.L2NeptuneCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.L2NeptuneCoefficients.Length; i++) {
+                l2 += VsopData.L2NeptuneCoefficients[i].A * Math.Cos(VsopData.L2NeptuneCoefficients[i].B + VsopData.L2NeptuneCoefficients[i].C * rho);
             }
 
             //// Calculate L3
             double l3 = 0;
-            for (i = 0; i < OrbitalData.VsopData.L3NeptuneCoefficients.Length; i++) {
-                l3 += OrbitalData.VsopData.L3NeptuneCoefficients[i].A * Math.Cos(OrbitalData.VsopData.L3NeptuneCoefficients[i].B + OrbitalData.VsopData.L3NeptuneCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.L3NeptuneCoefficients.Length; i++) {
+                l3 += VsopData.L3NeptuneCoefficients[i].A * Math.Cos(VsopData.L3NeptuneCoefficients[i].B + VsopData.L3NeptuneCoefficients[i].C * rho);
             }
 
             //// Calculate L4
             double l4 = 0;
-            for (i = 0; i < OrbitalData.VsopData.L4NeptuneCoefficients.Length; i++) {
-                l4 += OrbitalData.VsopData.L4NeptuneCoefficients[i].A * Math.Cos(OrbitalData.VsopData.L4NeptuneCoefficients[i].B + OrbitalData.VsopData.L4NeptuneCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.L4NeptuneCoefficients.Length; i++) {
+                l4 += VsopData.L4NeptuneCoefficients[i].A * Math.Cos(VsopData.L4NeptuneCoefficients[i].B + VsopData.L4NeptuneCoefficients[i].C * rho);
             }
 
             var value = (l0 + l1 * rho + l2 * rhoSquared + l3 * rhoCubed + l4 * rho4) / 100000000;
@@ -325,32 +326,32 @@ namespace AstroSharedOrbits.Planets {
             //// Calculate B0
             double b0 = 0;
             int i;
-            for (i = 0; i < OrbitalData.VsopData.B0NeptuneCoefficients.Length; i++) {
-                b0 += OrbitalData.VsopData.B0NeptuneCoefficients[i].A * Math.Cos(OrbitalData.VsopData.B0NeptuneCoefficients[i].B + OrbitalData.VsopData.B0NeptuneCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.B0NeptuneCoefficients.Length; i++) {
+                b0 += VsopData.B0NeptuneCoefficients[i].A * Math.Cos(VsopData.B0NeptuneCoefficients[i].B + VsopData.B0NeptuneCoefficients[i].C * rho);
             }
 
             //// Calculate B1
             double b1 = 0;
-            for (i = 0; i < OrbitalData.VsopData.B1NeptuneCoefficients.Length; i++) {
-                b1 += OrbitalData.VsopData.B1NeptuneCoefficients[i].A * Math.Cos(OrbitalData.VsopData.B1NeptuneCoefficients[i].B + OrbitalData.VsopData.B1NeptuneCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.B1NeptuneCoefficients.Length; i++) {
+                b1 += VsopData.B1NeptuneCoefficients[i].A * Math.Cos(VsopData.B1NeptuneCoefficients[i].B + VsopData.B1NeptuneCoefficients[i].C * rho);
             }
 
             //// Calculate B2
             double b2 = 0;
-            for (i = 0; i < OrbitalData.VsopData.B2NeptuneCoefficients.Length; i++) {
-                b2 += OrbitalData.VsopData.B2NeptuneCoefficients[i].A * Math.Cos(OrbitalData.VsopData.B2NeptuneCoefficients[i].B + OrbitalData.VsopData.B2NeptuneCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.B2NeptuneCoefficients.Length; i++) {
+                b2 += VsopData.B2NeptuneCoefficients[i].A * Math.Cos(VsopData.B2NeptuneCoefficients[i].B + VsopData.B2NeptuneCoefficients[i].C * rho);
             }
 
             //// Calculate B3
             double b3 = 0;
-            for (i = 0; i < OrbitalData.VsopData.B3NeptuneCoefficients.Length; i++) {
-                b3 += OrbitalData.VsopData.B3NeptuneCoefficients[i].A * Math.Cos(OrbitalData.VsopData.B3NeptuneCoefficients[i].B + OrbitalData.VsopData.B3NeptuneCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.B3NeptuneCoefficients.Length; i++) {
+                b3 += VsopData.B3NeptuneCoefficients[i].A * Math.Cos(VsopData.B3NeptuneCoefficients[i].B + VsopData.B3NeptuneCoefficients[i].C * rho);
             }
 
             //// Calculate B4
             double b4 = 0;
-            for (i = 0; i < OrbitalData.VsopData.B4NeptuneCoefficients.Length; i++) {
-                b4 += OrbitalData.VsopData.B4NeptuneCoefficients[i].A * Math.Cos(OrbitalData.VsopData.B4NeptuneCoefficients[i].B + OrbitalData.VsopData.B4NeptuneCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.B4NeptuneCoefficients.Length; i++) {
+                b4 += VsopData.B4NeptuneCoefficients[i].A * Math.Cos(VsopData.B4NeptuneCoefficients[i].B + VsopData.B4NeptuneCoefficients[i].C * rho);
             }
 
             var value = (b0 + b1 * rho + b2 * rhoSquared + b3 * rhoCubed + b4 * rho4) / 100000000;
@@ -374,26 +375,26 @@ namespace AstroSharedOrbits.Planets {
             //// Calculate R0
             double r0 = 0;
             int i;
-            for (i = 0; i < OrbitalData.VsopData.R0NeptuneCoefficients.Length; i++) {
-                r0 += OrbitalData.VsopData.R0NeptuneCoefficients[i].A * Math.Cos(OrbitalData.VsopData.R0NeptuneCoefficients[i].B + OrbitalData.VsopData.R0NeptuneCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.R0NeptuneCoefficients.Length; i++) {
+                r0 += VsopData.R0NeptuneCoefficients[i].A * Math.Cos(VsopData.R0NeptuneCoefficients[i].B + VsopData.R0NeptuneCoefficients[i].C * rho);
             }
 
             //// Calculate R1
             double r1 = 0;
-            for (i = 0; i < OrbitalData.VsopData.R1NeptuneCoefficients.Length; i++) {
-                r1 += OrbitalData.VsopData.R1NeptuneCoefficients[i].A * Math.Cos(OrbitalData.VsopData.R1NeptuneCoefficients[i].B + OrbitalData.VsopData.R1NeptuneCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.R1NeptuneCoefficients.Length; i++) {
+                r1 += VsopData.R1NeptuneCoefficients[i].A * Math.Cos(VsopData.R1NeptuneCoefficients[i].B + VsopData.R1NeptuneCoefficients[i].C * rho);
             }
 
             //// Calculate R2
             double r2 = 0;
-            for (i = 0; i < OrbitalData.VsopData.R2NeptuneCoefficients.Length; i++) {
-                r2 += OrbitalData.VsopData.R2NeptuneCoefficients[i].A * Math.Cos(OrbitalData.VsopData.R2NeptuneCoefficients[i].B + OrbitalData.VsopData.R2NeptuneCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.R2NeptuneCoefficients.Length; i++) {
+                r2 += VsopData.R2NeptuneCoefficients[i].A * Math.Cos(VsopData.R2NeptuneCoefficients[i].B + VsopData.R2NeptuneCoefficients[i].C * rho);
             }
 
             //// Calculate R3
             double r3 = 0;
-            for (i = 0; i < OrbitalData.VsopData.R3NeptuneCoefficients.Length; i++) {
-                r3 += OrbitalData.VsopData.R3NeptuneCoefficients[i].A * Math.Cos(OrbitalData.VsopData.R3NeptuneCoefficients[i].B + OrbitalData.VsopData.R3NeptuneCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.R3NeptuneCoefficients.Length; i++) {
+                r3 += VsopData.R3NeptuneCoefficients[i].A * Math.Cos(VsopData.R3NeptuneCoefficients[i].B + VsopData.R3NeptuneCoefficients[i].C * rho);
             }
 
             return (r0 + r1 * rho + r2 * rhoSquared + r3 * rhoCubed) / 100000000;

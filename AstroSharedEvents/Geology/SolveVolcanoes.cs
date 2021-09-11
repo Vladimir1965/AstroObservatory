@@ -137,7 +137,7 @@ namespace AstroSharedEvents.Geology
             //// List selected eruptions
             var list = ImportVolcanoes.ListEruptions;
             //// var list = from r in origlist where r.VolcanoName=="Vesuvius" select r;
-            LargoBaseAstronomy.Computation.DateList dateList = new LargoBaseAstronomy.Computation.DateList();
+            DateList dateList = new DateList();
             Interval interval = new Interval(dateList);
             list.Sort((x, y) => x.EndYear.CompareTo(y.EndYear));
             dateList.AddEruptionDates(list);

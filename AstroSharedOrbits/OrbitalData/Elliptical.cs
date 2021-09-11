@@ -31,6 +31,7 @@ namespace AstroSharedOrbits.OrbitalData
     using AstroSharedClasses.Enums;
     using AstroSharedClasses.OrbitalElements;
     using AstroSharedOrbits.Orbits;
+    using AstroSharedOrbits.Planets;
     using AstroSharedOrbits.Systems;
     using JetBrains.Annotations;
 
@@ -55,9 +56,9 @@ namespace AstroSharedOrbits.OrbitalData
             double r0 = 0;
             double cosB0 = 0;
             if (obj != SolarSystemObject.Sun) {
-                l0 = Planets.BodyEarth.EclipticLongitude(julianDay0);
-                b0 = Planets.BodyEarth.EclipticLatitude(julianDay0);
-                r0 = Planets.BodyEarth.RadiusVector(julianDay0);
+                l0 = BodyEarth.EclipticLongitude(julianDay0);
+                b0 = BodyEarth.EclipticLatitude(julianDay0);
+                r0 = BodyEarth.RadiusVector(julianDay0);
                 l0 = Angles.DegRad(l0);
                 b0 = Angles.DegRad(b0);
                 cosB0 = Math.Cos(b0);
@@ -245,56 +246,56 @@ namespace AstroSharedOrbits.OrbitalData
                 case SolarSystemObject.Sun: {
                         longL = BodySun.GeometricEclipticLongitude(julianDay0);
                         lattB = BodySun.GeometricEclipticLatitude(julianDay0);
-                        radiusR = Planets.BodyEarth.RadiusVector(julianDay0);
+                        radiusR = BodyEarth.RadiusVector(julianDay0);
                         break;
                     }
 
                 case SolarSystemObject.Mercury: {
-                        longL = Planets.BodyMercury.EclipticLongitude(julianDay0);
-                        lattB = Planets.BodyMercury.EclipticLatitude(julianDay0);
-                        radiusR = Planets.BodyMercury.RadiusVector(julianDay0);
+                        longL = BodyMercury.EclipticLongitude(julianDay0);
+                        lattB = BodyMercury.EclipticLatitude(julianDay0);
+                        radiusR = BodyMercury.RadiusVector(julianDay0);
                         break;
                     }
 
                 case SolarSystemObject.Venus: {
-                        longL = Planets.BodyVenus.EclipticLongitude(julianDay0);
-                        lattB = Planets.BodyVenus.EclipticLatitude(julianDay0);
-                        radiusR = Planets.BodyVenus.RadiusVector(julianDay0);
+                        longL = BodyVenus.EclipticLongitude(julianDay0);
+                        lattB = BodyVenus.EclipticLatitude(julianDay0);
+                        radiusR = BodyVenus.RadiusVector(julianDay0);
                         break;
                     }
 
                 case SolarSystemObject.Mars: {
-                        longL = Planets.BodyMars.EclipticLongitude(julianDay0);
-                        lattB = Planets.BodyMars.EclipticLatitude(julianDay0);
-                        radiusR = Planets.BodyMars.RadiusVector(julianDay0);
+                        longL = BodyMars.EclipticLongitude(julianDay0);
+                        lattB = BodyMars.EclipticLatitude(julianDay0);
+                        radiusR = BodyMars.RadiusVector(julianDay0);
                         break;
                     }
 
                 case SolarSystemObject.Jupiter: {
-                        longL = Planets.BodyJupiter.EclipticLongitude(julianDay0);
-                        lattB = Planets.BodyJupiter.EclipticLatitude(julianDay0);
-                        radiusR = Planets.BodyJupiter.RadiusVector(julianDay0);
+                        longL = BodyJupiter.EclipticLongitude(julianDay0);
+                        lattB = BodyJupiter.EclipticLatitude(julianDay0);
+                        radiusR = BodyJupiter.RadiusVector(julianDay0);
                         break;
                     }
 
                 case SolarSystemObject.Saturn: {
-                        longL = Planets.BodySaturn.EclipticLongitude(julianDay0);
-                        lattB = Planets.BodySaturn.EclipticLatitude(julianDay0);
-                        radiusR = Planets.BodySaturn.RadiusVector(julianDay0);
+                        longL = BodySaturn.EclipticLongitude(julianDay0);
+                        lattB = BodySaturn.EclipticLatitude(julianDay0);
+                        radiusR = BodySaturn.RadiusVector(julianDay0);
                         break;
                     }
 
                 case SolarSystemObject.Uranus: {
-                        longL = Planets.BodyUranus.EclipticLongitude(julianDay0);
-                        lattB = Planets.BodyUranus.EclipticLatitude(julianDay0);
-                        radiusR = Planets.BodyUranus.RadiusVector(julianDay0);
+                        longL = BodyUranus.EclipticLongitude(julianDay0);
+                        lattB = BodyUranus.EclipticLatitude(julianDay0);
+                        radiusR = BodyUranus.RadiusVector(julianDay0);
                         break;
                     }
 
                 case SolarSystemObject.Neptune: {
-                        longL = Planets.BodyNeptune.EclipticLongitude(julianDay0);
-                        lattB = Planets.BodyNeptune.EclipticLatitude(julianDay0);
-                        radiusR = Planets.BodyNeptune.RadiusVector(julianDay0);
+                        longL = BodyNeptune.EclipticLongitude(julianDay0);
+                        lattB = BodyNeptune.EclipticLatitude(julianDay0);
+                        radiusR = BodyNeptune.RadiusVector(julianDay0);
                         break;
                     }
 
@@ -388,56 +389,56 @@ namespace AstroSharedOrbits.OrbitalData
                 case SolarSystemObject.Sun: {
                         longL = BodySun.GeometricEclipticLongitude(julianDay0);
                         lattB = BodySun.GeometricEclipticLatitude(julianDay0);
-                        radiusR = Planets.BodyEarth.RadiusVector(julianDay0);
+                        radiusR = BodyEarth.RadiusVector(julianDay0);
                         break;
                     }
 
                 case SolarSystemObject.Mercury: {
-                        longL = Planets.BodyMercury.EclipticLongitude(julianDay0);
-                        lattB = Planets.BodyMercury.EclipticLatitude(julianDay0);
-                        radiusR = Planets.BodyMercury.RadiusVector(julianDay0);
+                        longL = BodyMercury.EclipticLongitude(julianDay0);
+                        lattB = BodyMercury.EclipticLatitude(julianDay0);
+                        radiusR = BodyMercury.RadiusVector(julianDay0);
                         break;
                     }
 
                 case SolarSystemObject.Venus: {
-                        longL = Planets.BodyVenus.EclipticLongitude(julianDay0);
-                        lattB = Planets.BodyVenus.EclipticLatitude(julianDay0);
-                        radiusR = Planets.BodyVenus.RadiusVector(julianDay0);
+                        longL = BodyVenus.EclipticLongitude(julianDay0);
+                        lattB = BodyVenus.EclipticLatitude(julianDay0);
+                        radiusR = BodyVenus.RadiusVector(julianDay0);
                         break;
                     }
 
                 case SolarSystemObject.Mars: {
-                        longL = Planets.BodyMars.EclipticLongitude(julianDay0);
-                        lattB = Planets.BodyMars.EclipticLatitude(julianDay0);
-                        radiusR = Planets.BodyMars.RadiusVector(julianDay0);
+                        longL = BodyMars.EclipticLongitude(julianDay0);
+                        lattB = BodyMars.EclipticLatitude(julianDay0);
+                        radiusR = BodyMars.RadiusVector(julianDay0);
                         break;
                     }
 
                 case SolarSystemObject.Jupiter: {
-                        longL = Planets.BodyJupiter.EclipticLongitude(julianDay0);
-                        lattB = Planets.BodyJupiter.EclipticLatitude(julianDay0);
-                        radiusR = Planets.BodyJupiter.RadiusVector(julianDay0);
+                        longL = BodyJupiter.EclipticLongitude(julianDay0);
+                        lattB = BodyJupiter.EclipticLatitude(julianDay0);
+                        radiusR = BodyJupiter.RadiusVector(julianDay0);
                         break;
                     }
 
                 case SolarSystemObject.Saturn: {
-                        longL = Planets.BodySaturn.EclipticLongitude(julianDay0);
-                        lattB = Planets.BodySaturn.EclipticLatitude(julianDay0);
-                        radiusR = Planets.BodySaturn.RadiusVector(julianDay0);
+                        longL = BodySaturn.EclipticLongitude(julianDay0);
+                        lattB = BodySaturn.EclipticLatitude(julianDay0);
+                        radiusR = BodySaturn.RadiusVector(julianDay0);
                         break;
                     }
 
                 case SolarSystemObject.Uranus: {
-                        longL = Planets.BodyUranus.EclipticLongitude(julianDay0);
-                        lattB = Planets.BodyUranus.EclipticLatitude(julianDay0);
-                        radiusR = Planets.BodyUranus.RadiusVector(julianDay0);
+                        longL = BodyUranus.EclipticLongitude(julianDay0);
+                        lattB = BodyUranus.EclipticLatitude(julianDay0);
+                        radiusR = BodyUranus.RadiusVector(julianDay0);
                         break;
                     }
 
                 case SolarSystemObject.Neptune: {
-                        longL = Planets.BodyNeptune.EclipticLongitude(julianDay0);
-                        lattB = Planets.BodyNeptune.EclipticLatitude(julianDay0);
-                        radiusR = Planets.BodyNeptune.RadiusVector(julianDay0);
+                        longL = BodyNeptune.EclipticLongitude(julianDay0);
+                        lattB = BodyNeptune.EclipticLatitude(julianDay0);
+                        radiusR = BodyNeptune.RadiusVector(julianDay0);
                         break;
                     }
 

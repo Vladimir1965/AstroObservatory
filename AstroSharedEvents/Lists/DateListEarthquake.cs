@@ -6,14 +6,16 @@
 // <date>2021-09-01</date>
 // <summary>Part of Astro Observatory</summary>
 
-namespace AstroSharedEvents.Geology
+namespace AstroSharedEvents.Lists
 {
+    using AstroSharedClasses.Computation;
+    using AstroSharedEvents.Geology;
     using JetBrains.Annotations;
 
     /// <summary>
     /// Date List.
     /// </summary>
-    public partial class DateList {
+    public partial class EventList : DateList {
         /// <summary>
         /// The earthquake dates australia.
         /// </summary>

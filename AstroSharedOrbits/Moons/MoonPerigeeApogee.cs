@@ -16,6 +16,7 @@ namespace AstroSharedOrbits.Moons {
     using System;
     using System.Linq;
     using AstroSharedClasses.Computation;
+    using AstroSharedOrbits.OrbitalData;
     using JetBrains.Annotations;
 
     /// <summary>
@@ -84,7 +85,7 @@ namespace AstroSharedOrbits.Moons {
             var latitudeF = Angles.Mod360(316.6109 + 364.5287911 * givenK - 0.0125053 * timeSquared - 0.0000148 * timeCubed);
             latitudeF = Angles.DegRad(latitudeF);
 
-            var sigma = OrbitalData.MoonPerigeeQuotients.MoonPerigeeApogeeCoefficients1.Sum(t => (t.C + timeT * t.T) * Math.Sin(elongD * t.D + anomalyM * t.M + latitudeF * t.LatitudeF));
+            var sigma = MoonPerigeeQuotients.MoonPerigeeApogeeCoefficients1.Sum(t => (t.C + timeT * t.T) * Math.Sin(elongD * t.D + anomalyM * t.M + latitudeF * t.LatitudeF));
 
             return meanJulianDay + sigma;
         }
@@ -109,7 +110,7 @@ namespace AstroSharedOrbits.Moons {
             var latitudeF = Angles.Mod360(316.6109 + 364.5287911 * givenK - 0.0125053 * timeSquared - 0.0000148 * timeCubed);
             latitudeF = Angles.DegRad(latitudeF);
 
-            var parallax = 3629.215 + OrbitalData.MoonPerigeeQuotients.MoonPerigeeApogeeCoefficients3.Sum(t => (t.C + timeT * t.T) * Math.Cos(elongD * t.D + anomalyM * t.M + latitudeF * t.LatitudeF));
+            var parallax = 3629.215 + MoonPerigeeQuotients.MoonPerigeeApogeeCoefficients3.Sum(t => (t.C + timeT * t.T) * Math.Cos(elongD * t.D + anomalyM * t.M + latitudeF * t.LatitudeF));
 
             return parallax / 3600;
         }
@@ -139,7 +140,7 @@ namespace AstroSharedOrbits.Moons {
                 Angles.Mod360(316.6109 + 364.5287911 * givenK - 0.0125053 * timeSquared - 0.0000148 * timeCubed);
             latitudeF = Angles.DegRad(latitudeF);
 
-            var sigma = OrbitalData.MoonPerigeeQuotients.MoonPerigeeApogeeCoefficients2.Sum(t => (t.C + timeT * t.T) * Math.Sin(elongD * t.D + anomalyM * t.M + latitudeF * t.LatitudeF));
+            var sigma = MoonPerigeeQuotients.MoonPerigeeApogeeCoefficients2.Sum(t => (t.C + timeT * t.T) * Math.Sin(elongD * t.D + anomalyM * t.M + latitudeF * t.LatitudeF));
 
             return meanJulianDay + sigma;
         }
@@ -168,7 +169,7 @@ namespace AstroSharedOrbits.Moons {
                 Angles.Mod360(316.6109 + 364.5287911 * givenK - 0.0125053 * timeSquared - 0.0000148 * timeCubed);
             latitudeF = Angles.DegRad(latitudeF);
 
-            var parallax = 3245.251 + OrbitalData.MoonPerigeeQuotients.MoonPerigeeApogeeCoefficients4.Sum(t => (t.C + timeT * t.T) * Math.Cos(elongD * t.D + anomalyM * t.M + latitudeF * t.LatitudeF));
+            var parallax = 3245.251 + MoonPerigeeQuotients.MoonPerigeeApogeeCoefficients4.Sum(t => (t.C + timeT * t.T) * Math.Cos(elongD * t.D + anomalyM * t.M + latitudeF * t.LatitudeF));
             return parallax / 3600;
         }
     }

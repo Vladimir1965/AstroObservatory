@@ -15,6 +15,7 @@ namespace AstroSharedOrbits.Planets {
     using AstroSharedClasses.Enums;
     using AstroSharedClasses.Computation;
     using AstroSharedOrbits.Orbits;
+    using AstroSharedOrbits.OrbitalData;
 
     /// <summary>
     /// Body Jupiter.
@@ -295,38 +296,38 @@ namespace AstroSharedOrbits.Planets {
             //// Calculate L0
             double l0 = 0;
             int i;
-            for (i = 0; i < OrbitalData.VsopData.L0JupiterCoefficients.Length; i++) {
-                l0 += OrbitalData.VsopData.L0JupiterCoefficients[i].A * Math.Cos(OrbitalData.VsopData.L0JupiterCoefficients[i].B + OrbitalData.VsopData.L0JupiterCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.L0JupiterCoefficients.Length; i++) {
+                l0 += VsopData.L0JupiterCoefficients[i].A * Math.Cos(VsopData.L0JupiterCoefficients[i].B + VsopData.L0JupiterCoefficients[i].C * rho);
             }
 
             //// Calculate L1
             double l1 = 0;
-            for (i = 0; i < OrbitalData.VsopData.L1JupiterCoefficients.Length; i++) {
-                l1 += OrbitalData.VsopData.L1JupiterCoefficients[i].A * Math.Cos(OrbitalData.VsopData.L1JupiterCoefficients[i].B + OrbitalData.VsopData.L1JupiterCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.L1JupiterCoefficients.Length; i++) {
+                l1 += VsopData.L1JupiterCoefficients[i].A * Math.Cos(VsopData.L1JupiterCoefficients[i].B + VsopData.L1JupiterCoefficients[i].C * rho);
             }
 
             //// Calculate L2
             double l2 = 0;
-            for (i = 0; i < OrbitalData.VsopData.L2JupiterCoefficients.Length; i++) {
-                l2 += OrbitalData.VsopData.L2JupiterCoefficients[i].A * Math.Cos(OrbitalData.VsopData.L2JupiterCoefficients[i].B + OrbitalData.VsopData.L2JupiterCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.L2JupiterCoefficients.Length; i++) {
+                l2 += VsopData.L2JupiterCoefficients[i].A * Math.Cos(VsopData.L2JupiterCoefficients[i].B + VsopData.L2JupiterCoefficients[i].C * rho);
             }
 
             //// Calculate L3
             double l3 = 0;
-            for (i = 0; i < OrbitalData.VsopData.L3JupiterCoefficients.Length; i++) {
-                l3 += OrbitalData.VsopData.L3JupiterCoefficients[i].A * Math.Cos(OrbitalData.VsopData.L3JupiterCoefficients[i].B + OrbitalData.VsopData.L3JupiterCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.L3JupiterCoefficients.Length; i++) {
+                l3 += VsopData.L3JupiterCoefficients[i].A * Math.Cos(VsopData.L3JupiterCoefficients[i].B + VsopData.L3JupiterCoefficients[i].C * rho);
             }
 
             //// Calculate L4
             double l4 = 0;
-            for (i = 0; i < OrbitalData.VsopData.L4JupiterCoefficients.Length; i++) {
-                l4 += OrbitalData.VsopData.L4JupiterCoefficients[i].A * Math.Cos(OrbitalData.VsopData.L4JupiterCoefficients[i].B + OrbitalData.VsopData.L4JupiterCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.L4JupiterCoefficients.Length; i++) {
+                l4 += VsopData.L4JupiterCoefficients[i].A * Math.Cos(VsopData.L4JupiterCoefficients[i].B + VsopData.L4JupiterCoefficients[i].C * rho);
             }
 
             //// Calculate L5
             double l5 = 0;
-            for (i = 0; i < OrbitalData.VsopData.L5JupiterCoefficients.Length; i++) {
-                l5 += OrbitalData.VsopData.L5JupiterCoefficients[i].A * Math.Cos(OrbitalData.VsopData.L5JupiterCoefficients[i].B + OrbitalData.VsopData.L5JupiterCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.L5JupiterCoefficients.Length; i++) {
+                l5 += VsopData.L5JupiterCoefficients[i].A * Math.Cos(VsopData.L5JupiterCoefficients[i].B + VsopData.L5JupiterCoefficients[i].C * rho);
             }
 
             var value = (l0 + l1 * rho + l2 * rhoSquared + l3 * rhoCubed + l4 * rho4 + l5 * rho5) / 100000000;
@@ -351,38 +352,38 @@ namespace AstroSharedOrbits.Planets {
             //// Calculate B0
             double b0 = 0;
             int i;
-            for (i = 0; i < OrbitalData.VsopData.B0JupiterCoefficients.Length; i++) {
-                b0 += OrbitalData.VsopData.B0JupiterCoefficients[i].A * Math.Cos(OrbitalData.VsopData.B0JupiterCoefficients[i].B + OrbitalData.VsopData.B0JupiterCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.B0JupiterCoefficients.Length; i++) {
+                b0 += VsopData.B0JupiterCoefficients[i].A * Math.Cos(VsopData.B0JupiterCoefficients[i].B + VsopData.B0JupiterCoefficients[i].C * rho);
             }
 
             //// Calculate B1
             double b1 = 0;
-            for (i = 0; i < OrbitalData.VsopData.B1JupiterCoefficients.Length; i++) {
-                b1 += OrbitalData.VsopData.B1JupiterCoefficients[i].A * Math.Cos(OrbitalData.VsopData.B1JupiterCoefficients[i].B + OrbitalData.VsopData.B1JupiterCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.B1JupiterCoefficients.Length; i++) {
+                b1 += VsopData.B1JupiterCoefficients[i].A * Math.Cos(VsopData.B1JupiterCoefficients[i].B + VsopData.B1JupiterCoefficients[i].C * rho);
             }
 
             //// Calculate B2
             double b2 = 0;
-            for (i = 0; i < OrbitalData.VsopData.B2JupiterCoefficients.Length; i++) {
-                b2 += OrbitalData.VsopData.B2JupiterCoefficients[i].A * Math.Cos(OrbitalData.VsopData.B2JupiterCoefficients[i].B + OrbitalData.VsopData.B2JupiterCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.B2JupiterCoefficients.Length; i++) {
+                b2 += VsopData.B2JupiterCoefficients[i].A * Math.Cos(VsopData.B2JupiterCoefficients[i].B + VsopData.B2JupiterCoefficients[i].C * rho);
             }
 
             //// Calculate B3
             double b3 = 0;
-            for (i = 0; i < OrbitalData.VsopData.B3JupiterCoefficients.Length; i++) {
-                b3 += OrbitalData.VsopData.B3JupiterCoefficients[i].A * Math.Cos(OrbitalData.VsopData.B3JupiterCoefficients[i].B + OrbitalData.VsopData.B3JupiterCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.B3JupiterCoefficients.Length; i++) {
+                b3 += VsopData.B3JupiterCoefficients[i].A * Math.Cos(VsopData.B3JupiterCoefficients[i].B + VsopData.B3JupiterCoefficients[i].C * rho);
             }
 
             //// Calculate B4
             double b4 = 0;
-            for (i = 0; i < OrbitalData.VsopData.B4JupiterCoefficients.Length; i++) {
-                b4 += OrbitalData.VsopData.B4JupiterCoefficients[i].A * Math.Cos(OrbitalData.VsopData.B4JupiterCoefficients[i].B + OrbitalData.VsopData.B4JupiterCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.B4JupiterCoefficients.Length; i++) {
+                b4 += VsopData.B4JupiterCoefficients[i].A * Math.Cos(VsopData.B4JupiterCoefficients[i].B + VsopData.B4JupiterCoefficients[i].C * rho);
             }
 
             //// Calculate B5
             double b5 = 0;
-            for (i = 0; i < OrbitalData.VsopData.B5JupiterCoefficients.Length; i++) {
-                b5 += OrbitalData.VsopData.B5JupiterCoefficients[i].A * Math.Cos(OrbitalData.VsopData.B5JupiterCoefficients[i].B + OrbitalData.VsopData.B5JupiterCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.B5JupiterCoefficients.Length; i++) {
+                b5 += VsopData.B5JupiterCoefficients[i].A * Math.Cos(VsopData.B5JupiterCoefficients[i].B + VsopData.B5JupiterCoefficients[i].C * rho);
             }
 
             var value = (b0 + b1 * rho + b2 * rhoSquared + b3 * rhoCubed + b4 * rho4 + b5 * rho5) / 100000000;
@@ -407,39 +408,39 @@ namespace AstroSharedOrbits.Planets {
             //// Calculate R0
             double r0 = 0;
             int i;
-            for (i = 0; i < OrbitalData.VsopData.R0JupiterCoefficients.Length; i++) {
-                r0 += OrbitalData.VsopData.R0JupiterCoefficients[i].A * Math.Cos(OrbitalData.VsopData.R0JupiterCoefficients[i].B + OrbitalData.VsopData.R0JupiterCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.R0JupiterCoefficients.Length; i++) {
+                r0 += VsopData.R0JupiterCoefficients[i].A * Math.Cos(VsopData.R0JupiterCoefficients[i].B + VsopData.R0JupiterCoefficients[i].C * rho);
             }
 
             //// Calculate R1
             double r1 = 0;
-            for (i = 0; i < OrbitalData.VsopData.R1JupiterCoefficients.Length; i++) {
-                r1 += OrbitalData.VsopData.R1JupiterCoefficients[i].A * Math.Cos(OrbitalData.VsopData.R1JupiterCoefficients[i].B + OrbitalData.VsopData.R1JupiterCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.R1JupiterCoefficients.Length; i++) {
+                r1 += VsopData.R1JupiterCoefficients[i].A * Math.Cos(VsopData.R1JupiterCoefficients[i].B + VsopData.R1JupiterCoefficients[i].C * rho);
             }
 
             //// Calculate R2
             double r2 = 0;
-            for (i = 0; i < OrbitalData.VsopData.R2JupiterCoefficients.Length; i++) {
-                r2 += OrbitalData.VsopData.R2JupiterCoefficients[i].A * Math.Cos(OrbitalData.VsopData.R2JupiterCoefficients[i].B + OrbitalData.VsopData.R2JupiterCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.R2JupiterCoefficients.Length; i++) {
+                r2 += VsopData.R2JupiterCoefficients[i].A * Math.Cos(VsopData.R2JupiterCoefficients[i].B + VsopData.R2JupiterCoefficients[i].C * rho);
             }
 
             //// Calculate R3
             double r3 = 0;
-            for (i = 0; i < OrbitalData.VsopData.R3JupiterCoefficients.Length; i++) {
-                r3 += OrbitalData.VsopData.R3JupiterCoefficients[i].A * Math.Cos(OrbitalData.VsopData.R3JupiterCoefficients[i].B + OrbitalData.VsopData.R3JupiterCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.R3JupiterCoefficients.Length; i++) {
+                r3 += VsopData.R3JupiterCoefficients[i].A * Math.Cos(VsopData.R3JupiterCoefficients[i].B + VsopData.R3JupiterCoefficients[i].C * rho);
             }
 
             //// Calculate R4
             double r4 = 0;
-            for (i = 0; i < OrbitalData.VsopData.R4JupiterCoefficients.Length; i++) {
-                r4 += OrbitalData.VsopData.R4JupiterCoefficients[i].A * Math.Cos(OrbitalData.VsopData.R4JupiterCoefficients[i].B + OrbitalData.VsopData.R4JupiterCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.R4JupiterCoefficients.Length; i++) {
+                r4 += VsopData.R4JupiterCoefficients[i].A * Math.Cos(VsopData.R4JupiterCoefficients[i].B + VsopData.R4JupiterCoefficients[i].C * rho);
             }
 
             //// Calculate R5
             double r5 = 0;
-            for (i = 0; i < OrbitalData.VsopData.R5JupiterCoefficients.Length; i++) {
-                r5 += OrbitalData.VsopData.R5JupiterCoefficients[i].A *
-                      Math.Cos(OrbitalData.VsopData.R5JupiterCoefficients[i].B + OrbitalData.VsopData.R5JupiterCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.R5JupiterCoefficients.Length; i++) {
+                r5 += VsopData.R5JupiterCoefficients[i].A *
+                      Math.Cos(VsopData.R5JupiterCoefficients[i].B + VsopData.R5JupiterCoefficients[i].C * rho);
             }
 
             return (r0 + r1 * rho + r2 * rhoSquared + r3 * rhoCubed + r4 * rho4 + r5 * rho5) / 100000000;

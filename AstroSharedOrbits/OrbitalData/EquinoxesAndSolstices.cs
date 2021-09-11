@@ -330,11 +330,11 @@ namespace AstroSharedOrbits.OrbitalData
 
             if (year >= 1000) {
                 y = (year - 2000d) / 1000d;
-                julianDayE0 = CalculateJulianDayE0(OrbitalData.EquinoxTables.TableB[season], y);
+                julianDayE0 = CalculateJulianDayE0(EquinoxTables.TableB[season], y);
             }
             else {
                 y = year / 1000d;
-                julianDayE0 = CalculateJulianDayE0(OrbitalData.EquinoxTables.TableA[season], y);
+                julianDayE0 = CalculateJulianDayE0(EquinoxTables.TableA[season], y);
             }
 
             Debug.WriteLine("Y\t= " + y);
@@ -363,7 +363,7 @@ namespace AstroSharedOrbits.OrbitalData
 
             //// S = Σ[A Cos(B + (C * julianCentury))] 
             Array.ForEach(
-                    OrbitalData.EquinoxTables.TableC, 
+                    EquinoxTables.TableC, 
                     list => {
                         var s = (List<double>)list;
                         valueS += s[0] * Math.Cos(s[1] + (s[2] * julianCentury));

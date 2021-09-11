@@ -11,6 +11,7 @@ namespace AstroSharedOrbits.Dwarfs
     using System;
     using AstroSharedClasses.Computation;
     using AstroSharedClasses.OrbitalElements;
+    using AstroSharedOrbits.OrbitalData;
     using AstroSharedOrbits.Orbits;
     using JetBrains.Annotations;
 
@@ -108,10 +109,10 @@ namespace AstroSharedOrbits.Dwarfs
             //// Calculate Longitude
             double longL = 0;
             // ReSharper disable once LoopCanBeConvertedToQuery
-            for (var i = 0; i < OrbitalData.PlutoPerturbationQuotients.PlutoArgumentCoefficients.Length; i++) {
-                var alpha = OrbitalData.PlutoPerturbationQuotients.PlutoArgumentCoefficients[i].J * valueJ + OrbitalData.PlutoPerturbationQuotients.PlutoArgumentCoefficients[i].S * valueS + OrbitalData.PlutoPerturbationQuotients.PlutoArgumentCoefficients[i].P * valueP;
+            for (var i = 0; i < PlutoPerturbationQuotients.PlutoArgumentCoefficients.Length; i++) {
+                var alpha = PlutoPerturbationQuotients.PlutoArgumentCoefficients[i].J * valueJ + PlutoPerturbationQuotients.PlutoArgumentCoefficients[i].S * valueS + PlutoPerturbationQuotients.PlutoArgumentCoefficients[i].P * valueP;
                 alpha = Angles.DegRad(alpha);
-                longL += (OrbitalData.PlutoPerturbationQuotients.PlutoLongitudeCoefficients[i].A * Math.Sin(alpha)) + (OrbitalData.PlutoPerturbationQuotients.PlutoLongitudeCoefficients[i].B * Math.Cos(alpha));
+                longL += (PlutoPerturbationQuotients.PlutoLongitudeCoefficients[i].A * Math.Sin(alpha)) + (PlutoPerturbationQuotients.PlutoLongitudeCoefficients[i].B * Math.Cos(alpha));
             }
 
             longL = longL / 1000000;
@@ -136,10 +137,10 @@ namespace AstroSharedOrbits.Dwarfs
             //// Calculate Latitude
             double longL = 0;
             // ReSharper disable once LoopCanBeConvertedToQuery
-            for (var i = 0; i < OrbitalData.PlutoPerturbationQuotients.PlutoArgumentCoefficients.Length; i++) {
-                var alpha = OrbitalData.PlutoPerturbationQuotients.PlutoArgumentCoefficients[i].J * valueJ + OrbitalData.PlutoPerturbationQuotients.PlutoArgumentCoefficients[i].S * valueS + OrbitalData.PlutoPerturbationQuotients.PlutoArgumentCoefficients[i].P * valueP;
+            for (var i = 0; i < PlutoPerturbationQuotients.PlutoArgumentCoefficients.Length; i++) {
+                var alpha = PlutoPerturbationQuotients.PlutoArgumentCoefficients[i].J * valueJ + PlutoPerturbationQuotients.PlutoArgumentCoefficients[i].S * valueS + PlutoPerturbationQuotients.PlutoArgumentCoefficients[i].P * valueP;
                 alpha = Angles.DegRad(alpha);
-                longL += OrbitalData.PlutoPerturbationQuotients.PlutoLatitudeCoefficients[i].A * Math.Sin(alpha) + OrbitalData.PlutoPerturbationQuotients.PlutoLatitudeCoefficients[i].B * Math.Cos(alpha);
+                longL += PlutoPerturbationQuotients.PlutoLatitudeCoefficients[i].A * Math.Sin(alpha) + PlutoPerturbationQuotients.PlutoLatitudeCoefficients[i].B * Math.Cos(alpha);
             }
 
             longL = longL / 1000000;
@@ -163,10 +164,10 @@ namespace AstroSharedOrbits.Dwarfs
             //// Calculate Radius
             double r = 0;
             // ReSharper disable once LoopCanBeConvertedToQuery
-            for (var i = 0; i < OrbitalData.PlutoPerturbationQuotients.PlutoArgumentCoefficients.Length; i++) {
-                var alpha = OrbitalData.PlutoPerturbationQuotients.PlutoArgumentCoefficients[i].J * valueJ + OrbitalData.PlutoPerturbationQuotients.PlutoArgumentCoefficients[i].S * valueS + OrbitalData.PlutoPerturbationQuotients.PlutoArgumentCoefficients[i].P * valueP;
+            for (var i = 0; i < PlutoPerturbationQuotients.PlutoArgumentCoefficients.Length; i++) {
+                var alpha = PlutoPerturbationQuotients.PlutoArgumentCoefficients[i].J * valueJ + PlutoPerturbationQuotients.PlutoArgumentCoefficients[i].S * valueS + PlutoPerturbationQuotients.PlutoArgumentCoefficients[i].P * valueP;
                 alpha = Angles.DegRad(alpha);
-                r += (OrbitalData.PlutoPerturbationQuotients.PlutoRadiusCoefficients[i].A * Math.Sin(alpha)) + (OrbitalData.PlutoPerturbationQuotients.PlutoRadiusCoefficients[i].B * Math.Cos(alpha));
+                r += (PlutoPerturbationQuotients.PlutoRadiusCoefficients[i].A * Math.Sin(alpha)) + (PlutoPerturbationQuotients.PlutoRadiusCoefficients[i].B * Math.Cos(alpha));
             }
 
             r = r / 10000000;

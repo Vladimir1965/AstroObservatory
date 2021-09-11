@@ -14,6 +14,7 @@ namespace AstroSharedOrbits.Systems
     using AstroSharedClasses.Coordinates;
     using AstroSharedClasses.Computation;
     using AstroSharedOrbits.OrbitalData;
+    using AstroSharedOrbits.Planets;
 
     /// <summary> Body Sun Orbit. </summary>
     public sealed class BodySun : Orbit {
@@ -124,7 +125,7 @@ namespace AstroSharedOrbits.Systems
         /// <param name="julianDay">The julianDay.</param>
         /// <returns> Returns value. </returns>
         public static double GeometricEclipticLongitude(double julianDay) {
-            return Angles.Mod360(Planets.BodyEarth.EclipticLongitude(julianDay) + 180);
+            return Angles.Mod360(BodyEarth.EclipticLongitude(julianDay) + 180);
         }
 
         /// <summary>
@@ -133,7 +134,7 @@ namespace AstroSharedOrbits.Systems
         /// <param name="julianDay">The julianDay.</param>
         /// <returns> Returns value. </returns>
         public static double GeometricEclipticLatitude(double julianDay) {
-            return -Planets.BodyEarth.EclipticLatitude(julianDay);
+            return -BodyEarth.EclipticLatitude(julianDay);
         }
 
         /// <summary>
@@ -143,7 +144,7 @@ namespace AstroSharedOrbits.Systems
         /// <returns> Returns value. </returns>
         [UsedImplicitly]
         public static double GeometricEclipticLongitudeJ2000(double julianDay) {
-            return Angles.Mod360(Planets.BodyEarth.EclipticLongitudeJ2000(julianDay) + 180);
+            return Angles.Mod360(BodyEarth.EclipticLongitudeJ2000(julianDay) + 180);
         }
 
         /// <summary>
@@ -153,7 +154,7 @@ namespace AstroSharedOrbits.Systems
         /// <returns> Returns value. </returns>
         [UsedImplicitly]
         public static double GeometricEclipticLatitudeJ2000(double julianDay) {
-            return -Planets.BodyEarth.EclipticLatitudeJ2000(julianDay);
+            return -BodyEarth.EclipticLatitudeJ2000(julianDay);
         }
 
         /// <summary>
@@ -199,7 +200,7 @@ namespace AstroSharedOrbits.Systems
             longitude += CoordinateTransformation.DmsToDegrees(0, 0, Nutation.NutationInLongitude(julianDay));
 
             //// Apply the correction in longitude due to aberration
-            var r = Planets.BodyEarth.RadiusVector(julianDay);
+            var r = BodyEarth.RadiusVector(julianDay);
             longitude -= CoordinateTransformation.DmsToDegrees(0, 0, 20.4898 / r);
 
             return longitude;
@@ -224,7 +225,7 @@ namespace AstroSharedOrbits.Systems
         public static Coordinate3D EquatorialRectangularCoordinatesMeanEquinox(double julianDay) {
             var longitude = Angles.DegRad(GeometricFK5EclipticLongitude(julianDay));
             var latitude = Angles.DegRad(GeometricFK5EclipticLatitude(julianDay));
-            var r = Planets.BodyEarth.RadiusVector(julianDay);
+            var r = BodyEarth.RadiusVector(julianDay);
             var epsilon = Angles.DegRad(Nutation.MeanObliquityOfEcliptic(julianDay));
 
             var value = new Coordinate3D {
@@ -247,7 +248,7 @@ namespace AstroSharedOrbits.Systems
             longitude = Angles.DegRad(longitude);
             var latitude = GeometricEclipticLatitudeJ2000(julianDay);
             latitude = Angles.DegRad(latitude);
-            var r = Planets.BodyEarth.RadiusVector(julianDay);
+            var r = BodyEarth.RadiusVector(julianDay);
 
             var value = new Coordinate3D();
             var coslatitude = Math.Cos(latitude);

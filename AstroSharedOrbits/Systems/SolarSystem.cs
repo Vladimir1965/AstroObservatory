@@ -352,7 +352,7 @@ namespace AstroSharedOrbits.Systems
 //// this.AdjustX(387.0f, 97.0f, 10.0f); //// kalenda
 //// this.AdjustX(387.0f, 52.0f, 10.0f); //// vukcevic
             
-//// var x = new Planets.BodyHypos("X", "X", 387.30f, 157.3f, 8.8e25f);
+//// var x = new BodyHypos("X", "X", 387.30f, 157.3f, 8.8e25f);
 //// 80.0 dg original graph, no 19.0 correction because of 1990 symmetry
 //// 25 dg - like Kalenda
 //// 350 dg = 90 dg back from 80 dg
@@ -374,20 +374,20 @@ namespace AstroSharedOrbits.Systems
 */
 
 //// KALENDA BODY
-//// var x = new Planets.BodyHypos("X", "X", 25725, 62.3f, (float)( * 5.975e24));
-//// var x = new Planets.BodyHypos("X", "X", 25725, 169.8f, (float)(5 * 5.975e24));
-//// var x = new Planets.BodyHypos("X", "X", 25725, -10.2f, (float)(4 * 5.975e24));
+//// var x = new BodyHypos("X", "X", 25725, 62.3f, (float)( * 5.975e24));
+//// var x = new BodyHypos("X", "X", 25725, 169.8f, (float)(5 * 5.975e24));
+//// var x = new BodyHypos("X", "X", 25725, -10.2f, (float)(4 * 5.975e24));
 
 //// 158f
 //// My BODY
-//// var x = new Planets.BodyHypos("X", "X", 387.30f, -10.2f, (float)(1 * 5.975e24));
-//// var x = new Planets.BodyHypos("X", "X", 2318.0f, -10.2f, (float)(10 * 5.975e24));
+//// var x = new BodyHypos("X", "X", 387.30f, -10.2f, (float)(1 * 5.975e24));
+//// var x = new BodyHypos("X", "X", 2318.0f, -10.2f, (float)(10 * 5.975e24));
 //// Planet X
 //// 387.70f, 152.3f, 390.36f, 150.0f,  390.36f, 130.0f, 390.36f, 200.0f, 
 //// 717.35f, 200.0f, 392.25f, 240.0f,  395 let 325 deg, 275 let, 202 deg
-//// var x = new Planets.BodyHypos("X", "X", 387.30f, 157.3f, 8.8e25f);
-//// var x = new Planets.BodyHypos("X", "X", 25725.0f, 0.0f, (float)(10*5.975e24));
-//// var x = new Planets.BodyHypos("X", "X", 25725.0f, 0.0f, (float)(10*5.975e24));D:\Solutions\PrivateWPF\Largo2018\LargoWpfAstronomy\Astronomy\WinBarycentre.xaml
+//// var x = new BodyHypos("X", "X", 387.30f, 157.3f, 8.8e25f);
+//// var x = new BodyHypos("X", "X", 25725.0f, 0.0f, (float)(10*5.975e24));
+//// var x = new BodyHypos("X", "X", 25725.0f, 0.0f, (float)(10*5.975e24));D:\Solutions\PrivateWPF\Largo2018\LargoWpfAstronomy\Astronomy\WinBarycentre.xaml
 
 //// var sunJS = new BodySun("JS", (int)AstPlanet.Mercury, (int)AstPlanet.X); // AstPlanet.Saturn
 //// var sun = new BodySun("US", (int)AstPlanet.Mercury, (int)AstPlanet.Neptune);

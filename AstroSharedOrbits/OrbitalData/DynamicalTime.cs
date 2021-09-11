@@ -47,15 +47,15 @@ namespace AstroSharedOrbits.OrbitalData
             }
             else if (y < 1998) {
                 var index = (int)((y - 1620) / 2);
-                Debug.Assert(index < OrbitalData.DynamicalTimeDeltas.DeltaTTable.Length, "Reason for the assert");
+                Debug.Assert(index < DynamicalTimeDeltas.DeltaTTable.Length, "Reason for the assert");
                 Debug.Assert(index >= 0, "Reason for the assert");
 
                 y = y / 2 - index - 810;
-                delta = OrbitalData.DynamicalTimeDeltas.DeltaTTable[index] + (OrbitalData.DynamicalTimeDeltas.DeltaTTable[index + 1] - OrbitalData.DynamicalTimeDeltas.DeltaTTable[index]) * y;
+                delta = DynamicalTimeDeltas.DeltaTTable[index] + (DynamicalTimeDeltas.DeltaTTable[index + 1] - DynamicalTimeDeltas.DeltaTTable[index]) * y;
             }
             else if (y <= 2000) {
-                var nLookupSize = OrbitalData.DynamicalTimeDeltas.DeltaTTable.Length;
-                delta = OrbitalData.DynamicalTimeDeltas.DeltaTTable[nLookupSize - 1];
+                var nLookupSize = DynamicalTimeDeltas.DeltaTTable.Length;
+                delta = DynamicalTimeDeltas.DeltaTTable[nLookupSize - 1];
             }
             else if (y < 2100) {
                 delta = 102 + (102 * timeT) + (25.3 * timeT * timeT) + 0.37 * (y - 2100);

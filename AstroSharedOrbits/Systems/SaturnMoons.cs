@@ -14,6 +14,7 @@ namespace AstroSharedOrbits.Systems {
     using AstroSharedClasses.Computation;
     using AstroSharedClasses.OrbitalElements;
     using AstroSharedOrbits.OrbitalData;
+    using AstroSharedOrbits.Planets;
     using JetBrains.Annotations;
 
     /// <summary>
@@ -33,7 +34,7 @@ namespace AstroSharedOrbits.Systems {
             var sunlongrad = Angles.DegRad(sunlong);
             var beta = BodySun.GeometricEclipticLatitude(julianDay);
             var betaRad = Angles.DegRad(beta);
-            var radiusR = Planets.BodyEarth.RadiusVector(julianDay);
+            var radiusR = BodyEarth.RadiusVector(julianDay);
 
             //// Calculate the the light travel time from Saturn to the Earth
             double delta = 9;
@@ -46,11 +47,11 @@ namespace AstroSharedOrbits.Systems {
             double z;
             while (bIterate) {
                 //// Calculate the position of Jupiter
-                var l = Planets.BodySaturn.EclipticLongitude(julianDay1);
+                var l = BodySaturn.EclipticLongitude(julianDay1);
                 var longitudeRadian = Angles.DegRad(l);
-                var b = Planets.BodySaturn.EclipticLatitude(julianDay1);
+                var b = BodySaturn.EclipticLatitude(julianDay1);
                 var latitudeRadian = Angles.DegRad(b);
-                var r = Planets.BodySaturn.RadiusVector(julianDay1);
+                var r = BodySaturn.RadiusVector(julianDay1);
 
                 x = r * Math.Cos(latitudeRadian) * Math.Cos(longitudeRadian) + radiusR * Math.Cos(sunlongrad);
                 y = r * Math.Cos(latitudeRadian) * Math.Sin(longitudeRadian) + radiusR * Math.Sin(sunlongrad);
@@ -73,11 +74,11 @@ namespace AstroSharedOrbits.Systems {
             {
                 //// Calculate the the light travel time from Saturn to the Sun
                 julianDay1 = julianDay - earthLightTravelTime;
-                var l = Planets.BodySaturn.EclipticLongitude(julianDay1);
+                var l = BodySaturn.EclipticLongitude(julianDay1);
                 var longitudeRadian = Angles.DegRad(l);
-                var b = Planets.BodySaturn.EclipticLatitude(julianDay1);
+                var b = BodySaturn.EclipticLatitude(julianDay1);
                 var latitudeRadian = Angles.DegRad(b);
-                var r = Planets.BodySaturn.RadiusVector(julianDay1);
+                var r = BodySaturn.RadiusVector(julianDay1);
                 x = r * Math.Cos(latitudeRadian) * Math.Cos(longitudeRadian);
                 y = r * Math.Cos(latitudeRadian) * Math.Sin(longitudeRadian);
                 z = r * Math.Sin(latitudeRadian);
@@ -162,11 +163,11 @@ namespace AstroSharedOrbits.Systems {
             var bIterate = true;
             while (bIterate) {
                 //// Calculate the position of Saturn
-                l = Planets.BodySaturn.EclipticLongitude(julianDay1);
+                l = BodySaturn.EclipticLongitude(julianDay1);
                 var longitudeRadian = Angles.DegRad(l);
-                var b = Planets.BodySaturn.EclipticLatitude(julianDay1);
+                var b = BodySaturn.EclipticLatitude(julianDay1);
                 var latitudeRadian = Angles.DegRad(b);
-                var r = Planets.BodySaturn.RadiusVector(julianDay1);
+                var r = BodySaturn.RadiusVector(julianDay1);
 
                 x = r * Math.Cos(latitudeRadian) * Math.Cos(longitudeRadian) + radiusR * Math.Cos(sunlongrad);
                 y = r * Math.Cos(latitudeRadian) * Math.Sin(longitudeRadian) + radiusR * Math.Sin(sunlongrad);

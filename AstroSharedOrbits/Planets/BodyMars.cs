@@ -12,6 +12,7 @@ namespace AstroSharedOrbits.Planets {
     using AstroSharedClasses.Computation;
     using AstroSharedClasses.Enums;
     using AstroSharedClasses.OrbitalElements;
+    using AstroSharedOrbits.OrbitalData;
     using AstroSharedOrbits.Orbits;
     using AstroSharedOrbits.Systems;
     using JetBrains.Annotations;
@@ -274,39 +275,39 @@ namespace AstroSharedOrbits.Planets {
             //// Calculate L0
             double l0 = 0;
             int i;
-            for (i = 0; i < OrbitalData.VsopData.L0MarsCoefficients.Length; i++) {
-                l0 += OrbitalData.VsopData.L0MarsCoefficients[i].A *
-                      Math.Cos(OrbitalData.VsopData.L0MarsCoefficients[i].B + OrbitalData.VsopData.L0MarsCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.L0MarsCoefficients.Length; i++) {
+                l0 += VsopData.L0MarsCoefficients[i].A *
+                      Math.Cos(VsopData.L0MarsCoefficients[i].B + VsopData.L0MarsCoefficients[i].C * rho);
             }
 
             //// Calculate L1
             double l1 = 0;
-            for (i = 0; i < OrbitalData.VsopData.L1MarsCoefficients.Length; i++) {
-                l1 += OrbitalData.VsopData.L1MarsCoefficients[i].A * Math.Cos(OrbitalData.VsopData.L1MarsCoefficients[i].B + OrbitalData.VsopData.L1MarsCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.L1MarsCoefficients.Length; i++) {
+                l1 += VsopData.L1MarsCoefficients[i].A * Math.Cos(VsopData.L1MarsCoefficients[i].B + VsopData.L1MarsCoefficients[i].C * rho);
             }
 
             //// Calculate L2
             double l2 = 0;
-            for (i = 0; i < OrbitalData.VsopData.L2MarsCoefficients.Length; i++) {
-                l2 += OrbitalData.VsopData.L2MarsCoefficients[i].A * Math.Cos(OrbitalData.VsopData.L2MarsCoefficients[i].B + OrbitalData.VsopData.L2MarsCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.L2MarsCoefficients.Length; i++) {
+                l2 += VsopData.L2MarsCoefficients[i].A * Math.Cos(VsopData.L2MarsCoefficients[i].B + VsopData.L2MarsCoefficients[i].C * rho);
             }
 
             //// Calculate L3
             double l3 = 0;
-            for (i = 0; i < OrbitalData.VsopData.L3MarsCoefficients.Length; i++) {
-                l3 += OrbitalData.VsopData.L3MarsCoefficients[i].A * Math.Cos(OrbitalData.VsopData.L3MarsCoefficients[i].B + OrbitalData.VsopData.L3MarsCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.L3MarsCoefficients.Length; i++) {
+                l3 += VsopData.L3MarsCoefficients[i].A * Math.Cos(VsopData.L3MarsCoefficients[i].B + VsopData.L3MarsCoefficients[i].C * rho);
             }
 
             //// Calculate L4
             double l4 = 0;
-            for (i = 0; i < OrbitalData.VsopData.L4MarsCoefficients.Length; i++) {
-                l4 += OrbitalData.VsopData.L4MarsCoefficients[i].A * Math.Cos(OrbitalData.VsopData.L4MarsCoefficients[i].B + OrbitalData.VsopData.L4MarsCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.L4MarsCoefficients.Length; i++) {
+                l4 += VsopData.L4MarsCoefficients[i].A * Math.Cos(VsopData.L4MarsCoefficients[i].B + VsopData.L4MarsCoefficients[i].C * rho);
             }
 
             //// Calculate L5
             double l5 = 0;
-            for (i = 0; i < OrbitalData.VsopData.L5MarsCoefficients.Length; i++) {
-                l5 += OrbitalData.VsopData.L5MarsCoefficients[i].A * Math.Cos(OrbitalData.VsopData.L5MarsCoefficients[i].B + OrbitalData.VsopData.L5MarsCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.L5MarsCoefficients.Length; i++) {
+                l5 += VsopData.L5MarsCoefficients[i].A * Math.Cos(VsopData.L5MarsCoefficients[i].B + VsopData.L5MarsCoefficients[i].C * rho);
             }
 
             var value = (l0 + l1 * rho + l2 * rhoSquared + l3 * rhoCubed + l4 * rho4 + l5 * rho5) / 100000000;
@@ -330,32 +331,32 @@ namespace AstroSharedOrbits.Planets {
             //// Calculate B0
             double b0 = 0;
             int i;
-            for (i = 0; i < OrbitalData.VsopData.B0MarsCoefficients.Length; i++) {
-                b0 += OrbitalData.VsopData.B0MarsCoefficients[i].A * Math.Cos(OrbitalData.VsopData.B0MarsCoefficients[i].B + OrbitalData.VsopData.B0MarsCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.B0MarsCoefficients.Length; i++) {
+                b0 += VsopData.B0MarsCoefficients[i].A * Math.Cos(VsopData.B0MarsCoefficients[i].B + VsopData.B0MarsCoefficients[i].C * rho);
             }
 
             //// Calculate B1
             double b1 = 0;
-            for (i = 0; i < OrbitalData.VsopData.B1MarsCoefficients.Length; i++) {
-                b1 += OrbitalData.VsopData.B1MarsCoefficients[i].A * Math.Cos(OrbitalData.VsopData.B1MarsCoefficients[i].B + OrbitalData.VsopData.B1MarsCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.B1MarsCoefficients.Length; i++) {
+                b1 += VsopData.B1MarsCoefficients[i].A * Math.Cos(VsopData.B1MarsCoefficients[i].B + VsopData.B1MarsCoefficients[i].C * rho);
             }
 
             //// Calculate B2
             double b2 = 0;
-            for (i = 0; i < OrbitalData.VsopData.B2MarsCoefficients.Length; i++) {
-                b2 += OrbitalData.VsopData.B2MarsCoefficients[i].A * Math.Cos(OrbitalData.VsopData.B2MarsCoefficients[i].B + OrbitalData.VsopData.B2MarsCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.B2MarsCoefficients.Length; i++) {
+                b2 += VsopData.B2MarsCoefficients[i].A * Math.Cos(VsopData.B2MarsCoefficients[i].B + VsopData.B2MarsCoefficients[i].C * rho);
             }
 
             //// Calculate B3
             double b3 = 0;
-            for (i = 0; i < OrbitalData.VsopData.B3MarsCoefficients.Length; i++) {
-                b3 += OrbitalData.VsopData.B3MarsCoefficients[i].A * Math.Cos(OrbitalData.VsopData.B3MarsCoefficients[i].B + OrbitalData.VsopData.B3MarsCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.B3MarsCoefficients.Length; i++) {
+                b3 += VsopData.B3MarsCoefficients[i].A * Math.Cos(VsopData.B3MarsCoefficients[i].B + VsopData.B3MarsCoefficients[i].C * rho);
             }
 
             //// Calculate B4
             double b4 = 0;
-            for (i = 0; i < OrbitalData.VsopData.B4MarsCoefficients.Length; i++) {
-                b4 += OrbitalData.VsopData.B4MarsCoefficients[i].A * Math.Cos(OrbitalData.VsopData.B4MarsCoefficients[i].B + OrbitalData.VsopData.B4MarsCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.B4MarsCoefficients.Length; i++) {
+                b4 += VsopData.B4MarsCoefficients[i].A * Math.Cos(VsopData.B4MarsCoefficients[i].B + VsopData.B4MarsCoefficients[i].C * rho);
             }
 
             var value = (b0 + b1 * rho + b2 * rhoSquared + b3 * rhoCubed + b4 * rho4) / 100000000;
@@ -379,32 +380,32 @@ namespace AstroSharedOrbits.Planets {
             //// Calculate R0
             double r0 = 0;
             int i;
-            for (i = 0; i < OrbitalData.VsopData.R0MarsCoefficients.Length; i++) {
-                r0 += OrbitalData.VsopData.R0MarsCoefficients[i].A * Math.Cos(OrbitalData.VsopData.R0MarsCoefficients[i].B + OrbitalData.VsopData.R0MarsCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.R0MarsCoefficients.Length; i++) {
+                r0 += VsopData.R0MarsCoefficients[i].A * Math.Cos(VsopData.R0MarsCoefficients[i].B + VsopData.R0MarsCoefficients[i].C * rho);
             }
 
             //// Calculate R1
             double r1 = 0;
-            for (i = 0; i < OrbitalData.VsopData.R1MarsCoefficients.Length; i++) {
-                r1 += OrbitalData.VsopData.R1MarsCoefficients[i].A * Math.Cos(OrbitalData.VsopData.R1MarsCoefficients[i].B + OrbitalData.VsopData.R1MarsCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.R1MarsCoefficients.Length; i++) {
+                r1 += VsopData.R1MarsCoefficients[i].A * Math.Cos(VsopData.R1MarsCoefficients[i].B + VsopData.R1MarsCoefficients[i].C * rho);
             }
 
             //// Calculate R2
             double r2 = 0;
-            for (i = 0; i < OrbitalData.VsopData.R2MarsCoefficients.Length; i++) {
-                r2 += OrbitalData.VsopData.R2MarsCoefficients[i].A * Math.Cos(OrbitalData.VsopData.R2MarsCoefficients[i].B + OrbitalData.VsopData.R2MarsCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.R2MarsCoefficients.Length; i++) {
+                r2 += VsopData.R2MarsCoefficients[i].A * Math.Cos(VsopData.R2MarsCoefficients[i].B + VsopData.R2MarsCoefficients[i].C * rho);
             }
 
             //// Calculate R3
             double r3 = 0;
-            for (i = 0; i < OrbitalData.VsopData.R3MarsCoefficients.Length; i++) {
-                r3 += OrbitalData.VsopData.R3MarsCoefficients[i].A * Math.Cos(OrbitalData.VsopData.R3MarsCoefficients[i].B + OrbitalData.VsopData.R3MarsCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.R3MarsCoefficients.Length; i++) {
+                r3 += VsopData.R3MarsCoefficients[i].A * Math.Cos(VsopData.R3MarsCoefficients[i].B + VsopData.R3MarsCoefficients[i].C * rho);
             }
 
             //// Calculate R4
             double r4 = 0;
-            for (i = 0; i < OrbitalData.VsopData.R4MarsCoefficients.Length; i++) {
-                r4 += OrbitalData.VsopData.R4MarsCoefficients[i].A * Math.Cos(OrbitalData.VsopData.R4MarsCoefficients[i].B + OrbitalData.VsopData.R4MarsCoefficients[i].C * rho);
+            for (i = 0; i < VsopData.R4MarsCoefficients.Length; i++) {
+                r4 += VsopData.R4MarsCoefficients[i].A * Math.Cos(VsopData.R4MarsCoefficients[i].B + VsopData.R4MarsCoefficients[i].C * rho);
             }
 
             return (r0 + r1 * rho + r2 * rhoSquared + r3 * rhoCubed + r4 * rho4) / 100000000;

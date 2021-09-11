@@ -57,7 +57,7 @@ namespace AstroSharedClasses.Enums {
         X = 8,
 
         /// <summary>
-        /// Count of Planets.
+        /// Count of 
         /// </summary>
         Count = 9
     }

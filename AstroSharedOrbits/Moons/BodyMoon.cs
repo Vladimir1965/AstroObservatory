@@ -10,7 +10,9 @@ namespace AstroSharedOrbits.Moons {
     using System;
     using AstroSharedClasses.Computation;
     using AstroSharedClasses.Coordinates;
+    using AstroSharedOrbits.OrbitalData;
     using AstroSharedOrbits.Orbits;
+    using AstroSharedOrbits.Planets;
     using JetBrains.Annotations;
 
     /// <summary>
@@ -96,11 +98,11 @@ namespace AstroSharedOrbits.Moons {
         /// <value>The sigma L.</value>
         protected double SigmaL {
             get {
-                var earthEccentricity = Planets.BodyEarth.Eccentricity(this.Time.CurrentJulianDate);
+                var earthEccentricity = BodyEarth.Eccentricity(this.Time.CurrentJulianDate);
                 var esquared = earthEccentricity * earthEccentricity;
 
                 double value = 0;
-                foreach (var q in OrbitalData.MoonPerturbationQuotients.MoonLongitudeQuotients) {
+                foreach (var q in MoonPerturbationQuotients.MoonLongitudeQuotients) {
                     var thisSigma = q.A * Angles.Sinus(q.D * this.D + q.M * this.M + q.Mdash * this.Md + q.LatitudeF * this.LatitudeF);
 
                     switch (q.M)
@@ -133,8 +135,8 @@ namespace AstroSharedOrbits.Moons {
         protected double SigmaB {
             get {
                 double value = 0;
-                var earthEccentricity = Planets.BodyEarth.Eccentricity(this.Time.CurrentJulianDate);
-                foreach (var q in OrbitalData.MoonPerturbationQuotients.MoonLatitudeQuotients) {
+                var earthEccentricity = BodyEarth.Eccentricity(this.Time.CurrentJulianDate);
+                foreach (var q in MoonPerturbationQuotients.MoonLatitudeQuotients) {
                     var thisSigma = q.A * Angles.Sinus(q.D * this.D + q.M * this.M + q.Mdash * this.Md + q.LatitudeF * this.LatitudeF);
                     if (q.M != 0) {
                         thisSigma *= earthEccentricity;
@@ -212,7 +214,7 @@ namespace AstroSharedOrbits.Moons {
                 //// int nRCoefficients = sizeof(MoonCoefficients1) / sizeof(MoonCoefficient1);
                 //// assert(sizeof(MoonCoefficients2) / sizeof(MoonCoefficient2) == nRCoefficients);
                 double value = 0;
-                foreach (var q in OrbitalData.MoonPerturbationQuotients.MoonLongitudeQuotients) {
+                foreach (var q in MoonPerturbationQuotients.MoonLongitudeQuotients) {
                     var thisSigma = q.B * Angles.Cosin(q.D * this.D + q.M * this.M + q.Mdash * this.Md + q.LatitudeF * this.LatitudeF);
                     if (q.M != 0) {
                         thisSigma *= this.E;

@@ -50,8 +50,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Crossing\Constellation.cs" />
+    <Compile Include="Crossing\Nodes.cs" />
+    <Compile Include="Crossing\PlanetaryPhenomena.cs" />
     <Compile Include="Crossing\Relation.cs" />
-    <Compile Include="Geology\DateListEarthquake.cs" />
+    <Compile Include="Crossing\RiseTransitSet.cs" />
+    <Compile Include="Lists\DateListEarthquake.cs" />
     <Compile Include="Geology\EarthLocation.cs" />
     <Compile Include="Geology\Earthquake.cs" />
     <Compile Include="Geology\EarthquakeRecord.cs" />
