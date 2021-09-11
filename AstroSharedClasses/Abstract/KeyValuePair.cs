@@ -7,11 +7,11 @@
 // <summary>KeyValuePair</summary>
 
 namespace AstroSharedClasses.Abstract {
-    using JetBrains.Annotations;
     using System;
     using System.Globalization;
     using System.Text;
     using System.Xml.Serialization;
+    using JetBrains.Annotations;
 
     /// <summary>
     /// Gen Key Value.

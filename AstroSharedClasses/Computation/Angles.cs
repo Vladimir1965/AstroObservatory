@@ -243,9 +243,9 @@ namespace AstroSharedClasses.Computation
 
             //// calculate hours, minutes and seconds
             var hour = (int)(i * 24);
-            var minute = (int)((i * 24 - hour) * 60);
-            var second = (int)(((i * 24 - hour) * 60 - minute) * 60);
-            var millisecond = (int)(((i * 24 - hour) * 60 - minute) * 60 - second) * 1000;
+            var minute = (int)(((i * 24) - hour) * 60);
+            var second = (int)((((i * 24) - hour) * 60 - minute) * 60);
+            var millisecond = (int)((((i * 24) - hour) * 60 - minute) * 60 - second) * 1000;
 
             //// create TimeSpan
             return new TimeSpan((int)Math.Floor(alpha), hour, minute, second, millisecond);
@@ -860,9 +860,9 @@ namespace AstroSharedClasses.Computation
             var z1 = Math.Sin(delta1);
             var z2 = Math.Sin(delta2);
 
-            var a = y1 * z2 - z1 * y2;
-            var b = z1 * x2 - x1 * z2;
-            var c = x1 * y2 - y1 * x2;
+            var a = (y1 * z2) - (z1 * y2);
+            var b = (z1 * x2) - (x1 * z2);
+            var c = (x1 * y2) - (y1 * x2);
 
             var m = Math.Tan(alpha3);
             var n = Math.Tan(delta3) / Math.Cos(alpha3);

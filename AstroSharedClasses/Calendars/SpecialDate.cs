@@ -299,7 +299,7 @@ namespace AstroSharedClasses.Calendars {
 
             f = Computation.AstroMath.Mod(dblDay, out tempZ);
             this.InnerHour = Date.IntValue(f * 24);
-            this.InnerMinute = Date.IntValue((f - this.InnerHour / 24.0) * 1440.0);
+            this.InnerMinute = Date.IntValue((f - (this.InnerHour / 24.0)) * 1440.0);
             this.InnerSecond = (f - (this.InnerHour / 24.0) - (this.InnerMinute / 1440.0)) * 86400.0;
         }
 

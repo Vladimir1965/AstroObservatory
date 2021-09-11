@@ -8,11 +8,11 @@
 
 namespace AstroSharedClasses.Abstract
 {
-    using JetBrains.Annotations;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Diagnostics.Contracts;
     using System.Linq;
+    using JetBrains.Annotations;
 
     /// <summary>
     /// Collection Extender (static 11/2010).

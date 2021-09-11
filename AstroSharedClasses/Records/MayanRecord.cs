@@ -6,7 +6,8 @@
 // <date>2021-09-01</date>
 // <summary>Part of Astro Observatory</summary>
 
-namespace AstroSharedClasses.Records {
+namespace AstroSharedClasses.Records
+{
     using JetBrains.Annotations;
     using System.Globalization;
     using System.Text;
@@ -15,7 +16,8 @@ namespace AstroSharedClasses.Records {
     /// <summary>
     /// Earthquake Record.
     /// </summary>
-    public sealed class MayanRecord {
+    public sealed class MayanRecord
+    {
         #region Constructors
         /// <summary>
         /// Initializes a new instance of the <see cref="MayanRecord" /> class.
@@ -26,7 +28,8 @@ namespace AstroSharedClasses.Records {
         /// <param name="givenUinal">The given uinal.</param>
         /// <param name="givenKin">The given kin.</param>
         /// <param name="givenInfo">The given info.</param>
-        public MayanRecord(int givenBaktun, int givenKatun, int givenTun, int givenUinal, int givenKin, string givenInfo) {
+        public MayanRecord(int givenBaktun, int givenKatun, int givenTun, int givenUinal, int givenKin, string givenInfo)
+        {
             this.Baktun = (byte)givenBaktun;
             this.Katun = (byte)givenKatun;
             this.Tun = (byte)givenTun;
@@ -46,7 +49,8 @@ namespace AstroSharedClasses.Records {
         /// <param name="givenKin">The given kin.</param>
         /// <param name="givenInfo">The given info.</param>
         /// <param name="serpent">If set to <c>true</c> [serpent].</param>
-        public MayanRecord(int givenBaktun, int givenKatun, int givenTun, int givenUinal, int givenKin, string givenInfo, bool serpent) {
+        public MayanRecord(int givenBaktun, int givenKatun, int givenTun, int givenUinal, int givenKin, string givenInfo, bool serpent)
+        {
             if (!serpent) {
                 return;
             }
@@ -71,7 +75,8 @@ namespace AstroSharedClasses.Records {
         /// Initializes a new instance of the <see cref="MayanRecord"/> class.
         /// </summary>
         /// <param name="mayanDay">The mayan day.</param>
-        public MayanRecord(long mayanDay) {
+        public MayanRecord(long mayanDay)
+        {
             this.MayanDay = mayanDay;
             //// mayanDay = Math.Floor(((mayanDay / Julian.Tzolkin) * 260.0) + 0.5);
             this.Kin = (byte)(mayanDay % 20);
@@ -191,12 +196,13 @@ namespace AstroSharedClasses.Records {
         #region String representation
         /// <summary> String representation of the object. </summary>
         /// <returns> Returns value. </returns>
-        public override string ToString() {
+        public override string ToString()
+        {
             var s = new StringBuilder();
             s.AppendFormat(
-                "{0,-20} {1,-20} {2,-12} {3}", 
-                this.LongCountBaseString, 
-                this.HaabDayName(0) +" "+ this.TzolkinDayName(),
+                "{0,-20} {1,-20} {2,-12} {3}",
+                this.LongCountBaseString,
+                this.HaabDayName(0) + " " + this.TzolkinDayName(),
                 string.Empty,
                 this.Info);
 
@@ -211,7 +217,8 @@ namespace AstroSharedClasses.Records {
         /// Returns value.
         /// </returns>
         [UsedImplicitly]
-        public string ToString(long correlationNumber) {
+        public string ToString(long correlationNumber)
+        {
             var mayanDay = this.MayanDay;
             double julianDate = correlationNumber + mayanDay;
             var s = this.LongCountBaseString;
@@ -235,7 +242,7 @@ namespace AstroSharedClasses.Records {
                             mayanDay,
                             julianDate,
                             this.Info); */
-            }
+        }
         #endregion
 
         #region Mayans
@@ -246,7 +253,8 @@ namespace AstroSharedClasses.Records {
         /// Returns value.
         /// </returns>
         [UsedImplicitly]
-        public double MayanCorrectedDay() {
+        public double MayanCorrectedDay()
+        {
             var d = this.MayanDay;
             return d / 260.0 * Calendars.Julian.Tzolkin;
         }
@@ -261,7 +269,8 @@ namespace AstroSharedClasses.Records {
         /// Returns value.
         /// </returns>
         [UsedImplicitly]
-        private long CalculateMayanDay() {
+        private long CalculateMayanDay()
+        {
             long d;
             checked {
                 long k = (this.Baktun * 20) + this.Katun;
@@ -275,7 +284,8 @@ namespace AstroSharedClasses.Records {
         /// Tzolkin the name of the day.
         /// </summary>
         /// <returns> Returns value. </returns>
-        private string TzolkinDayName() {
+        private string TzolkinDayName()
+        {
             var d = this.MayanDay;
             var z = (int)(1 + (d + 3) % 13);
             var kinName = (Enums.KinName)this.Kin;
@@ -288,7 +298,8 @@ namespace AstroSharedClasses.Records {
         /// <param name="correlationNumber">The correlation number.</param>
         /// <returns> Returns value. </returns>
         [UsedImplicitly]
-        private string HaabDayName(long correlationNumber) {
+        private string HaabDayName(long correlationNumber)
+        {
             //// int haabShift = (int)((correlationNumber - 348) % 365); //// 63 for 584285
             //// int haabShift = (int)((correlationNumber - 329) % 365); //// 17 for 508392 ?!?
             const int haabShift = 348;

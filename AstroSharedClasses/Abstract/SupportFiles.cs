@@ -6,16 +6,16 @@
 // <date>2009-02-01</date>
 // <summary>BwPort</summary>
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.IO;
-using System.IO.Compression;
-using System.Windows.Forms;
-using JetBrains.Annotations;
-
 namespace AstroSharedClasses.Abstract
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
+    using System.IO;
+    using System.IO.Compression;
+    using System.Windows.Forms;
+    using JetBrains.Annotations;
+    
     /// <summary>
     /// Support Files.
     /// </summary>

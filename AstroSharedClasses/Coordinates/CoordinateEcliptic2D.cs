@@ -8,8 +8,8 @@
 
 namespace AstroSharedClasses.Coordinates
 {
-    using JetBrains.Annotations;
     using System;
+    using JetBrains.Annotations;
 
     /// <summary>
     /// Coordinate Ecliptic 2D.
