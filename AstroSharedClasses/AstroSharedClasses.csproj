@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{082A0F0E-C377-478D-ACC5-631B46CE738B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AstroSharedClasses</RootNamespace>
+    <AssemblyName>AstroSharedClasses</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="JetBrains.Annotations">
+      <HintPath>..\ExternalLibs\JetBrains.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Abstract\ExtendCollection.cs" />
+    <Compile Include="Abstract\ExtendExceptions.cs" />
+    <Compile Include="Abstract\ExtendStrings.cs" />
+    <Compile Include="Abstract\KeyValuePair.cs" />
+    <Compile Include="Abstract\MathSupport.cs" />
+    <Compile Include="Abstract\ProcessLogger.cs" />
+    <Compile Include="Abstract\ProcessLoggerEventArgs.cs" />
+    <Compile Include="Abstract\SupportFiles.cs" />
+    <Compile Include="Abstract\SupportLog.cs" />
+    <Compile Include="Abstract\XmlSupport.cs" />
+    <Compile Include="Calendars\AstroDate.cs" />
+    <Compile Include="Calendars\CalendarDate.cs" />
+    <Compile Include="Calendars\Date.cs" />
+    <Compile Include="Calendars\Julian.cs" />
+    <Compile Include="Calendars\SpecialDate.cs" />
+    <Compile Include="Computation\Angle.cs" />
+    <Compile Include="Computation\AngleBands.cs" />
+    <Compile Include="Computation\Angles.cs" />
+    <Compile Include="Computation\AstroMath.cs" />
+    <Compile Include="Computation\DateList.cs" />
+    <Compile Include="Computation\EarthStatus.cs" />
+    <Compile Include="Computation\EventBackground.cs" />
+    <Compile Include="Computation\ExtremeInfluence.cs" />
+    <Compile Include="Computation\FK5.cs" />
+    <Compile Include="Computation\Interpolation.cs" />
+    <Compile Include="Computation\Kepler.cs" />
+    <Compile Include="Computation\MayanCorrelation.cs" />
+    <Compile Include="Computation\Precession.cs" />
+    <Compile Include="Computation\Resonances.cs" />
+    <Compile Include="Coordinates\Coordinate2D.cs" />
+    <Compile Include="Coordinates\Coordinate3D.cs" />
+    <Compile Include="Coordinates\CoordinateEcliptic2D.cs" />
+    <Compile Include="Coordinates\CoordinateEquatorial2D.cs" />
+    <Compile Include="Coordinates\CoordinateTransformation.cs" />
+    <Compile Include="Coordinates\Globe.cs" />
+    <Compile Include="Coordinates\TopocentricEclipticDetails.cs" />
+    <Compile Include="Enums\AlgVariant.cs" />
+    <Compile Include="Enums\AstCharacteristic.cs" />
+    <Compile Include="Enums\AstEventType.cs" />
+    <Compile Include="Enums\AstMoon.cs" />
+    <Compile Include="Enums\AstPlanet.cs" />
+    <Compile Include="Enums\AstSystem.cs" />
+    <Compile Include="Enums\DayOfWeek.cs" />
+    <Compile Include="Enums\EquinoxType.cs" />
+    <Compile Include="Enums\EventType.cs" />
+    <Compile Include="Enums\HaabMonth.cs" />
+    <Compile Include="Enums\KinName.cs" />
+    <Compile Include="Enums\Month.cs" />
+    <Compile Include="Enums\MoonPhase.cs" />
+    <Compile Include="Enums\Season.cs" />
+    <Compile Include="Enums\SolarSystemObject.cs" />
+    <Compile Include="OrbitalElements\BretagnonElements.cs" />
+    <Compile Include="OrbitalElements\EclipticalElements.cs" />
+    <Compile Include="OrbitalElements\EllipticalObjectDetails.cs" />
+    <Compile Include="OrbitalElements\EllipticalObjectElements.cs" />
+    <Compile Include="OrbitalElements\EllipticalPlanetaryDetails.cs" />
+    <Compile Include="OrbitalElements\GalileanMoonDetail.cs" />
+    <Compile Include="OrbitalElements\NormalElements.cs" />
+    <Compile Include="OrbitalElements\ParabolicObjectElements.cs" />
+    <Compile Include="OrbitalElements\SaturnMoonDetail.cs" />
+    <Compile Include="OrbitalElements\Vsop87.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Records\EclipticalElementDetails.cs" />
+    <Compile Include="Records\FlareDay.cs" />
+    <Compile Include="Records\GeoRecord.cs" />
+    <Compile Include="Records\LunarEclipseDetails.cs" />
+    <Compile Include="Records\MayanRecord.cs" />
+    <Compile Include="Records\MoonLatitudeQuotient.cs" />
+    <Compile Include="Records\MoonLongitudeQuotient.cs" />
+    <Compile Include="Records\MoonPerigeeApogeeCoefficient.cs" />
+    <Compile Include="Records\NodeObjectDetails.cs" />
+    <Compile Include="Records\NutationCoefficient.cs" />
+    <Compile Include="Records\PhysicalJupiterDetails.cs" />
+    <Compile Include="Records\PhysicalMarsDetails.cs" />
+    <Compile Include="Records\PhysicalMoonDetails.cs" />
+    <Compile Include="Records\PhysicalSunDetails.cs" />
+    <Compile Include="Records\PlanetaryPhenomenaCoefficient1.cs" />
+    <Compile Include="Records\PlutoCoefficient1.cs" />
+    <Compile Include="Records\PlutoCoefficient2.cs" />
+    <Compile Include="Records\RiseTransitSetDetails.cs" />
+    <Compile Include="Records\SelenographicMoonDetails.cs" />
+    <Compile Include="Records\SolarEclipseDetails.cs" />
+    <Compile Include="Records\VSOP87Coefficient.cs" />
+    <Compile Include="Records\VsopRecord.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
