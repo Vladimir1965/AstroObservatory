@@ -15,7 +15,7 @@ namespace AstroSharedOrbits.Orbits
         /// <summary>
         /// The vsop root path
         /// </summary>
-        public const string vsopRootPath = @"c:\Private\SOLUTIONS-2020\PrivateWPF\Astro2020\AstroSharedOrbits";
+        public const string vsopRootPath = @"c:\Private\SOLUTIONS-GIT\AstroObservatory\ExternalData";
         //// public const string vsopRootPath = @"d:\Solutions\PrivateWPF\Astro2019\AstroSharedOrbits";
     }
 }

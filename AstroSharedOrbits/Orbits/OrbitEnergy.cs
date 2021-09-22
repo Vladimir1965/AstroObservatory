@@ -10,6 +10,7 @@ namespace AstroSharedOrbits.Orbits
 {
     using AstroSharedClasses.Computation;
     using AstroSharedOrbits.Systems;
+    using JetBrains.Annotations;
     using System;
 
     /// <summary>
@@ -45,20 +46,20 @@ namespace AstroSharedOrbits.Orbits
         public double M1 { get; set; }
 
         /// <summary>
-        /// Gets Kepler constant of area.
+        /// Gets or sets Kepler constant of area.
         /// m R v
         /// </summary>
         /// <value> Property description. </value>
         public double Carea { get; set; }
 
         /// <summary>
-        /// Gets Area of ellipse.
+        /// Gets or sets Area of ellipse.
         /// </summary>
         /// <value> Property description. </value>
         public double Sellipse { get; set; }
 
         /// <summary>
-        /// Gets Torbital.
+        /// Gets or sets Torbital.
         /// </summary>
         /// <value> Property description. </value>
         public double Torbital { get; set; }
@@ -91,49 +92,49 @@ namespace AstroSharedOrbits.Orbits
         public double Energy => this.Ekin + this.Epot;
 
         /// <summary>
-        /// Gets Omega.
+        /// Gets or sets Omega.
         /// </summary>
         /// <value> Property description. </value>
         public double Omega { get; set; }
 
         /// <summary>
-        /// Gets Alpha.
+        /// Gets or sets Alpha.
         /// </summary>
         /// <value> Property description. </value>
         public double Alpha { get; set; }
 
         /// <summary>
-        /// Gets Momentum [].
+        /// Gets or sets Momentum [].
         /// </summary>
         /// <value> Property description. </value>
         public double Momentum { get; set; }
 
         /// <summary>
-        /// Gets Angular Momentum [].
+        /// Gets or sets Angular Momentum [].
         /// </summary>
         /// <value> Property description. </value>
         public double AngularMomentum { get; set; }
 
         /// <summary>
-        /// Gets Lagrange function [W].
+        /// Gets or sets Lagrange function [W].
         /// </summary>
         /// <value> Property description. </value>
         public double Lagrange { get; set; }
 
         /// <summary>
-        /// Gets Hamilton function [] -AstroMath.Kappa*M0/2/A.
+        /// Gets or sets Hamilton function [] -AstroMath.Kappa*M0/2/A.
         /// </summary>
         /// <value> Property description. </value>
         public double Hamilton { get; set; }
 
         /// <summary>
-        /// Gets Poincare.
+        /// Gets or sets Poincare.
         /// </summary>
         /// <value> Property description. </value>
         public double Poincare { get; set; }
 
         /// <summary>
-        /// Gets Fsun - force to Sun  [N] SolarKappa*m()/RT/RT.
+        /// Gets or sets Fsun - force to Sun  [N] SolarKappa*m()/RT/RT.
         /// </summary>
         /// <value> Property description. </value>
         public double Fsun { get; set; }
@@ -157,7 +158,7 @@ namespace AstroSharedOrbits.Orbits
         /// </summary>
         /// <param name="givenOrbit">The given orbit.</param>
         /// <param name="givenSun">The given sun.</param>
-        [JetBrains.Annotations.UsedImplicitlyAttribute]
+        [UsedImplicitly]
         public void SetOrbit(Orbit givenOrbit, BodySun givenSun)
         {
             this.P = givenOrbit.A * (1 - (givenOrbit.E * givenOrbit.E));
@@ -165,7 +166,7 @@ namespace AstroSharedOrbits.Orbits
             this.M0 = givenSun.Body.Mass + givenOrbit.Body.Mass;
             this.M1 = (givenSun.Body.Mass * givenOrbit.Body.Mass) / this.M0;
 
-            /// m R v = m R^2 ω = m R^2 *2PI/T 
+            //// m R v = m R^2 ω = m R^2 *2PI/T 
             this.Carea = Math.Sqrt(AstroMath.Kappa * this.M1 * this.P); //// sqrt(kg*m) = kg*m^2/s
 
             this.Sellipse = AstroMath.ConstPi * givenOrbit.A * this.B;

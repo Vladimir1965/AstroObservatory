@@ -43,7 +43,7 @@ namespace AstroSharedOrbits.Planets {
         /// Returns value.
         /// </returns>
         [UsedImplicitly]
-        public static long UranusK(double year) {
+        public override long OrbitK(double year) {
             return (long)(0.01190 * (year - 2051.1));
         }
 
@@ -53,7 +53,7 @@ namespace AstroSharedOrbits.Planets {
         /// <param name="givenK">The givenK.</param>
         /// <returns> Returns value. </returns>
         [UsedImplicitly]
-        public static double MeeusPerihelion(long givenK) {
+        public override double MeeusPerihelion(long givenK) {
             double kdash = givenK;
             var kSquared = kdash * kdash;
             return 2470213.5 + 30694.8767 * kdash - 0.00541 * kSquared;
@@ -65,7 +65,7 @@ namespace AstroSharedOrbits.Planets {
         /// <param name="givenK">The givenK.</param>
         /// <returns> Returns value. </returns>
         [UsedImplicitly]
-        public static double MeeusAphelion(long givenK) {
+        public override double MeeusAphelion(long givenK) {
             var kdash = givenK + 0.5;
             var kSquared = kdash * kdash;
             return 2470213.5 + 30694.8767 * kdash - 0.00541 * kSquared;

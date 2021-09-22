@@ -6,16 +6,17 @@
 // <date>2021-09-01</date>
 // <summary>Part of Astro Observatory</summary>
 
-namespace AstroSharedOrbits.Planets {
-    using System;
-    using JetBrains.Annotations;
-    using AstroSharedOrbits.Systems;
-    using AstroSharedClasses.Coordinates;
+namespace AstroSharedOrbits.Planets
+{
     using AstroSharedClasses.Computation;
-    using AstroSharedClasses.OrbitalElements;
+    using AstroSharedClasses.Coordinates;
     using AstroSharedClasses.Enums;
-    using AstroSharedOrbits.Orbits;
+    using AstroSharedClasses.OrbitalElements;
     using AstroSharedOrbits.OrbitalData;
+    using AstroSharedOrbits.Orbits;
+    using AstroSharedOrbits.Systems;
+    using JetBrains.Annotations;
+    using System;
 
     /// <summary> Orbit Body Earth. </summary>
     public sealed class BodyEarth : Orbit {
@@ -38,6 +39,7 @@ namespace AstroSharedOrbits.Planets {
             this.Body.J = 23.45;                   //// // [deg]
             this.Knke = 10;                   //// // 3
             //// Moon  = new BodyMoon;
+            this.MeanPeriod = 1.000;
         }
 
         #region Naughter - PerihelionAphelion

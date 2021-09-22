@@ -72,7 +72,6 @@ namespace AstroSharedEvents.Geology
         }
         #endregion
 
-
         /// <summary>
         /// Inserts the volcanoes.
         /// </summary>

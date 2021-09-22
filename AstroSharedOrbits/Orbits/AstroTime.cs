@@ -55,7 +55,7 @@ namespace AstroSharedOrbits.Orbits
         public double JYear { get; set; }   //// 
 
         /// <summary>
-        /// Gets Julian ephemerides day.
+        /// Gets or sets Julian ephemerides day.
         /// </summary>
         /// <value> Property description. </value>
         public double JEDay { get; set; }

@@ -1,4 +1,4 @@
-﻿// <copyright file="AstroEvent.cs" company="Traced-Ideas, Czech republic">
+﻿// <copyright file="GeoEvent.cs" company="Traced-Ideas, Czech republic">
 // Copyright (c) 1990-2021 All Right Reserved
 // </copyright>
 // <author></author>
@@ -6,20 +6,21 @@
 // <date>2021-09-01</date>
 // <summary>Part of Astro Observatory</summary>
 
-namespace AstroSharedEvents.Geology { 
+namespace AstroSharedEvents.Geology {
+    using JetBrains.Annotations;
     using System;
 
     /// <summary>
     /// Astro Event.
     /// </summary>
-    public class AstroEvent {
+    public class GeoEvent {
         /// <summary>
         /// Gets or sets The event type.
         /// </summary>
         /// <value>
         /// The type of the event.
         /// </value>
-        [JetBrains.Annotations.UsedImplicitlyAttribute]
+        [UsedImplicitly]
         public string EventType { get; set; }
 
         /// <summary>
@@ -28,7 +29,7 @@ namespace AstroSharedEvents.Geology {
         /// <value>
         /// The earthquake desc.
         /// </value>
-        [JetBrains.Annotations.UsedImplicitlyAttribute]
+        [UsedImplicitly]
         public string EarthquakeDesc { get; set; }
 
         /// <summary>
@@ -37,7 +38,7 @@ namespace AstroSharedEvents.Geology {
         /// <value>
         /// The earthquake identifier.
         /// </value>
-        [JetBrains.Annotations.UsedImplicitlyAttribute]
+        [UsedImplicitly]
         public int? EarthquakeId { get; set; }
 
         /// <summary>
@@ -46,7 +47,7 @@ namespace AstroSharedEvents.Geology {
         /// <value>
         /// The event date.
         /// </value>
-        [JetBrains.Annotations.UsedImplicitlyAttribute]
+        [UsedImplicitly]
         public DateTime EventDate { get; set; }
 
         /// <summary>
@@ -55,7 +56,7 @@ namespace AstroSharedEvents.Geology {
         /// <value>
         /// The eruption desc.
         /// </value>
-        [JetBrains.Annotations.UsedImplicitlyAttribute]
+        [UsedImplicitly]
         public string EruptionDesc { get; set; }
 
         /// <summary>
@@ -64,7 +65,7 @@ namespace AstroSharedEvents.Geology {
         /// <value>
         /// The eruption identifier.
         /// </value>
-        [JetBrains.Annotations.UsedImplicitlyAttribute]
+        [UsedImplicitly]
         public int? EruptionId { get; set; }
 
         /// <summary>
@@ -73,7 +74,7 @@ namespace AstroSharedEvents.Geology {
         /// <value>
         /// The astro date.
         /// </value>
-        [JetBrains.Annotations.UsedImplicitlyAttribute]
+        [UsedImplicitly]
         public DateTime AstroDate { get; set; }
     }
 }

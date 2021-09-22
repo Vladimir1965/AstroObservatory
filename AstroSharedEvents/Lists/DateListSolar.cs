@@ -20,8 +20,9 @@ namespace AstroSharedEvents.Lists
         /// <summary>
         /// Solar Dates.
         /// </summary>
-        [UsedImplicitly] public static readonly float[] SolarMaxDates =
-        { 
+        [UsedImplicitly]
+        public static readonly float[] SolarMaxDates =
+        {
             1615.50F,1626.00F,1639.50F,1649.00F,1660.00F,1675.00F,1685.00F,
             1693.00F,1705.50F,1718.20F,1727.50F,1738.70F,1750.30F,1761.50F,
             1769.70F,1778.40F,1788.10F,1805.20F,1816.40F,1829.90F,1837.20F,
@@ -32,8 +33,9 @@ namespace AstroSharedEvents.Lists
         /// <summary>
         /// Solar Dates.
         /// </summary>
-        [UsedImplicitly] public static readonly float[] SolarMinDates =
-        { 
+        [UsedImplicitly]
+        public static readonly float[] SolarMinDates =
+        {
             1610.80F,1619.00F,1634.00F,1645.00F,1655.00F,1666.00F,1679.50F,
             1689.50F,1698.00F,1712.00F,1723.50F,1734.00F,1745.00F,1755.20F,
             1766.50F,1775.50F,1784.70F,1798.30F,1810.60F,1823.30F,1833.90F,
@@ -47,12 +49,13 @@ namespace AstroSharedEvents.Lists
         /// <summary>
         /// Solar Dates.
         /// </summary>
-        [UsedImplicitly] public static readonly float[] SchoveMaxDates =
-        { 
-            -648.0F,-522.0F,-512.0F,-501.0F,-491.0F,-481.0F,-471.0F,-461.0F,
-            -393.0F,-349.0F,-340.0F,-293.0F,-283.0F,-272.0F,-261.0F,-249.0F,
-            -236.0F,-223.0F,-214.0F,-205.0F,-192.0F,-182.0F,-172.0F,-163.0F,
-            -149.0F,-135.0F,-125.0F,-113.0F,-104.0F, -91.0F, -82.0F, -72.0F,
+        [UsedImplicitly]
+        public static readonly float[] SchoveMaxDates =
+        {
+            -648.0F, -522.0F, -512.0F, -501.0F, -491.0F, -481.0F, -471.0F, -461.0F,
+            -393.0F, -349.0F, -340.0F, -293.0F, -283.0F, -272.0F, -261.0F, -249.0F,
+            -236.0F, -223.0F, -214.0F, -205.0F, -192.0F, -182.0F, -172.0F, -163.0F,
+            -149.0F, -135.0F, -125.0F, -113.0F, -104.0F, -91.0F, -82.0F, -72.0F,
             -62.0F, -53.0F, -42.0F, -27.0F, -16.0F,  -5.0F,   8.0F,  20.0F,
             31.0F,  42.0F,  53.0F,  65.0F,  76.0F,  86.0F,  96.0F, 105.0F,
             118.0F, 130.0F, 141.0F, 152.0F, 163.0F, 175.0F, 186.0F, 196.0F,
@@ -85,10 +88,10 @@ namespace AstroSharedEvents.Lists
         [UsedImplicitly]
         public static readonly float[] SchoveMinDates =
         {
-            -653.0F,-527.0F,-516.0F,-505.0F,-496.0F,-486.0F,-474.0F,-465.0F,
-            -397.0F,-386.0F,-375.0F,-365.0F,-354.0F,-344.0F,-332.0F,-298.0F,
-            -288.0F,-277.0F,-266.0F,-254.0F,-243.0F,-230.0F,-219.0F,-210.0F,
-            -199.0F,-187.0F,-177.0F,-167.0F,-154.0F,-141.0F,-129.0F,-119.0F,
+            -653.0F, -527.0F, -516.0F, -505.0F, -496.0F, -486.0F, -474.0F, -465.0F,
+            -397.0F, -386.0F, -375.0F, -365.0F, -354.0F, -344.0F, -332.0F, -298.0F,
+            -288.0F, -277.0F, -266.0F, -254.0F, -243.0F, -230.0F, -219.0F, -210.0F,
+            -199.0F, -187.0F, -177.0F, -167.0F, -154.0F, -141.0F, -129.0F, -119.0F,
             -108.0F, -96.0F, -86.0F, -77.0F, -69.0F, -58.0F, -46.0F, -32.0F,
             -21.0F, -11.0F,   3.0F,  15.0F,  26.0F,  37.0F,  47.0F,  60.0F,
             70.0F,  80.0F,  91.0F, 101.0F, 112.0F, 124.0F, 135.0F, 146.0F,
@@ -151,8 +154,9 @@ namespace AstroSharedEvents.Lists
         /// <summary>
         /// Solar Dates.
         /// </summary>
-        [UsedImplicitly] public static readonly float[] SchoveMinDates0 =
-        { 
+        [UsedImplicitly]
+        public static readonly float[] SchoveMinDates0 =
+        {
              3.0F,  15.0F,  26.0F,  37.0F,  47.0F,  60.0F,
             70.0F,  80.0F,  91.0F, 101.0F, 112.0F, 124.0F, 135.0F, 146.0F,
             157.0F, 170.0F, 182.0F, 192.0F, 203.0F, 214.0F, 225.0F, 235.0F,
@@ -176,7 +180,7 @@ namespace AstroSharedEvents.Lists
             1755.2F,1766.5F,1775.5F,1784.7F,1798.3F,1810.6F,1823.3F,1833.9F,
             1843.5F,1856.0F,1867.2F,1878.9F,1889.6F,1901.7F,1913.6F,1923.6F,
             1933.8F,1944.2F,1954.5F,
-            1964.70F,1976.50F,1986.00F,1996.9F,2008.9F 
+            1964.70F,1976.50F,1986.00F,1996.9F,2008.9F
         }; //// 1966.5F,1978.5F,1989.5F,2000.5F,2009.5
         #endregion
 
@@ -185,7 +189,7 @@ namespace AstroSharedEvents.Lists
         /// <summary>
         /// Solar Dates.
         /// </summary>
-        [UsedImplicitly] 
+        [UsedImplicitly]
         public static readonly float[] SolarFlareDates =
         { 
             //// CYCLE 3
@@ -208,7 +212,7 @@ namespace AstroSharedEvents.Lists
             1947.375F,1947.625F,1948.292F,1949.125F,1951.375F,1953.625F,
             //// CYCLE 19
             1957.792F,1957.958F,1959.042F,1959.542F,1960.625F,1961.458F,
-            1962.708F,1963.375F,1963.708F  
+            1962.708F,1963.375F,1963.708F
         };
         #endregion
     }

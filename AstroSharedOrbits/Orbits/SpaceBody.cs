@@ -6,6 +6,8 @@
 // <date>2021-09-01</date>
 // <summary>Part of Astro Observatory</summary>
 
+using JetBrains.Annotations;
+
 namespace AstroSharedOrbits.Orbits
 {
     /// <summary>
@@ -59,7 +61,7 @@ namespace AstroSharedOrbits.Orbits
         /// Mass, unit = earth mass.
         /// </summary>
         /// <returns> Returns value. </returns>
-        [JetBrains.Annotations.UsedImplicitlyAttribute]
+        [UsedImplicitly]
         public double MassTerrestrial()
         {
             return this.Mass / 5.9736e24;

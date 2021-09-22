@@ -66,7 +66,7 @@ namespace AstroSharedOrbits.Systems
         public BodySun Sun { get; set; }
 
         /// <summary>
-        /// Gets Orbit Planet.
+        /// Gets or sets Orbit Planet.
         /// </summary>
         /// <value>
         /// Property description.
@@ -101,6 +101,12 @@ namespace AstroSharedOrbits.Systems
         #endregion
 
         #region Public Properties
+        /// <summary>
+        /// Gets a value indicating whether [precess ecliptic].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [precess ecliptic]; otherwise, <c>false</c>.
+        /// </value>
         public bool PrecessEcliptic { get; private set; }
 
         /// <summary>
@@ -364,6 +370,25 @@ namespace AstroSharedOrbits.Systems
             if (this.Influences) {
                 this.Sun.ComputeInfluences();
             } */
+        }
+
+        /// <summary>
+        /// Finds the orbit.
+        /// </summary>
+        /// <param name="givenName">Name of the given.</param>
+        /// <returns></returns>
+        public Orbit FindOrbit(string givenName)
+        {
+            Orbit foundOrbit = null;
+            foreach (var orbit in this.Orbit) {
+                if (orbit == null) { continue; }
+                if (orbit.Body.Name == givenName) {
+                    foundOrbit = orbit;
+                    break;
+                }
+            }
+
+            return foundOrbit;
         }
 
         /// <summary>
@@ -839,7 +864,7 @@ namespace AstroSharedOrbits.Systems
         /// <summary>
         /// Determines the planetcentre.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Returns value.</returns>
         private SpacePoint DeterminePlanetcentre() {
             var c = this.Planetcentre;
             c.Reset();
@@ -856,9 +881,9 @@ namespace AstroSharedOrbits.Systems
                 }
 
                 //// Moments
-                c.XH += (orbit.Point.XH * orbit.Body.Mass);
-                c.YH += (orbit.Point.YH * orbit.Body.Mass);
-                c.ZH += (orbit.Point.ZH * orbit.Body.Mass);
+                c.XH += orbit.Point.XH * orbit.Body.Mass;
+                c.YH += orbit.Point.YH * orbit.Body.Mass;
+                c.ZH += orbit.Point.ZH * orbit.Body.Mass;
             }
 
             var mass = this.PlanetMass;
@@ -872,6 +897,9 @@ namespace AstroSharedOrbits.Systems
             return c;
         }
 
+        /// <summary>
+        /// Determines the moment sum.
+        /// </summary>
         private void DetermineMomentSum() {
             this.MomentSum = 0;
             foreach (var orbit in this.Orbit) {

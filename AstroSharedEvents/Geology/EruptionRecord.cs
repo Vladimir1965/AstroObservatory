@@ -199,6 +199,12 @@ namespace AstroSharedEvents.Geology
         /// </value>
         public int Duration { get; set; }
 
+        /// <summary>
+        /// Gets or sets the vei.
+        /// </summary>
+        /// <value>
+        /// The vei.
+        /// </value>
         public int VEI { get; set; }
         #endregion
 

@@ -293,6 +293,16 @@ namespace AstroSharedEvents.Crossing {
             var rAB = Angles.CmodAngle(length0 - length1, AstroMath.Angle120Deg);
             return Angles.EqualDeg(rAB, 0, epsilon);
         }
+
+        /// <summary>
+        /// Determines whether [is trig multiple] [the specified length0].
+        /// </summary>
+        /// <param name="length0">The length0.</param>
+        /// <param name="length1">The length1.</param>
+        /// <param name="epsilon">The epsilon.</param>
+        /// <returns>
+        ///   <c>true</c> if [is trig multiple] [the specified length0]; otherwise, <c>false</c>.
+        /// </returns>
         public static bool IsTrigMultiple(double length0, double length1, double epsilon) {
             var rAB = Angles.Mod60Sym(length0 - length1);
             return Angles.EqualDeg(rAB, 0, epsilon);

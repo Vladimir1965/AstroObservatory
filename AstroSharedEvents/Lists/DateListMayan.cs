@@ -6,14 +6,16 @@
 // <date>2021-09-01</date>
 // <summary>Part of Astro Observatory</summary>
 
-namespace AstroSharedEvents.Lists { 
+namespace AstroSharedEvents.Lists
+{
+    using System.Linq;
     using System.Collections.Generic;
     using AstroSharedClasses.Records;
     using JetBrains.Annotations;
 
     /// <summary> Mayan extension of DateList. </summary>
     public partial class EventList
-{
+    {
         #region Particular Mayan Dates
         /// <summary>
         /// Mayan Dates Serpent.
@@ -47,7 +49,7 @@ namespace AstroSharedEvents.Lists {
             new MayanRecord(10, 3, 19, 4, 12, "260 years?"),
             new MayanRecord(10, 17, 2, 15, 12, "260 years?"),
             new MayanRecord(11, 10, 6, 8, 12, "52 years?,260 years?"),
-            new MayanRecord(11, 12, 19, 3, 12, "52 years?"),           
+            new MayanRecord(11, 12, 19, 3, 12, "52 years?"),
             new MayanRecord(11, 15, 11, 16, 12, "52 years?")
         };
 
@@ -57,13 +59,13 @@ namespace AstroSharedEvents.Lists {
         [UsedImplicitly]
         public static readonly MayanRecord[] MayanDatesRjs =
         {
-            new MayanRecord(6,1,11,3,1, "RJS-a",true),  
-            new MayanRecord(6,13,13,15,1, "RJS-b",true),  
-            new MayanRecord(6,1,9,15,0, "(R)JS-c",true),  
-            new MayanRecord(6,9,16,10,1, "(RJS)-d",true),  
-            new MayanRecord(6,7,12,4,10, "(RJS)-e",true),  
+            new MayanRecord(6,1,11,3,1, "RJS-a",true),
+            new MayanRecord(6,13,13,15,1, "RJS-b",true),
+            new MayanRecord(6,1,9,15,0, "(R)JS-c",true),
+            new MayanRecord(6,9,16,10,1, "(RJS)-d",true),
+            new MayanRecord(6,7,12,4,10, "(RJS)-e",true),
             new MayanRecord(6,11,10,7,2, "RJS-f",true),
-            new MayanRecord(6,9,15,12,19, "R(J)S-g",true),  
+            new MayanRecord(6,9,15,12,19, "R(J)S-g",true),
             new MayanRecord(6,1,9,15,0, "(RJS)-h",true)  
             //// new MayanRecord(9, 18, 4, 8, 4, "(R)JS"),  //// 4.6.1.9.15.0 c
             //// new MayanRecord(10, 8, 5, 0, 6, "(R)JS"),  //// 4.6.11.10.7.2 f
@@ -105,7 +107,7 @@ namespace AstroSharedEvents.Lists {
         /// </summary>
         [UsedImplicitly]
         public static readonly MayanRecord[] MayanDatesMoon =
-        { 
+        {
             new MayanRecord(8, 16, 4, 8, 8, "eclipse,(V-R)"),
             new MayanRecord(9, 0, 19, 2, 4, "R7, M29d"),
             new MayanRecord(9, 1, 10, 0, 0, "Moon Age 25"),
@@ -132,12 +134,12 @@ namespace AstroSharedEvents.Lists {
             new MayanRecord(9, 13, 17, 12, 10, "M30d"),
             new MayanRecord(9, 14, 19, 8, 0, "Moon Age 15"),
             new MayanRecord(9, 15, 5, 0, 0, "Moon Age 9"),
-            new MayanRecord(9, 15, 12, 10, 10, "Moon Age 24"), 
+            new MayanRecord(9, 15, 12, 10, 10, "Moon Age 24"),
             new MayanRecord(9, 16, 1, 0, 0, "Yaxchilan, M30d"),
             new MayanRecord(9, 16, 4, 10, 8, "eclipse"),
             new MayanRecord(9, 16, 4, 11, 3, "eclipse!,(Moon)"),
             new MayanRecord(9, 16, 4, 11, 18, "eclipse!,(Moon)"),
-            new MayanRecord(9, 16, 5, 0, 0, "god K?, Moon 5"), 
+            new MayanRecord(9, 16, 5, 0, 0, "god K?, Moon 5"),
             new MayanRecord(9, 17, 0, 0, 15, "Linda Schele eclipse?"),
             new MayanRecord(9, 17, 19, 13, 16, "Malstrom eclipse?"),
             new MayanRecord(9, 19, 5, 7, 8, "eclipse,(V-R)"),
@@ -189,7 +191,7 @@ namespace AstroSharedEvents.Lists {
         /// Mayan Grid Dates.
         /// </summary>
         public static readonly MayanRecord[] MayanGridDates =
-        { 
+        {
             new MayanRecord(0, 0, 0, 0, 0, "Start of dating"),
             new MayanRecord(1, 0, 0, 0, 0, " 1.baktun"),
             new MayanRecord(2, 0, 0, 0, 0, " 2.baktun"),
@@ -210,7 +212,7 @@ namespace AstroSharedEvents.Lists {
         /// Mayan Dates 6.
         /// </summary>
         public static readonly MayanRecord[] MayanDates6 =
-        { 
+        {
             new MayanRecord(6, 3, 10, 9, 0, "Olmec"),
             new MayanRecord(6, 7, 16, 2, 9, "Zapotec, year?"),
             new MayanRecord(6, 11, 3, 2, 11,"Zapotec, capture?")
@@ -220,7 +222,7 @@ namespace AstroSharedEvents.Lists {
         /// Mayan Dates 7.
         /// </summary>
         public static readonly MayanRecord[] MayanDates7 =
-        { 
+        {
             new MayanRecord(7, 6, 0, 0, 0, "Tikal calendar"),
             new MayanRecord(7, 6, 6, 16, 3, "Tikal"),
             new MayanRecord(7, 7, 7, 8, 14, "Tikal"),
@@ -234,7 +236,7 @@ namespace AstroSharedEvents.Lists {
         /// Mayan Dates 8.
         /// </summary>
         public static readonly MayanRecord[] MayanDates8 =
-        { 
+        {
             new MayanRecord(8, 0, 6, 6, 6, "Kaminaljuyu"),
             new MayanRecord(8, 4, 5, 17, 11, "Kaminaljuyu"),
             new MayanRecord(8, 6, 2, 4, 17, "Kaminaljuyu"),
@@ -265,7 +267,7 @@ namespace AstroSharedEvents.Lists {
         /// Mayan Dates 9.
         /// </summary>
         public static readonly MayanRecord[] MayanDates9 =
-        { 
+        {
             new MayanRecord(9, 1, 12, 14, 10, "Yucunudahui"),
             new MayanRecord(9, 3, 0, 0, 0, "-"),
             new MayanRecord(9, 4, 8, 8, 15, "Stelae"),
@@ -356,7 +358,7 @@ namespace AstroSharedEvents.Lists {
         /// Maya nDates 10.
         /// </summary>
         public static readonly MayanRecord[] MayanDates10 =
-        { 
+        {
             new MayanRecord(10, 0, 18, 13, 15, "Yucunudahui"),
             new MayanRecord(10, 3, 0, 0, 0, "Chichen Itza fall?"),
             new MayanRecord(10, 4, 0, 0, 0, "end pamatniku"),
@@ -387,10 +389,10 @@ namespace AstroSharedEvents.Lists {
         };
 
         /// <summary>
-        /// Mayan 
+        /// Mayan records.
         /// </summary>
         public static readonly MayanRecord[] MayanDates11 =
-        { 
+        {
             new MayanRecord(11, 3, 0, 0, 0, "Correlation"),
             new MayanRecord(11, 3, 12, 13, 13, "Tilantogo"),
             new MayanRecord(11, 3, 13, 10, 18, "Tilantogo"),
@@ -484,10 +486,10 @@ namespace AstroSharedEvents.Lists {
         };
 
         /// <summary>
-        /// Mayan 
+        /// Mayan records.
         /// </summary>
         public static readonly MayanRecord[] MayanDates12 =
-        { 
+        {
             new MayanRecord(12, 0, 12, 17, 12, "Gregorian?"),
             new MayanRecord(12, 4, 9, 11, 6, "Gregorian?"),
             new MayanRecord(12, 5, 5, 2, 7, "Gregorian?"),
@@ -523,7 +525,7 @@ namespace AstroSharedEvents.Lists {
         /// </summary>
         /// <value>All mayan dates.</value>
         [UsedImplicitly]
-        public static IEnumerable<MayanRecord> AllMayanDates {
+        public static IEnumerable<MayanRecord> AllMayanRecords {
             get {
                 var list = new List<MayanRecord>();
                 list.AddRange(MayanDatesSerpent);
@@ -547,30 +549,33 @@ namespace AstroSharedEvents.Lists {
                 return list;
             }
         }
+
+        /// <summary>
+        /// Gets all mayan dates.
+        /// </summary>
+        /// <value>
+        /// All mayan dates.
+        /// </value>
+        public static float[] AllMayanDates {
+            get {
+                var mrecords = EventList.AllMayanRecords;
+                var mrecordssrt = (from md in mrecords orderby md.MayanDay select md).ToList();
+                long lastMayanDay = 0;
+                var correlationNumber = EventList.MayanCorrelationConstant;
+                var list = new List<float>();
+                //// float[] list = new float[]();
+                foreach (var mayaRecord in mrecordssrt) {
+                    if (mayaRecord.MayanDay == lastMayanDay) {
+                        continue;
+                    }
+
+                    float julianDate = correlationNumber + mayaRecord.MayanDay;
+                    list.Add(julianDate);
+                    lastMayanDay = mayaRecord.MayanDay;
+                }
+
+                return list.ToArray();
+            }
+        }
     }
 }
-
-/* Jupiter-Saturn Triple Conjunctions (in Longitude) 563 B.C. to 3000 A.D
-Year of Triple Years Until Next Conjunction Order of conjunction
-563 - 562 B.C. 40
-523 - 522 B.C. 377
-146 - 145 B.C. 139 1 (146/145 BC)       1
-7 B.C.         338      1 (0) 7 BC (17) 2
-332 - 333 A.D.  79      2 (1)           3
-411 - 412 A.D.  41      3               4
-452 A.D.       257      4               5
-709 - 710 A.D. 258      5               6
-967 - 968 A.D.  40      6               7
-1007 - 1008 A.D. 298     7               8
-1305 - 1306 A.D. 20      8               9
-1425 A.D. 257            9               10
-1682 - 1683 A.D. 258     10              11
-1940 - 1941 A.D.  40     11              12
-1980 - 1981 A.D. 258     12(11)   (28)   13
-2238 - 2239 A.D. 41      13              14
-2279 A.D. 376            14              15
-2655 - 2656 A.D. 139     15              16
-2794 - 2795 A.D. 119     16              17
-2913 - 2914 A.D. --      17              18
-Reproduced from the   Planetarian , Vol. 10 #3, Third Quarter 1981.   Copyright 1981 International Planetarium Society. 
- */

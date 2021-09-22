@@ -93,7 +93,7 @@ namespace AstroSharedClasses.Computation
         }
 
         /// <summary>
-        /// Degreeses to hours.
+        /// Degrees to hours.
         /// </summary>
         /// <param name="degrees">The degrees.</param>
         /// <returns> Returns value. </returns>
@@ -407,11 +407,20 @@ namespace AstroSharedClasses.Computation
         /// Mod60s the specified alpha.
         /// </summary>
         /// <param name="alpha">The alpha.</param>
-        /// <returns></returns>
+        /// <returns>
+        /// Returns value.
+        /// </returns>
         public static double Mod60(double alpha) {
             return ModAngle(alpha, AstroMath.Angle60Deg);
         }
 
+        /// <summary>
+        /// Mod60s the sym.
+        /// </summary>
+        /// <param name="alpha">The alpha.</param>
+        /// <returns>
+        /// Returns value.
+        /// </returns>
         public static double Mod60Sym(double alpha) {
             alpha = ModAngle(alpha, AstroMath.Angle60Deg);
             if (alpha > AstroMath.Angle30Deg) {

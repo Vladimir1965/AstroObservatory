@@ -13,79 +13,73 @@ namespace AstroSharedClasses.Enums {
     /// Astronomical Characteristic.
     /// </summary>
     public enum AstCharacteristic {
-        /// <summary>
-        /// Characteristic None.
-        /// </summary>
+        /// <summary> Record characteristic. </summary>
         [UsedImplicitly] None = 0,
 
-        /// <summary>
-        /// Date Diffs.
-        /// </summary>
-        DateDiffs = 1,
+        /// <summary> Record characteristic. </summary>
+        Barycentre,
 
-        /// <summary>
-        /// Longitude Outer.
-        /// </summary>
-        LongitudesOuter = 2,
+        /// <summary> Record characteristic. </summary>
+        Bruckner,
 
-        /// <summary>
-        /// Longitude Inner.
-        /// </summary>
-        LongitudesInner = 3,
+        /// <summary> Record characteristic. </summary>
+        DateDiffs,
 
-        /// <summary>
-        /// Longitude Sun.
-        /// </summary>
-        LongitudesSun = 4,
+        /// <summary> Record characteristic. </summary>
+        Dislocation,
 
-        /// <summary>
-        /// Display distances.
-        /// </summary>
-        Distances = 5,
+        /// <summary> Record characteristic. </summary>
+        Dwarfs,
 
-        /// <summary>
-        /// Sun Influences.
-        /// </summary>
-        SunInfluences = 6, //// XSunInfluences=7,
+        /// <summary> Record characteristic. </summary>
+        EarthSystem,
 
-        /// <summary>
-        /// Oriented BaryAxis.
-        /// </summary>
-        OrientedBaryAxis = 7,
+        /// <summary> Record characteristic. </summary>
+        MainEnergy,
 
-        /// <summary>
-        /// Experimental variant.
-        /// </summary>
-        Conjunctions = 8,
+        /// <summary> Record characteristic. </summary>
+        Outercentre,
 
-        /// <summary>
-        /// Longitude Inner.
-        /// </summary>
-        LongitudesToExcel = 9,
+        /// <summary> Record characteristic. </summary>
+        OuterPerihelion,
 
-        /// <summary>
-        /// Experimental variant.
-        /// </summary>
-        EarthSystem = 10,
+        /// <summary> Record characteristic. </summary>
+        OuterResonances,
 
-        /// <summary>
-        /// Experimental variant.
-        /// </summary>
-        Experiment = 11,
+        /// <summary> Record characteristic. </summary>
+        PlanetCentre,
 
-        /// <summary>
-        /// Experimental variant.
-        /// </summary>
-        DateDiffsOuter = 12,
+        /// <summary> Record characteristic. </summary>
+        PlanetRadius,
 
-        /// <summary>
-        /// Date Diffs.
-        /// </summary>
-        DateDiffsStandard = 13,
+        /// <summary> Record characteristic. </summary>
+        PlanetsInner,
 
-        /// <summary>
-        /// Date Diffs.
-        /// </summary>
-        DateDiffsZharkova = 14
+        /// <summary> Record characteristic. </summary>
+        PlanetsMiddle,
+
+        /// <summary> Record characteristic. </summary>
+        PlanetsOuter,
+
+        /// <summary> Record characteristic. </summary>
+        PlanetXAspects,
+
+        /// <summary> Record characteristic. </summary>
+        SunBehavior,
+
+        /// <summary> Record characteristic. </summary>
+        SunInfluence,
+
+        /// <summary> Record characteristic. </summary>
+        Tidal,
+
+        /// <summary> Record characteristic. </summary>
+        TidalExtreme,
+
+        /// <summary> Record characteristic. </summary>
+        Vukcevic,
+
+        /// <summary> Record characteristic. </summary>
+        Zharkova
     }
 }

@@ -73,7 +73,6 @@ namespace AstroSharedEvents.Geology
         }
         #endregion
 
-      
         /// <summary>
         /// Inserts the volcanoes data.
         /// </summary>
@@ -102,17 +101,17 @@ namespace AstroSharedEvents.Geology
                 //// unused var o = range.Cells[rcnt, 1] as Range;
                 //// if (o != null) { object objectCell1 = o.Value2; }
                 //// string textCell1 = objectCell1.ToString();
-                
-                // if (!string.IsNullOrEmpty(givenVolcanoName)) {
-                //     var range1 = range.Cells[rcnt, 2] as Range;
-                //     if (range1 != null) {
-                //         object objectCell2 = range1.Value2;
-                //         string textCell2 = objectCell2.ToString();
-                //         if (textCell2 != givenVolcanoName) {
-                //             continue;
-                //         }
-                //     }
-                // }
+
+                //// if (!string.IsNullOrEmpty(givenVolcanoName)) {
+                ////     var range1 = range.Cells[rcnt, 2] as Range;
+                ////     if (range1 != null) {
+                ////         object objectCell2 = range1.Value2;
+                ////         string textCell2 = objectCell2.ToString();
+                ////         if (textCell2 != givenVolcanoName) {
+                ////             continue;
+                ////         }
+                ////     }
+                //// }
 
                 if (range.Columns.Count < 10)
                 { //// 21

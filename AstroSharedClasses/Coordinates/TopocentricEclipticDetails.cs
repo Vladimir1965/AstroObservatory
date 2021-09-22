@@ -7,7 +7,6 @@
 // <summary>Part of Astro Observatory</summary>
 
 namespace LargoLibAstro {
-
     /// <summary>
     /// Topocentric Ecliptic Details.
     /// </summary>

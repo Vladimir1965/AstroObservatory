@@ -11,6 +11,7 @@ namespace AstroSharedOrbits.Systems
     using AstroSharedClasses.Enums;
     using AstroSharedOrbits.Dwarfs;
     using AstroSharedOrbits.Planets;
+    using JetBrains.Annotations;
     using System.Diagnostics.Contracts;
     using System.Linq;
 
@@ -35,7 +36,7 @@ namespace AstroSharedOrbits.Systems
         public SolarSystem(string rootPath) : base()
         {
             Singleton = this;
-            SystemManager.VsopPath = rootPath + "\\Data\\Vsop87\\";
+            SystemManager.VsopPath = rootPath + "\\Vsop87\\";
             this.AddPlanets(AlgVariant.VarBretagnon87);
             this.ComputeTotalMass();
 
@@ -65,49 +66,49 @@ namespace AstroSharedOrbits.Systems
 
         #region Public properties - planets 
         /// <summary>
-        /// Gets Mercury.
+        /// Gets or sets Mercury.
         /// </summary>
         /// <value> Property description. </value>
         public BodyMercury Mercury { get; set; }
 
         /// <summary>
-        /// Gets Venus.
+        /// Gets or sets Venus.
         /// </summary>
         /// <value> Property description. </value>
         public BodyVenus Venus { get; set; }
 
         /// <summary>
-        /// Gets Earth.
+        /// Gets or sets Earth.
         /// </summary>
         /// <value> Property description. </value>
         public BodyEarth Earth { get; set; }
 
         /// <summary>
-        /// Gets Mars.
+        /// Gets or sets Mars.
         /// </summary>
         /// <value> Property description. </value>
         public BodyMars Mars { get; set; }
 
         /// <summary>
-        /// Gets Jupiter.
+        /// Gets or sets Jupiter.
         /// </summary>
         /// <value> Property description. </value>
         public BodyJupiter Jupiter { get; set; }
 
         /// <summary>
-        /// Gets Saturn.
+        /// Gets or sets Saturn.
         /// </summary>
         /// <value> Property description. </value>
         public BodySaturn Saturn { get; set; }
 
         /// <summary>
-        /// Gets Uranus.
+        /// Gets or sets Uranus.
         /// </summary>
         /// <value> Property description. </value>
         public BodyUranus Uranus { get; set; }
 
         /// <summary>
-        /// Gets Neptune.
+        /// Gets or sets Neptune.
         /// </summary>
         /// <value> Property description. </value>
         public BodyNeptune Neptune { get; set; }
@@ -115,7 +116,7 @@ namespace AstroSharedOrbits.Systems
         //// public BodyPluto Pluto { get; set; }
 
         /// <summary>
-        /// Gets the hypothetical X.
+        /// Gets or sets the hypothetical X.
         /// </summary>
         /// <value> Property description. </value>
         public BodyHypos PlanetX { get; set; }
@@ -185,7 +186,7 @@ namespace AstroSharedOrbits.Systems
         /// <value>
         /// The tn o1.
         /// </value>
-        [JetBrains.Annotations.UsedImplicitlyAttribute]
+        [UsedImplicitly]
         public Body2012VP113 TNO1 { get; set; }
 
         /// <summary>
@@ -194,7 +195,7 @@ namespace AstroSharedOrbits.Systems
         /// <value>
         /// The oileus.
         /// </value>
-        [JetBrains.Annotations.UsedImplicitlyAttribute]
+        [UsedImplicitly]
         public Body9907Oileus Oileus { get; set; }
 
         #endregion
@@ -206,7 +207,7 @@ namespace AstroSharedOrbits.Systems
         /// <param name="phase">The phase.</param>
         /// <param name="massCoefficient">The mass coefficient.</param>
         /// <returns>Returns value.</returns>
-        [JetBrains.Annotations.UsedImplicitlyAttribute]
+        [UsedImplicitly]
         public BodyHypos AdjustX(float period, float phase, float massCoefficient)
         {
             var xo = (from o in this.Orbit where o.Body.Abbreviation == "X" select o).FirstOrDefault();

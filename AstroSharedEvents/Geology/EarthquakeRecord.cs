@@ -234,7 +234,7 @@ namespace AstroSharedEvents.Geology
         /// </returns>
         public override string ToString() {
             var s = new StringBuilder();
-            //// s.AppendFormat("{0,-20} - {1}\n\r", this.Area, this.Location);
+            //// s.AppendFormat("{0, -20} - {1}\n\r", this.Area, this.Location);
             s.AppendFormat("({0,7:F2}°, {1,7:F2}°) M:{2,6:F2} ", this.Longitude, this.Latitude, this.Magnitude);
             s.AppendFormat("{0}", this.Location);
             return s.ToString();

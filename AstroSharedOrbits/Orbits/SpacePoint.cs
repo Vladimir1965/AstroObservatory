@@ -24,7 +24,7 @@ namespace AstroSharedOrbits.Orbits
         }
 
         /// <summary>
-        /// Previous State.
+        /// Gets or sets the previous State.
         /// </summary>
         /// <value>
         /// The previous point.
@@ -124,13 +124,13 @@ namespace AstroSharedOrbits.Orbits
 
         #region Speed
         /// <summary>
-        /// Gets Actual Speed.
+        /// Gets or sets Actual Speed.
         /// </summary>
         /// <value> Property description. </value>
         public double ActualSpeed { get; set; }
 
         /// <summary>
-        /// Gets Actual Acceleration.
+        /// Gets or sets the Actual Acceleration.
         /// </summary>
         /// <value> Property description. </value>
         public double ActualAcceleration { get; set; }

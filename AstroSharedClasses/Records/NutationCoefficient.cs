@@ -6,7 +6,8 @@
 // <date>2021-09-01</date>
 // <summary>Part of Astro Observatory</summary>
 
-namespace AstroSharedClasses.Records {
+namespace AstroSharedClasses.Records
+{
     using JetBrains.Annotations;
 
     /// <summary>
@@ -18,7 +19,8 @@ namespace AstroSharedClasses.Records {
         /// Initializes a new instance of the <see cref="NutationCoefficient" /> class.
         /// </summary>
         [UsedImplicitly]
-        public NutationCoefficient() {
+        public NutationCoefficient()
+        {
         }
 
         /// <summary>
@@ -33,7 +35,8 @@ namespace AstroSharedClasses.Records {
         /// <param name="fsincoeff2">The fsincoeff2.</param>
         /// <param name="fcoscoeff1">The fcoscoeff1.</param>
         /// <param name="fcoscoeff2">The fcoscoeff2.</param>
-        public NutationCoefficient(int fD, int fM, int fMprime, int fF, int fomega, int fsincoeff1, double fsincoeff2,int fcoscoeff1, double fcoscoeff2) {
+        public NutationCoefficient(int fD, int fM, int fMprime, int fF, int fomega, int fsincoeff1, double fsincoeff2, int fcoscoeff1, double fcoscoeff2)
+        {
             this.D = fD;
             this.M = fM;
             this.Mprime = fMprime;

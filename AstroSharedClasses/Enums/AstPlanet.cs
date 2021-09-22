@@ -6,6 +6,8 @@
 // <date>2021-09-01</date>
 // <summary>Part of Astro Observatory</summary>
 
+using JetBrains.Annotations;
+
 namespace AstroSharedClasses.Enums {
     /// <summary>
     /// Astronomical Planet.
@@ -19,12 +21,12 @@ namespace AstroSharedClasses.Enums {
         /// <summary>
         /// Planet Venus.
         /// </summary>
-        [JetBrains.Annotations.UsedImplicitlyAttribute] Venus = 1,
+        [UsedImplicitly] Venus = 1,
 
         /// <summary>
         /// Planet Earth.
         /// </summary>
-        [JetBrains.Annotations.UsedImplicitlyAttribute] Earth = 2,
+        [UsedImplicitly] Earth = 2,
 
         /// <summary>
         /// Planet Mars.
@@ -39,12 +41,12 @@ namespace AstroSharedClasses.Enums {
         /// <summary>
         /// Planet Saturn.
         /// </summary>
-        [JetBrains.Annotations.UsedImplicitlyAttribute] Saturn = 5,
+        [UsedImplicitly] Saturn = 5,
 
         /// <summary>
         /// Planet Uranus.
         /// </summary>
-        [JetBrains.Annotations.UsedImplicitlyAttribute] Uranus = 6,
+        [UsedImplicitly] Uranus = 6,
 
         /// <summary>
         /// Planet Neptune.

@@ -1,0 +1,186 @@
+﻿<Window x:Class="AstroResponder.ResponderWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AstroResponder"
+        mc:Ignorable="d"
+        Title="ResponderWindow" >
+    <Grid Margin="0,0,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="120"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+        <TextBox Grid.Row="0" Height="23" HorizontalAlignment="Left" Margin="32,12,0,0" Name="TBDateFrom" VerticalAlignment="Top" Width="74"
+                 x:FieldModifier="private" />
+        <TextBox Grid.Row="0" Height="23" HorizontalAlignment="Left" Margin="112,12,0,0" Name="TBDateTo" VerticalAlignment="Top" Width="74"
+                 x:FieldModifier="private" />
+
+        <ComboBox Grid.Row="0" x:Name="outputBox1"  HorizontalAlignment="Left" Margin="227,13,0,0" 
+                        VerticalAlignment="Top" Width="226">
+            <ComboBoxItem Content="DateDiffs" Tag="DateDiffs" IsSelected="True" />
+            <ComboBoxItem Content="PlanetRadius" Tag="PlanetRadius" />
+            <ComboBoxItem Content="PlanetsOuter" Tag="PlanetsOuter" />
+            <ComboBoxItem Content="PlanetCentre" Tag="PlanetCentre" />
+            <ComboBoxItem Content="Barycentre" Tag="Barycentre" />
+            <ComboBoxItem Content="Outercentre" Tag="Outercentre" />
+            <ComboBoxItem Content="OuterPerihelion" Tag="OuterPerihelion" />
+            <ComboBoxItem Content="MainEnergy" Tag="MainEnergy" />
+            <ComboBoxItem Content="Bruckner" Tag="Bruckner" />
+            <ComboBoxItem Content="OuterResonances" Tag="OuterResonances" />
+            <ComboBoxItem Content="Dislocation" Tag="Dislocation" />
+            <ComboBoxItem Content="Dwarfs" Tag="Dwarfs" />
+            <ComboBoxItem Content="PlanetsMiddle" Tag="PlanetsMiddle" />
+            <ComboBoxItem Content="PlanetXAspects" Tag="PlanetXAspects" />
+            <ComboBoxItem Content="SunBehavior" Tag="SunBehavior" />
+            <ComboBoxItem Content="SunInfluence" Tag="SunInfluence" />
+            <ComboBoxItem Content="Vukcevic" Tag="Vukcevic" />
+            <ComboBoxItem Content="Zharkova" Tag="Zharkova" />
+            <ComboBoxItem Content="PlanetsInner" Tag="PlanetsInner" />
+            <ComboBoxItem Content="EarthSystem" Tag="EarthSystem" />
+            <ComboBoxItem Content="Tidal" Tag="Tidal" />
+            <ComboBoxItem Content="TidalExtreme" Tag="TidalExtreme" />
+        </ComboBox>
+
+        <Button Grid.Row="0" Content="List" Margin="606,7,0,0" Click="ListSelectData" Height="46" 
+                    VerticalAlignment="Top" HorizontalAlignment="Left" Width="107"  />
+
+        <TabControl Grid.Row="1" x:Name="tabControl1" HorizontalAlignment="Stretch" Margin="0,0,0,0" 
+                            VerticalAlignment="Stretch">
+            <TabItem Header="Raster" Tag="Raster">
+                <Grid Background="#FFE5E5E5" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="95*"/>
+                        <ColumnDefinition Width="32*"/>
+                        <ColumnDefinition Width="591*"/>
+                    </Grid.ColumnDefinitions>
+                    <ComboBox x:Name="bodyPeriodBox"  HorizontalAlignment="Left" Margin="10,10,0,0" 
+                        VerticalAlignment="Top" Width="226" Grid.ColumnSpan="3">
+                        <ComboBoxItem Content="Ten years" Tag="Ten years" />
+                        <ComboBoxItem Content="Years" Tag="Years" IsSelected="True"/>
+                        <ComboBoxItem Content="Months" Tag="Months" />
+                        <ComboBoxItem Content="Weeks" Tag="Weeks" />
+                        <ComboBoxItem Content="Days" Tag="Days" />
+                        <ComboBoxItem Content="Solar maxima" Tag="Solar maxima" />
+                        <ComboBoxItem Content="Solar minima" Tag="Solar minima" />
+                        <ComboBoxItem Content="Mayan dates" Tag="Mayan dates" />
+                    </ComboBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Bodies" Tag="Bodies">
+                <Grid Background="#FFE5E5E5" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="19*"/>
+                        <ColumnDefinition Width="124*"/>
+                    </Grid.ColumnDefinitions>
+                    <ComboBox x:Name="bodyBox1"  HorizontalAlignment="Left" Margin="10,10,0,0" 
+                        VerticalAlignment="Top" Width="226" Grid.ColumnSpan="2">
+                        <ComboBoxItem Content="Mercury" Tag="Mercury" IsSelected="True"/>
+                        <ComboBoxItem Content="Venus" Tag="Venus" />
+                        <ComboBoxItem Content="Earth" Tag="Earth" />
+                        <ComboBoxItem Content="Mars" Tag="Mars" />
+                        <ComboBoxItem Content="Jupiter" Tag="Jupiter" />
+                        <ComboBoxItem Content="Saturn" Tag="Saturn" />
+                        <ComboBoxItem Content="Uranus" Tag="Uranus" />
+                        <ComboBoxItem Content="Neptune" Tag="Neptune" />
+                        <ComboBoxItem Content="Pluto" Tag="Pluto" />
+                    </ComboBox>
+                    <ComboBox x:Name="singlActionBox"  HorizontalAlignment="Left" Margin="192,10,0,0" VerticalAlignment="Top" Width="226" Grid.Column="1">
+                        <ComboBoxItem Content="Perihelia" Tag="1" IsSelected="True"/>
+                        <ComboBoxItem Content="Aphelia" Tag="2" />
+                    </ComboBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Crossing" Tag="Crossing">
+                <Grid Background="#FFE5E5E5" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="203*"/>
+                        <ColumnDefinition Width="369*"/>
+                    </Grid.ColumnDefinitions>
+                    <ComboBox x:Name="crossBodyBox1"  HorizontalAlignment="Left" Margin="10,21,0,0" VerticalAlignment="Top" Width="226" Grid.ColumnSpan="2">
+                        <ComboBoxItem Content="Mercury" Tag="Mercury" IsSelected="True"/>
+                        <ComboBoxItem Content="Venus" Tag="Venus" />
+                        <ComboBoxItem Content="Earth" Tag="Earth" />
+                        <ComboBoxItem Content="Mars" Tag="Mars" />
+                        <ComboBoxItem Content="Jupiter" Tag="Jupiter" />
+                        <ComboBoxItem Content="Saturn" Tag="Saturn" />
+                        <ComboBoxItem Content="Uranus" Tag="Uranus" />
+                        <ComboBoxItem Content="Neptune" Tag="Neptune" />
+                        <ComboBoxItem Content="Pluto" Tag="Pluto" />
+                    </ComboBox>
+                    <ComboBox x:Name="crossBodyBox2"  HorizontalAlignment="Left" Margin="10,48,0,0" VerticalAlignment="Top" Width="226" Grid.ColumnSpan="2">
+                        <ComboBoxItem Content="Mercury" Tag="Mercury" IsSelected="True"/>
+                        <ComboBoxItem Content="Venus" Tag="Venus" />
+                        <ComboBoxItem Content="Earth" Tag="Earth" />
+                        <ComboBoxItem Content="Mars" Tag="Mars" />
+                        <ComboBoxItem Content="Jupiter" Tag="Jupiter" />
+                        <ComboBoxItem Content="Saturn" Tag="Saturn" />
+                        <ComboBoxItem Content="Uranus" Tag="Uranus" />
+                        <ComboBoxItem Content="Neptune" Tag="Neptune" />
+                        <ComboBoxItem Content="Pluto" Tag="Pluto" />
+                    </ComboBox>
+                    <ComboBox x:Name="crossingBox"  HorizontalAlignment="Left" Margin="66,21,0,0" VerticalAlignment="Top" Width="226" Grid.Column="1">
+                        <ComboBoxItem Content="Conjunction" Tag="1" IsSelected="True"/>
+                        <ComboBoxItem Content="Opposition" Tag="2" />
+                        <ComboBoxItem Content="Aspect" Tag="3" />
+                        <ComboBoxItem Content="Quadrature" Tag="4" />
+                    </ComboBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Resonance" Tag="Resonance">
+                <Grid Background="#FFE5E5E5" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <TextBox Height="23" HorizontalAlignment="Left" Margin="32,12,0,0" x:Name="TBDateFrom_Copy" VerticalAlignment="Top" Width="74"
+                        x:FieldModifier="private" />
+                    <TextBox Height="23" HorizontalAlignment="Left" Margin="112,12,0,0" x:Name="TBDateTo_Copy" VerticalAlignment="Top" Width="74"
+                        x:FieldModifier="private" />
+                    <TextBox Height="23" HorizontalAlignment="Left" Margin="193,12,0,0" x:Name="TBDateFrom_Copy1" VerticalAlignment="Top" Width="74"
+                        x:FieldModifier="private" />
+                    <TextBox Height="23" HorizontalAlignment="Left" Margin="273,12,0,0" x:Name="TBDateTo_Copy1" VerticalAlignment="Top" Width="74"
+                        x:FieldModifier="private" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Special" Tag="Special">
+                <Grid Background="#FFE5E5E5" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="31*"/>
+                        <ColumnDefinition Width="687*"/>
+                    </Grid.ColumnDefinitions>
+                    <ComboBox x:Name="typeBox"  HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="226" Grid.ColumnSpan="2">
+                        <ComboBoxItem Content="Volcanoes after earthquakes" Tag="6" />
+                        <ComboBoxItem Content="Moon" Tag="7" />
+                    </ComboBox>
+                </Grid>
+            </TabItem>            
+            <TabItem Header="Loading" Tag="Loading">
+                <Grid Background="#FFE5E5E5" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <ComboBox x:Name="outputBox1_Copy"  HorizontalAlignment="Left" Margin="32,10,0,0" 
+            VerticalAlignment="Top" Width="226">
+                        <ComboBoxItem Content="Volcanoes" Tag="1" IsSelected="True"/>
+                        <ComboBoxItem Content="Earthquakes" Tag="2" />
+                        <ComboBoxItem Content="Flares" Tag="2" />
+                    </ComboBox>
+
+                    <TextBox Height="23" HorizontalAlignment="Left" Margin="32,37,0,0" x:Name="TBLoadFrom" VerticalAlignment="Top" Width="458"
+                        x:FieldModifier="private" />
+                    <TextBox Height="23" HorizontalAlignment="Left" Margin="32,65,0,0" x:Name="TBLoadTo" VerticalAlignment="Top" Width="458"
+                        x:FieldModifier="private" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Export" Tag="Export">
+                <Grid Background="#FFE5E5E5" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <TextBox Height="23" HorizontalAlignment="Left" Margin="32,15,0,0" x:Name="TBExportTo" VerticalAlignment="Top" Width="458"
+                        x:FieldModifier="private" />
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+            <TextBox  Margin="0,0,0,0" Name="InfoText" Text="TextBox" 
+                 FontFamily="Courier New" x:FieldModifier="private" 
+                      HorizontalAlignment="Stretch" />
+        </ScrollViewer>
+    </Grid>
+
+</Window>

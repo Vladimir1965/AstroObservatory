@@ -202,7 +202,7 @@ namespace AstroSharedClasses.Records
         {
             var s = new StringBuilder();
             s.AppendFormat(
-                "{0,-20} {1,-20} {2,-12} {3}",
+                "{0, -20} {1, -20} {2, -12} {3}",
                 this.LongCountBaseString,
                 this.HaabDayName(0) + " " + this.TzolkinDayName(),
                 string.Empty,
@@ -226,20 +226,20 @@ namespace AstroSharedClasses.Records
             var s = this.LongCountBaseString;
             var r = string.Format(
                             CultureInfo.InvariantCulture,
-                            "{0,-15}; {1} {2}",
+                            "{0, -15}; {1} {2}",
                             s,
                             this.TzolkinDayName(),
                             this.HaabDayName(correlationNumber));
 
             return string.Format(
                             CultureInfo.InvariantCulture,
-                            " {0,-36}; ###;{1}",
+                            " {0, -36}; ###;{1}",
                             r,
                             this.Info);
             /*
             return string.Format(
                             CultureInfo.InvariantCulture,
-                            " {0,-36};({1,7});{2,9};###;{3}",
+                            " {0, -36};({1,7});{2,9};###;{3}",
                             r,
                             mayanDay,
                             julianDate,

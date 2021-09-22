@@ -6,16 +6,17 @@
 // <date>2021-09-01</date>
 // <summary>Part of Astro Observatory</summary>
 
-namespace AstroSharedOrbits.Planets {
-    using System;
-    using System.Diagnostics;
-    using JetBrains.Annotations;
-    using AstroSharedOrbits.Systems;
+namespace AstroSharedOrbits.Planets
+{
+    using AstroSharedClasses.Computation;
     using AstroSharedClasses.Enums;
     using AstroSharedClasses.OrbitalElements;
-    using AstroSharedClasses.Computation;
-    using AstroSharedOrbits.Orbits;
     using AstroSharedOrbits.OrbitalData;
+    using AstroSharedOrbits.Orbits;
+    using AstroSharedOrbits.Systems;
+    using JetBrains.Annotations;
+    using System;
+    using System.Diagnostics;
 
     /// <summary>
     /// Body Saturn.
@@ -43,7 +44,7 @@ namespace AstroSharedOrbits.Planets {
         /// Returns value.
         /// </returns>
         [UsedImplicitly]
-        public static long SaturnK(double year) {
+        public override long OrbitK(double year) {
             return (long)(0.03393 * (year - 2003.52));
         }
 
@@ -53,7 +54,7 @@ namespace AstroSharedOrbits.Planets {
         /// <param name="givenK">The givenK.</param>
         /// <returns> Returns value. </returns>
         [UsedImplicitly]
-        public static double MeeusPerihelion(long givenK) {
+        public override double MeeusPerihelion(long givenK) {
             double kdash = givenK;
             var kSquared = kdash * kdash;
             return 2452830.12 + 10764.21676 * kdash + 0.000827 * kSquared;
@@ -65,7 +66,7 @@ namespace AstroSharedOrbits.Planets {
         /// <param name="givenK">The givenK.</param>
         /// <returns> Returns value. </returns>
         [UsedImplicitly]
-        public static double MeeusAphelion(long givenK) {
+        public override double MeeusAphelion(long givenK) {
             var kdash = givenK + 0.5;
             var kSquared = kdash * kdash;
             return 2452830.12 + 10764.21676 * kdash + 0.000827 * kSquared;

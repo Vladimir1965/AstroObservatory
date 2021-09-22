@@ -31,6 +31,7 @@ namespace AstroSharedOrbits.Planets {
             this.Body.Radius = 3.393e6;           //// [m]
             this.Body.J = 23.98;                   //// // [deg]
             this.Knke = 10;                   //// // 5
+            this.MeanPeriod = 1.881;
         }
 
         #region Naughter - PerihelionAphelion
@@ -42,7 +43,7 @@ namespace AstroSharedOrbits.Planets {
         /// Returns value.
         /// </returns>
         [UsedImplicitly]
-        public static long MarsK(double year) {
+        public override long OrbitK(double year) {
             return (long)(0.53166 * (year - 2001.78));
         }
 
@@ -52,7 +53,7 @@ namespace AstroSharedOrbits.Planets {
         /// <param name="givenK">The givenK.</param>
         /// <returns> Returns value. </returns>
         [UsedImplicitly]
-        public static double MeeusPerihelion(long givenK) {
+        public override double MeeusPerihelion(long givenK) {
             double kdash = givenK;
             var kSquared = kdash * kdash;
             return 2452195.026 + 686.9957857 * kdash - 0.0000001187 * kSquared;
@@ -64,7 +65,7 @@ namespace AstroSharedOrbits.Planets {
         /// <param name="givenK">The givenK.</param>
         /// <returns> Returns value. </returns>
         [UsedImplicitly]
-        public static double MeeusAphelion(long givenK) {
+        public override double MeeusAphelion(long givenK) {
             var kdash = givenK + 0.5;
             var kSquared = kdash * kdash;
             return 2452195.026 + 686.9957857 * kdash - 0.0000001187 * kSquared;

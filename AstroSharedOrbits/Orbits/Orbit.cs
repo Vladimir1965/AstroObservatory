@@ -8,14 +8,14 @@
 
 namespace AstroSharedOrbits.Orbits
 {
-    using JetBrains.Annotations;
+    using AstroSharedClasses.Calendars;
+    using AstroSharedClasses.Computation;
     using AstroSharedClasses.Enums;
     using AstroSharedClasses.OrbitalElements;
     using AstroSharedOrbits.Systems;
+    using JetBrains.Annotations;
     using System;
     using System.Text;
-    using AstroSharedClasses.Computation;
-    using AstroSharedClasses.Calendars;
 
     /// <summary>
     /// Data structure containing orbital elements of objects that orbit the sun.
@@ -439,6 +439,36 @@ namespace AstroSharedOrbits.Orbits
                     break;
                 //// Resharper default: break;
             }
+        }
+
+        /// <summary>
+        /// Orbits the k.
+        /// </summary>
+        /// <param name="year">The year.</param>
+        /// <returns></returns>
+        public virtual long OrbitK(double year)
+        {
+            return 0;
+        }
+
+        /// <summary>
+        /// Meeuses the perihelion.
+        /// </summary>
+        /// <param name="givenK">The given k.</param>
+        /// <returns></returns>
+        public virtual double MeeusPerihelion(long givenK)
+        {
+            return 0;
+        }
+
+        /// <summary>
+        /// Meeuses the aphelion.
+        /// </summary>
+        /// <param name="givenK">The given k.</param>
+        /// <returns></returns>
+        public virtual double MeeusAphelion(long givenK)
+        {
+            return 0;
         }
 
         #region Perturbations

@@ -8,13 +8,13 @@
 
 namespace AstroSharedOrbits.Systems
 {
-    using JetBrains.Annotations;
-    using AstroSharedOrbits.Orbits;
-    using System;
-    using AstroSharedClasses.Coordinates;
     using AstroSharedClasses.Computation;
+    using AstroSharedClasses.Coordinates;
     using AstroSharedOrbits.OrbitalData;
+    using AstroSharedOrbits.Orbits;
     using AstroSharedOrbits.Planets;
+    using JetBrains.Annotations;
+    using System;
 
     /// <summary> Body Sun Orbit. </summary>
     public sealed class BodySun : Orbit {

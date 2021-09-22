@@ -32,7 +32,6 @@ namespace AstroSharedClasses.Computation
         /// </summary>
         public const double C2PI = 6.28318530717958648;
 
-
         /// <summary>
         /// Constant Angle 30 Degrees.
         /// </summary>

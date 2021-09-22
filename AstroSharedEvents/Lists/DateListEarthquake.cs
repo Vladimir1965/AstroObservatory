@@ -56,7 +56,7 @@ namespace AstroSharedEvents.Lists
         };
 
         /// <summary>
-        /// Earthquake 
+        /// Earthquake records.
         /// </summary>
         [UsedImplicitly] 
         public static readonly EarthquakeRecord[] EarthquakeDates =
@@ -101,8 +101,8 @@ namespace AstroSharedEvents.Lists
             new EarthquakeRecord( 5, 9, 2012, 14, 42, "UTC",   -85.347F,  10.12F,  7.6F, "Costa Rica", "Nicoya"),
             new EarthquakeRecord( 6, 8, 1942, 23, 37, "UTC",   -90.800F,  13.90F,  7.9F, "Guatemala", "Western Guatemala"),
             new EarthquakeRecord( 7,11, 2012, 16, 35, "UTC",   -91.965F,  13.987F, 7.4F, "Guatemala", "Guatemala"),
-            new EarthquakeRecord(26, 1, 1700, 21, 00, "LOCAL",-125.00F,   48.50F,  9.0F, "Canada", "Cascadia"),
-            //// new EarthquakeRecord( 4, 9, 1899, 00, 22, "LOCAL?",-140.00F,   60.00F,  8.2F, "Canada", "Yukon-Alaska"),
+            new EarthquakeRecord(26, 1, 1700, 21, 00, "LOCAL", -125.00F,   48.50F,  9.0F, "Canada", "Cascadia"),
+            //// new EarthquakeRecord( 4, 9, 1899, 00, 22, "LOCAL?", -140.00F,   60.00F,  8.2F, "Canada", "Yukon-Alaska"),
             //// new EarthquakeRecord(27,10, 2012, 20, 04, "LOCAL", ?F,   ?F,  7.7F, "Canada", "Haida Gwaii Islands"),
 
             new EarthquakeRecord( 8, 2, 1570, 09, 00, "LOCAL", -73.00F,  -36.80F,  8.3F, "Chile", "Concepción"),

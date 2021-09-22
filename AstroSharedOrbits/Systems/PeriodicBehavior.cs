@@ -6,6 +6,8 @@
 // <date>2021-09-01</date>
 // <summary>Part of Astro Observatory</summary>
 
+using JetBrains.Annotations;
+
 namespace AstroSharedOrbits.Systems
 {
     /// <summary>
@@ -14,7 +16,7 @@ namespace AstroSharedOrbits.Systems
     public class PeriodicBehavior
     {
         /// <summary>
-        /// Gets Actual Period.
+        /// Gets or sets Actual Period.
         /// </summary>
         /// <value>
         /// Property description.
@@ -30,7 +32,7 @@ namespace AstroSharedOrbits.Systems
         public bool Retrograde { get; set; }
 
         /// <summary>
-        /// Gets Mean Angular Period.
+        /// Gets or sets Mean Angular Period.
         /// </summary>
         /// <value> Property description. </value>
         public double MeanAngularPeriod { get; set; }
@@ -48,13 +50,13 @@ namespace AstroSharedOrbits.Systems
         public double MeanAngleSpeed { get; set; }
 
         /// <summary>
-        /// Gets Total julianDay.
+        /// Gets or sets Total julianDay.
         /// </summary>
         /// <value> Property description. </value>
         public double TotalJulianDay { get; set; }
 
         /// <summary>
-        /// Gets Total Longitude.
+        /// Gets or sets Total Longitude.
         /// </summary>
         /// <value> Property description. </value>
         public double TotalLgh { get; set; }
@@ -62,7 +64,7 @@ namespace AstroSharedOrbits.Systems
         /// <summary>
         /// Resets the counters.
         /// </summary>
-        [JetBrains.Annotations.UsedImplicitlyAttribute]
+        [UsedImplicitly]
         public void ResetCounters()
         {
             this.TotalLgh = 0;

@@ -167,6 +167,12 @@ namespace AstroSharedEvents.Geology
         /// </value>
         public string VolcanoType { get; set; }
 
+        /// <summary>
+        /// Gets or sets the vei.
+        /// </summary>
+        /// <value>
+        /// The vei.
+        /// </value>
         public int VEI { get; set; }
         #endregion
     }

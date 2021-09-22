@@ -7,6 +7,7 @@
 // <summary>Exception Extensions.</summary>
 
 namespace AstroSharedClasses.Abstract {
+    using JetBrains.Annotations;
     using System;
     using System.Collections.Generic;
     using System.Globalization;
@@ -25,7 +26,7 @@ namespace AstroSharedClasses.Abstract {
         /// </summary>
         /// <param name="exception">The exception.</param>
         /// <param name="givenFilePath">The given file path.</param>
-        [JetBrains.Annotations.UsedImplicitlyAttribute]
+        [UsedImplicitly]
         public static void WriteToFile(this Exception exception, string givenFilePath) {
             var r = new string('-', 80);
             StringBuilder sb = new StringBuilder();
@@ -44,7 +45,7 @@ namespace AstroSharedClasses.Abstract {
         /// </summary>
         /// <param name="exception">Given Exception.</param>
         /// <returns> Returns value. </returns>
-        [JetBrains.Annotations.UsedImplicitlyAttribute]
+        [UsedImplicitly]
         public static string ListError(this Exception exception) {
             if (exception?.StackTrace == null) {
                 return string.Empty;
@@ -114,7 +115,7 @@ namespace AstroSharedClasses.Abstract {
         /// </summary>
         /// <param name="exception">The exception.</param>
         /// <returns>Returns value.</returns>
-        [JetBrains.Annotations.UsedImplicitlyAttribute]
+        [UsedImplicitly]
         public static string ToDebugMessage(this Exception exception) {
             var sb = new StringBuilder("Exception:");
             if (exception != null) {

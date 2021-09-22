@@ -1,0 +1,2019 @@
+        /// <summary>
+        /// The last value.
+        /// </summary>
+        private double lastValue;
+
+                /* 
+                 *
+               case AstCharacteristic.OrientedBaryAxis:
+                   addNewLine = this.OutputOrientedBaryAxis(julianDate);
+                   break;
+
+                case AstCharacteristic.SunInfluences:
+                   this.OutputSunInfluences(julianDate);
+                   break;
+                   
+                 case AstCharacteristic.LongitudesOuter:
+                    addNewLine = true;
+                    this.OutputLongitudesOuter(julianDate);
+                    break;
+
+                case AstCharacteristic.LongitudesInner:
+                    addNewLine = true;
+                    this.OutputLongitudesInner(julianDate);
+                    break;
+                    
+                 case AstCharacteristic.Distances:
+                    //// dist = 
+                    this.OutputDistances(julianDate);
+                    break;
+
+                case AstCharacteristic.EarthSystem:
+                    addNewLine = true;
+                    this.OutputEarthSystem(julianDate, info);
+
+                    break;
+
+                case AstCharacteristic.DateDiffsZharkova:
+                    if (this.LastJulianDate > -10000000)
+                    {
+                        diff = julianDate - this.LastJulianDate;
+                    }
+
+                    addNewLine = false;
+                    this.OutputDateDiffsZharkova(julianDate, timeUnit, info, diff);
+                    //// this.OutputDateDiffsVuckevic(julianDate, timeUnit, info, diff);
+                    break;     
+                */
+
+
+                case AstCharacteristic.DateDiffs:
+                    if (this.LastJulianDate > -10000000)
+                    {
+                        diff = julianDate - this.LastJulianDate;
+                    }
+
+                    addNewLine = false;
+                    this.OutputDateDiffs(julianDate, timeUnit, info, diff);
+                    //// this.OutputDateDiffsVuckevic(julianDate, timeUnit, info, diff);
+                    break;
+
+                case AstCharacteristic.LongitudesToExcel:
+                    addNewLine = true;
+                    this.OutputLongitudesToExcel(julianDate);
+                    break;
+
+                case AstCharacteristic.DateDiffsOuter:
+                    if (this.LastJulianDate > -10000000)
+                    {
+                        diff = julianDate - this.LastJulianDate;
+                    }
+
+                    addNewLine = false;
+                    this.OutputDateDiffsOuter(julianDate, timeUnit, info, diff);
+                    //// this.OutputDateDiffsVuckevic(julianDate, timeUnit, info, diff);
+                    break;      
+
+                case AstCharacteristic.LongitudesSun:
+                    //// dist = 
+                    this.OutputLongitudesSun(julianDate);
+                    break;
+
+
+                case AstCharacteristic.Experiment: {
+                        //// this.OutputTidalExcell(julianDate);
+                        this.OutputExperiment(julianDate);
+                        break;
+                    }
+        /// <summary>
+        /// Appends the solar maximum approx values.
+        /// </summary>
+        /// <returns>
+        /// Returns value.
+        /// </returns>
+        [UsedImplicitly]
+        public double AppendSolarMaxApproxValues()
+        {
+            double longJ = Angles.Mod360(SolarSystem.Singleton.Jupiter.Longitude);
+            double longJa = Angles.Mod360(SolarSystem.Singleton.Jupiter.LP - 180);
+            double longS = Angles.Mod360(SolarSystem.Singleton.Saturn.Longitude);
+            //// double Sa = Angles.Mod360(SolarSystem.Singleton.Saturn.LP - 180);
+            //// double Sp = Angles.Mod360(SolarSystem.Singleton.Saturn.LP);
+            double longU = Angles.Mod360(SolarSystem.Singleton.Uranus.Longitude);
+            double longN = Angles.Mod360(SolarSystem.Singleton.Neptune.Longitude);
+            /*
+            double gJJa = Angles.Sinus((longJ - longJa) / 2);
+            double gJS = Angles.Sinus(longJ - longS);
+            double gJU = Angles.Sinus(longJ - longU);
+            double gJN = Angles.Sinus(longJ - longN);
+            double gSU = Angles.Sinus(longS - longU);
+            double gSN = Angles.Sinus(longS - longN);
+            double gUN = Angles.Sinus(longU - longN);
+            */
+            double gJRes = Angles.Cosin((longJ - longJa + longU - longN) / 2); //// only one extreme on 360dg
+            double gSRes = Angles.Cosin(longS - longJa + 3 * longU - 4 * longN);
+
+            double g3Res = Angles.Sinus((2 * (longJ - longJa) - 4 * longS + 2 * longN) / 2);
+            double g4Res = Angles.Cosin(1 * (longJ - longJa) + 2 * longU - 3 * longN);
+
+            //// double g3Res = Angles.Cosin((2*(J - Ja)  - 3 * S + 3 * U - 2 * N)/2);
+            //// double g4Res = Angles.Cosin(( 1 * S + 3 * U - 4 * N));
+
+            //// double g3Res = Angles.Cosin((J - Ja - 2 * S + 4 * U - 3 * N));
+            //// double g4Res = Angles.Cosin((J - Ja - 3 * S + 4 * U - 2 * N) / 2);
+
+            //// double g3Res = Angles.Cosin((J/3 + S/2)); //// only one extreme on 360dg
+            //// double g4Res = Angles.Cosin((3*S - U)/2); //// only one extreme on 360dg
+
+            //// double vJJa = 10 * (Math.Abs(gJJa));
+            /*
+            double vJJa = 10 * Math.Abs(gJJa);
+            double vJS = 10 * Math.Abs(gJS);
+            double vJU = 10 * Math.Abs(gJU);
+            double vJN = 10 * Math.Abs(gJN);
+            double vSU = 10 * Math.Abs(gSU);
+            double vSN = 10 * Math.Abs(gSN);
+            double vUN = 10 * Math.Abs(gUN);
+            */
+            double vJRes = 10 * Math.Abs(gJRes);
+            double vSRes = 10 * Math.Abs(gSRes);
+            double v3Res = 10 * Math.Abs(g3Res);
+            double v4Res = 10 * Math.Abs(g4Res);
+
+            //// double univalue = vJJa + vJS + vJU + vJN + vSU + vSN + vUN;
+            //// double value = 0.0 * vJJa + 1.0 * vJS + 0.0 * vJU + 1.0 * vJN + 1.0 * vSU + 0.0 * vSN + 1.0 * vUN; //// value > 3
+            double value = 1.0 * vJRes + 1.0 * vSRes + 1.0 * v3Res + 1.0 * v4Res;
+            //// + 0.0 * vJJa + 0.0 * vJS + 0.0 * vJU + 0.0 * vJN + 0.0 * vSU + 0.0 * vSN + 0.0 * vUN;
+
+            if (value > 1.0 && value > this.lastValue)
+            {
+                this.List.Append("***");
+            }
+            else
+            {
+                this.List.Append("   ");
+            }
+
+            //// "JS{4,4:F1} JU{5,4:F1} JN{6,4:F1} SU{7,4:F1} SN{8,4:F1} UN{9,4:F1} ",
+            //// vJS, vJU, vJN, vSU, vSN, vUN);
+            this.List.AppendFormat(
+                            "V{0,5:F1} Rj{1,5:F1} Rs{2,5:F1} R3{3,5:F1} R4{4,5:F1} ",
+                             value,
+                             vJRes,
+                             vSRes,
+                             v3Res,
+                             v4Res);
+
+            this.lastValue = value;
+            return value;
+        }
+
+
+            /*    this.List.AppendFormat(
+                    CultureInfo.InvariantCulture,
+                    "\t{0,4:F0} {1,4:F0} {2,4:F0} {3,4:F0}",
+                    Lj,
+                    Ls,
+                    Lu,
+                    Ln);
+
+
+            var dJU = Angles.Mod360Sym(Lu - Lj);
+            var dJN = Angles.Mod360Sym(Ln - Lj - 90);
+
+            var delta1 = Angles.Mod360Sym(Lu + Ln - 2* Lj);
+            this.List.AppendFormat(
+                    CultureInfo.InvariantCulture,
+                    "\t{0,4:F0} \t{1,4:F0} ", delta1, 0);
+                    */
+            /*
+            var delta = Angles.Mod360Sym(Ln - Lj);
+            this.List.AppendFormat(
+                        CultureInfo.InvariantCulture,
+                        "\t{0,4:F0} ", delta);
+            */
+
+            /*
+            var a = -Angles.Cosin(Lj-Ljp - 90) * 100;
+            var b = -Angles.Cosin((Lj - Ls + 90) * 2 - 90) * 100;
+            //// var a = Angles.Cosin((Lj - Ljp)/2) * 100;
+            //// var b = Angles.Cosin((Lj - Ls + 90)) * 100;
+            //// var c = -Angles.Cosin(Lu - Lup - 30) * 100;
+            //// var c = Angles.Cosin((Lu - Ln + 90) - 30) * 100;
+            //// var a = Angles.Sinus(Lj) * 100;
+            //// var b = Angles.Sinus((Lj - Ls + 90)*2)*100;
+            var f = a + b;
+            this.List.AppendFormat(
+                CultureInfo.InvariantCulture,
+                "{0,7:F0}\t{1,7:F0}\t{2,7:F0}",
+                a,b,f);
+            */
+
+            /*
+            var axUN = Angles.AxisOf(Lu, Ln);
+            var diffAxJ = Angles.Mod360Sym(axUN - Lj); 
+            this.List.AppendFormat(
+                CultureInfo.InvariantCulture,
+                "\t{0,4:F0} {1,4:F0} ",
+                axUN,
+                diffAxJ);
+            */
+
+            /*
+            var dj = Angles.Mod360Sym(Lj - Ljp);
+            var ds = Angles.Mod360Sym(Ls - Lsp);
+            var du = Angles.Mod360Sym(Lu - Lup);
+            var dn = Angles.Mod360Sym(Ln - Lnp);
+
+            var total = Math.Abs(dj) + Math.Abs(ds) + Math.Abs(du) + Math.Abs(dn);
+            if (total > 500) {
+                this.List.AppendFormat(CultureInfo.CurrentCulture, " Total {0,8:F2}", total);
+            }*/
+
+        /*
+        var Lr = SolarSystem.Singleton.Mars.Longitude;
+        var Le = SolarSystem.Singleton.Earth.Longitude;
+        var Lv = SolarSystem.Singleton.Venus.Longitude;
+        var Lm = SolarSystem.Singleton.Mercury.Longitude;
+
+        var dJS = Angles.Mod360(Ls - Lj);
+        var dJU = Angles.Mod360(Lu - Lj);
+        var dJN = Angles.Mod360(Ln - Lj);
+        var dSU = Angles.Mod360(Lu - Ls);
+        var dSN = Angles.Mod360(Ln - Ls);
+        */
+        /*
+        this.List.AppendFormat(
+                CultureInfo.InvariantCulture,
+                "\tJ {0,4:F0}\tS {1,4:F0} dJS\t{2,4:F0} dJa\t{3,4:F0}\tsign {4} red\t{5,4:F0} ",
+                Lj,
+                Ls,
+                dJS,
+                dJa,
+                sign ? "-" : "+",
+                redvalue
+         );
+         */
+        /*            
+this.List.AppendFormat(
+CultureInfo.InvariantCulture,
+"\tD {0,7:F1} {1,7:F1} {2,7:F1} {3,7:F1} ",
+dJU, dJN, dSU, dSN);
+*/
+        /*
+        var Ej = SolarSystem.Singleton.Jupiter.Potential / 1e14;
+        var Es = SolarSystem.Singleton.Saturn.Potential / 1e14;
+        var Eu = SolarSystem.Singleton.Uranus.Potential / 1e14;
+        var En = SolarSystem.Singleton.Neptune.Potential / 1e14;
+        */
+        /*
+        var Ej = 10.0;
+        var Es = 10.0;
+        var Eu = 1.0;
+        var En = 1.0;
+
+        var Euj = Eu * Angles.Cosin(dJU);
+        var Enj = En * Angles.Cosin(dJN);
+        var Eus = Eu * Angles.Cosin(dSU);
+        var Ens = En * Angles.Cosin(dSN);
+        */
+        /*
+        var Fj = Ej + Math.Abs(Euj) + Math.Abs(Enj);
+        var Fs = Es + Math.Abs(Eus) + Math.Abs(Ens);
+        */
+        /*
+        var Fj = Ej + Euj;
+        var Fs = Es + Ens;
+
+        var force = Fj * Fs * Math.Pow(Angles.Sinus(dJS),2);
+        */
+        /*
+        this.List.AppendFormat(
+                    CultureInfo.InvariantCulture,
+                    "\tR {0,7:F1} {1,7:F1} {2,7:F1} {3,7:F1} ",
+                    Euj, Enj, Eus, Ens);
+
+        this.List.AppendFormat(
+        CultureInfo.InvariantCulture,
+        "\tE {0,7:F1} {1,7:F1} {2,7:F1} {3,7:F1} ",
+        Ej, Es, Eu, En);
+        */
+        /*
+        this.List.AppendFormat(
+                    CultureInfo.InvariantCulture,
+                    "\tF {0,12:F2} {1,12:F2} *{2,12:F2}* {3,6:F1} ",
+                    Fj, Fs, force, dJS);
+        */
+        /*
+        this.List.AppendFormat(
+                                CultureInfo.InvariantCulture,
+                                "\tB {0,5:F1}\t{1,5:F1}",
+                                Angles.Mod360(SolarSystem.Singleton.Barycentre.Longitude),
+                                SolarSystem.Singleton.Barycentre.RT/ SolarSystem.Singleton.Sun.Body.Radius);
+
+        this.List.AppendFormat(
+                CultureInfo.InvariantCulture,
+                "\tG {0,5:F1}\t{1,5:F1}",
+                Angles.Mod360(SolarSystem.Singleton.Gravicentre.Longitude),
+                SolarSystem.Singleton.Gravicentre.RT);
+
+        */
+        /*
+        this.List.AppendFormat(
+            CultureInfo.InvariantCulture,
+            "\t{0,8:F5} {1,8:F5} {2,8:F5} {3,8:F5} {4,8:F5}",
+            SolarSystem.Singleton.TotalAlignmentIndex,
+            SolarSystem.Singleton.TotalQuadratureIndex,
+            SolarSystem.Singleton.TotalPerihelionIndex,
+            SolarSystem.Singleton.TotalBiangularIndex,
+            SolarSystem.Singleton.TotalTriangularIndex);
+        */
+        /*
+         *             bool sign =    (year > 1626.00 && year < 1639.50) || (year > 1649.00 && year < 1660.00)
+                        || (year > 1675.00 && year < 1685.00) || (year > 1693.00 && year < 1705.50)
+                        || (year > 1718.20 && year < 1727.50) || (year > 1738.70 && year < 1750.30)
+                        || (year > 1761.50 && year < 1769.70) || (year > 1778.40 && year < 1788.10)
+                        || (year > 1805.20 && year < 1816.40) || (year > 1829.90 && year < 1837.20)
+                        || (year > 1848.10 && year < 1860.10) || (year > 1870.60 && year < 1883.90)
+                        || (year > 1894.10 && year < 1907.00) || (year > 1917.60 && year < 1928.40)
+                        || (year > 1937.40 && year < 1947.50) || (year > 1957.90 && year < 1968.90)
+                        || (year > 1979.90 && year < 1989.60) || (year > 2000.30 && year < 2012.00)
+                        || (year > 2023.00 && year < 2034.00);
+        */
+
+
+        /* this.List.AppendFormat(
+        CultureInfo.InvariantCulture,
+        "\t{0,5:F1}\t{1,5:F1}\t{2,5:F1}\t{3,5:F1}",
+        Lv,
+        Le,
+        Lj,
+        Ls);
+
+        this.List.AppendFormat(
+        CultureInfo.InvariantCulture,
+        "\t{0,5:F1}\t{1,5:F1}\t{2,5:F1}\t{3,5:F1}\t{4,5:F1}\t{5,5:F1}",
+        Lj,
+        Ls,
+        Angles.Mod360(Lj - Ls),
+        Angles.Mod360(Lj - Le),
+        Angles.Mod360(Lj - Lv),
+        Angles.Mod360(Lj - Lu));
+        */
+        /*
+          this.List.AppendFormat(
+                  CultureInfo.InvariantCulture,
+                  "\t{0,5:F1}",   mjs);
+        */
+
+
+            // this.lastB1 = B1;
+
+            ////this.List.AppendFormat("{0,10:F5} \t{1,10:F5}", M1, B1);
+            //// this.List.AppendFormat("{0,10:F5} \t{1,10:F5}", V1, V2);
+            //// var A = (Lj - LPj) - (Ls - Lu + Ln + 90) * 3;
+            //// var V = Angles.Mod360Sym(A);
+            //// var dJp = Angles.Mod360((Lj - LPj)/2);
+            //// var dJa = Angles.Mod360((Lj - LPj - 180)/2);
+
+            //// this.List.AppendFormat("{0,8:F2}  {1,8:F2}", Math.Round(diff / timeUnit, 3), Julian.Year(julianDate));
+            //// this.List.AppendFormat("{0,8:F2} ", Julian.Year(julianDate));
+            //// this.List.Append(" " + Julian.CalendarDate(julianDate, false));
+
+            //// this.List.AppendFormat("\t{0,10:F5}\t{1,8:F3}\t{2,8:F3}", -V, -Angles.Sinus(dJp)*30, -Math.Abs(Angles.Cosin(dJp)) * 40);
+
+            //// var F = 180 - Math.Abs(Angles.Mod360Sym(2 * (Lj - LPj) - 3 * Ls + 4 * Lu - 4 * Ln));
+            //// this.List.AppendFormat("\t{0,6:F1}", -F)); //// 2J - 3S + 4U -4N 
+
+            //// this.List.AppendFormat("\t{0,6:F1}", -3*V + F);
+
+            //// this.List.AppendFormat("\t Lj-Lp:{0,6:F1} S:{1,6:F1} U:{2,6:F1} N:{3,6:F1} S-U+N{4,6:F1}",
+            ////                Angles.Mod360(Lj - LPj),  Ls,  Lu, Ln, Angles.Mod360(Ls - Lu + Ln));
+
+            //// this.List.AppendFormat("\t {0, -30} ", info);
+
+
+
+            //// if (Math.Abs(sundiff) > 90)
+            //// if (SolarSystem.Singleton.TidalExtreme.RT > 3.8)
+            //// if (SolarSystem.Singleton.Sun.TidalExtreme.RT > 4000000)
+            //// if (SolarSystem.Singleton.DipoleExtreme.RT > 3.05)
+            //// if (Mun  > 1.5 *Fj && Mun < 1.6 * Fj)
+
+            //// if (Math.Abs(percentUN - percentJ) < 3)
+            
+            /*
+            if (Angles.EqualDeg(functionJJp + functionUN, 180, 2))
+            {
+                this.List.AppendFormat(CultureInfo.CurrentCulture, "{0,7:F2}", Julian.Year(julianDate));
+
+                //// this.List.AppendFormat("\t{0}", Julian.CalendarDate(julianDate, true));
+
+                this.List.AppendFormat(
+                    CultureInfo.InvariantCulture,
+                    "\tdJJp {0,5:F1}\tdUN {1,5:F1}\tD {2,5:F1}",
+                    functionJJp,
+                    functionUN,
+                    Angles.Mod360(functionJJp + functionUN)
+                );
+                */
+            /*
+            this.List.AppendFormat(
+                    CultureInfo.InvariantCulture,
+                    "\tdJ {0,5:F1}\tdUN {1,5:F1}\tD {2,5:F1}\tFj {3,6:F1}\tMun {4,6:F1}\tW {5,6:F1} [{6,3:F0}% {7,3:F0}% ]",
+                    Angles.Mod360(J.Longitude - J.LP),
+                    Angles.Mod360(U.Longitude - N.Longitude),
+                    Angles.Mod360(Lun - J.Longitude),
+                    dFj,
+                    Mun,
+                    Mun + dFj,
+                    percentJ,
+                    percentUN
+                    );
+            */
+            /*
+            this.List.AppendFormat(
+                                "\tR\t{0,8:F2}\t{1,8:F2}\t{2,8:F2}\t",
+                                SolarSystem.Singleton.TidalExtreme.RT,
+                                SolarSystem.Singleton.TidalExtreme.XH,
+                                SolarSystem.Singleton.TidalExtreme.YH); */
+            /*
+            foreach (var orbit in SolarSystem.Singleton.Orbit)
+            {
+                if (orbit == null) { continue; }
+                if (!orbit.Enabled) { continue; }
+
+                //// Tides
+                var e = orbit.Body.Mass *  orbit.Point.RT / orbit.Point.RT / orbit.Point.RT;
+                var phi = Angles.Mod180Sym(orbit.Longitude - SolarSystem.Singleton.TidalExtreme.Longitude);
+                var F = 10 * e * Angles.Cosin(phi);
+                if (F > 0.01) //// 0.01
+                {
+                    this.List.AppendFormat(
+                            CultureInfo.InvariantCulture,
+                                    "\t{0,5}:{1,5:F0}:{2,5:F2}:{3,5:F2}", orbit.Body.Abbreviation, phi, F, 10*e);
+                }
+            }
+            */
+            /*
+            this.List.AppendFormat(
+                CultureInfo.InvariantCulture,
+                "\t{0,5:F1}\t{1,5:F1}\t{2,5:F1}\t{3,5:F1}",
+                M.Longitude,
+                V.Longitude,
+                E.Longitude,
+                R.Longitude);
+            */
+            /*
+                     * 
+                    this.List.AppendFormat(
+                                "\tB\t{0,8:F2}\t{1,8:F2}\t{2,8:F2}\tG\t{3,8:F2}\t{4,8:F2}\t{5,8:F2}",
+                                SolarSystem.Singleton.Sun.Point.RT / SolarSystem.Singleton.Sun.Body.Radius,
+                                SolarSystem.Singleton.Sun.Point.XH / SolarSystem.Singleton.Sun.Body.Radius,
+                                SolarSystem.Singleton.Sun.Point.YH / SolarSystem.Singleton.Sun.Body.Radius,
+                                SolarSystem.Singleton.Gravicentre.RT,
+                                SolarSystem.Singleton.Gravicentre.XH,
+                                SolarSystem.Singleton.Gravicentre.YH);
+            this.List.AppendFormat(
+                CultureInfo.InvariantCulture,
+                "\tL\t{0,5:F1}",
+                SolarSystem.Singleton.DipoleExtreme.Longitude);
+
+            this.List.AppendFormat(
+                "\tR\t{0,8:F2}",
+                SolarSystem.Singleton.DipoleExtreme.RT);
+
+            this.List.AppendFormat(
+                "\tT\t {0,5:F1}\t{1,6:F2}\t{2}",
+                SolarSystem.Singleton.DipoleExtremeBehavior.ActualPeriod,
+                SolarSystem.Singleton.DipoleExtremeBehavior.MeanAngularPeriod,
+                SolarSystem.Singleton.DipoleExtremeBehavior.Retrograde ? "RG" : string.Empty);
+            */
+            /*
+            this.List.AppendFormat(
+                CultureInfo.InvariantCulture,
+                "\tL\t{0,5:F1}",
+                SolarSystem.Singleton.TidalExtreme.Longitude);
+
+            this.List.AppendFormat(
+                "\tR\t{0,8:F2}",
+                SolarSystem.Singleton.TidalExtreme.RT);
+
+            this.List.AppendFormat(
+                "\tT\t {0,5:F1}\t{1,6:F2}\t{2}",
+                SolarSystem.Singleton.TidalExtremeBehavior.ActualPeriod,
+                SolarSystem.Singleton.TidalExtremeBehavior.MeanAngularPeriod,
+                SolarSystem.Singleton.TidalExtremeBehavior.Retrograde ? "RG" : string.Empty);
+            */
+            /*
+            * /*
+            var Mu = U.Body.Mass * U.Point.RT / 1e36;
+            var Mn = N.Body.Mass * N.Point.RT / 1e36;
+            var Mx = Mu * Angles.Cosin(U.Point.Longitude) + Mn * Angles.Cosin(N.Point.Longitude);
+            var My = Mu * Angles.Sinus(U.Point.Longitude) + Mn * Angles.Sinus(N.Point.Longitude);
+            var Mun = 720-Math.Sqrt(Mx * Mx + My * My) ;
+            var Lun = Angles.ArcTan2(Mx, My);
+            var Fj = J.Body.Mass / J.Point.RT / J.Point.RT;
+            var dFj = 3460 - Fj; //// 3460            
+            var percentJ = 100-100 * dFj / 610; //// var percentJ = 100 * dFj / (Mun + dFj);
+            var percentUN = 100-100 * (Angles.Mod180(U.Longitude - N.Longitude) / 180);
+            */
+            /*
+            var dJJp = Angles.Mod360(J.Longitude - J.LP);
+            var functionJJp = dJJp;
+            /// var functionUN = Angles.Mod360(U.Longitude - N.Longitude);
+            //// var functionUN = Angles.Mod360(Math.Sqrt(U.Longitude* U.Longitude - N.Longitude* N.Longitude));
+            var dUN = Angles.Mod360(360 * (julianDate / 365.25 / 171.4));
+            var f = Angles.Cosin(2 * dUN) * Math.Abs(Angles.Cosin(2 * dUN));
+            var functionUN = dUN + f * 120; 
+            
+            //// if (SolarSystem.Singleton.SunJS.Retrograde)
+            return false;
+        }*/        
+            /*
+        private void OutputOrientedBaryAxisOlder(double julianDate)
+        {
+            var b1 = SolarSystem.Singleton.SunJS.FirstBody;
+            var b2 = SolarSystem.Singleton.SunJS.NextBody;
+            this.List.AppendFormat(CultureInfo.CurrentCulture, "{0,7:F2}", Julian.Year(julianDate));
+            this.List.AppendFormat(
+                                CultureInfo.InvariantCulture,
+                                " {0,1}:{1,6:F2} {2,1}:{3,6:F2} Axis:{4,6:F2}",
+                                b1.Abbrev,
+                                b1.Longitude,
+                                b2.Abbrev,
+                                b2.Longitude,
+                                Angles.Mod360(SolarSystem.Singleton.SunJS.Longitude + 180));
+            this.List.AppendFormat(
+                                " Lghtotal:{0,5:F0} JulianDaytotal:{1,6:F0}",
+                                SolarSystem.Singleton.SunJS.TotalLgh,
+                                SolarSystem.Singleton.SunJS.TotalJulianDay);
+            this.List.AppendFormat(
+                                " Tactual:{0,5:F1} Tmean:{1,6:F2}",
+                                SolarSystem.Singleton.SunJS.ActualPeriod,
+                                SolarSystem.Singleton.SunJS.MeanAngularPeriod);
+        } */
+    
+
+
+#region other unused
+
+/*
+this.List.AppendFormat(CultureInfo.InvariantCulture, "\t{0,4:F0} \t{1,4:F0}", Lj, Ls);
+this.List.AppendFormat(CultureInfo.InvariantCulture, "\t{0,4:F0} \t{1,4:F0}", Lu, Ln);
+*/
+/*
+//// this.List.AppendFormat(CultureInfo.CurrentCulture, "{0,7:F2}", Julian.Year(julianDate));
+var alpha = SolarSystem.Singleton.TotalAlignmentIndex;
+this.List.AppendFormat(CultureInfo.InvariantCulture, "\t{0,6:F0}", 10 * alpha);
+//// var alpha = Angles.Mod360(1 * Lj - 1 * Ls - 8 * Lu + 8 * Ln);
+//// this.List.AppendFormat(CultureInfo.InvariantCulture, "\t{0,6:F0}", 100 * Angles.Sinus(alpha));
+*/
+/*
+var u = -(SolarSystem.Singleton.Uranus.Point.RT- SolarSystem.Singleton.Uranus.A) / 1.0E10;
+var n = -(SolarSystem.Singleton.Neptune.Point.RT - SolarSystem.Singleton.Neptune.A) / 1.0E10;
+var x = u+n;
+this.List.AppendFormat(CultureInfo.InvariantCulture, "\t{0,6:F2}\t{1,6:F2}\t{2,6:F2}", u,n,x);
+*/
+/*
+this.List.AppendFormat(CultureInfo.InvariantCulture, "\t{0,4:F0}", Ljm);
+
+int alpha = (int)(Math.Round(Ljm / 30, 0));
+this.List.AppendFormat(CultureInfo.InvariantCulture, "\t{0,4:F0}", alpha);
+*/
+
+/*
+var Lx = SolarSystem.Singleton.PlanetX.Longitude;
+this.List.AppendFormat(CultureInfo.InvariantCulture, "\t{0,4:F0} {1,4:F0} {2,4:F0}", 
+            Angles.Mod360(Lu), Angles.Mod360(Ln), Angles.Mod360(Lx));
+*/
+
+//// var Lj = SolarSystem.Singleton.Jupiter.Longitude;
+//// var Ljm = Angles.Mod360(Lj);
+//// if (Lj > 75 && Lj < 135) {
+///
+#endregion
+
+
+        //// Resonance Value  
+        /*
+        var Lv = SolarSystem.Singleton.Venus.Longitude;
+        var Le = SolarSystem.Singleton.Earth.Longitude;
+        var Lj = SolarSystem.Singleton.Jupiter.Longitude;
+        this.List.AppendFormat("\tR={0,8:F3}",  Angles.Mod180Sym(3*Lv - 5*Le + 2*Lj) );
+        */
+
+        //// this.List.AppendFormat("\t E:{0,6:F1} J:{1,6:F1} Moon:{2,6:F1}", SolarSystem.Earth.Longitude, SolarSystem.Jupiter.Longitude, EarthSystem.Moon.EclipticLongitude);
+        //// var declination = Angles.NormalSymmetricAngle360(EarthSystem.Moon.Declination);
+        //// this.List.AppendFormat("\t E:{0,6:F1} Moon:{1,6:F1} {2,6:F1} Declin:{3,6:F1}",
+        //// SolarSystem.Earth.Longitude, Angles.Mod360(EarthSystem.Moon.EclipticLongitude - EarthSystem.Moon.LP), EarthSystem.Moon.EclipticLongitude - SolarSystem.Earth.Longitude, declination);
+        //// this.List.AppendFormat("{0,8:F0}\t ", AstroMath.ModN(julianDate+9,29.53));
+        //// this.List.AppendFormat("({0,8:F2}) {1,8:F2} \t", Math.Round(diff / timeUnit, 3), Julian.Year(julianDate));
+        //// this.List.AppendFormat("{0,8:F2}\t ", Math.Round(AstroMath.ModN((julianDate / timeUnit), 19.86), 3));
+        //// this.List.AppendFormat("\t E:{0,6:F1} J:{1,6:F1} S:{2,6:F1}", SolarSystem.Earth.Longitude, SolarSystem.Jupiter.Longitude, SolarSystem.Saturn.Longitude);
+        //// this.List.AppendFormat("\t {0,8:F0} {1,8:F2} ", julianDate, (julianDate - 584285) / 365.2422);
+        ////}
+¨---------------------------------------------------------------------
+
+        /// <summary>
+        /// Outputs the experiment new beats.
+        /// </summary>
+        /// <param name="julianDate">The julian date.</param>
+        private void OutputExperimentNewBeats(double julianDate)
+        {
+            ////  this.List.AppendFormat("{0}\t", Julian.CalendarDate(julianDate, false));
+            var y = Julian.Year(julianDate);
+            this.List.AppendFormat(CultureInfo.CurrentCulture, "{0,7:F2}\t", y);
+
+            var Ln = SolarSystem.Singleton.Neptune.Longitude;
+            var Lnp = 60; //// SolarSystem.Singleton.Neptune.LP;
+            var Lx = SolarSystem.Singleton.PlanetX.Longitude;
+            var Lxp = 240; //// SolarSystem.Singleton.Neptune.LP;
+
+            var Xn = SolarSystem.Singleton.Neptune.Point.XH;
+            var Xx = SolarSystem.Singleton.PlanetX.Point.XH;
+            var Yn = SolarSystem.Singleton.Neptune.Point.YH;
+            var Yx = SolarSystem.Singleton.PlanetX.Point.YH;
+
+           /*  var P = new SpacePoint();
+            P.XH = Xn + Xx;
+            P.YH = Yn + Yx;
+            P.RecomputeSphericals(); */
+
+            //// Beats N-X
+            var fn = 100 * Angles.Cosin(Ln-Lnp+180);
+            var fx = 100 * Angles.Cosin(Lx-Lxp+180);
+            var fs = fn + fx;
+            var fd = fn - fx;
+            //// var ft = 100 * Angles.Cosin(P.Longitude);
+            
+            this.List.AppendFormat(
+                CultureInfo.InvariantCulture,
+                "\t{0,4:F0}\t{1,4:F0}\t{2,4:F0}\t{3,4:F0} ",
+                fn,
+                fx,
+                Math.Abs(fs),
+                fd);
+
+            this.List.AppendFormat(CultureInfo.InvariantCulture, "\n ");
+        }
+
+
+        /// <summary>
+        /// Outputs the date diffs year.
+        /// </summary>
+        /// <param name="julianDate">The julian date.</param>
+        /// <param name="timeUnit">The time unit.</param>
+        /// <param name="info">The information.</param>
+        /// <param name="diff">The difference.</param>
+        private void OutputDateDiffsYear(double julianDate, double timeUnit, string info, double diff) {
+            var diff1 = julianDate - this.lastJulianDateV;
+            this.List.AppendFormat(CultureInfo.CurrentCulture, "{0,7:F2}\t", Julian.Year(julianDate));
+            this.List.AppendFormat("\n ");
+            this.lastJulianDateV = julianDate;
+        }
+
+        /// <summary>
+        /// Outputs the date diffs allign.
+        /// </summary>
+        /// <param name="julianDate">The julianDate.</param>
+        /// <param name="timeUnit">The time unit.</param>
+        /// <param name="info">The information.</param>
+        /// <param name="diff">The difference.</param>
+        [UsedImplicitly]
+        private void OutputDateDiffsAllign(double julianDate, double timeUnit, string info, double diff)
+        {
+            /*
+            var tai = SolarSystem.Singleton.TotalAlignmentIndex;
+            //// if (tai > 0.02) { return; }
+            if (tai < 1.95) { //// 1.9998
+                return;
+            } */
+        ////  tai > 0.02 && tai < 1.9 1.9995, 5.80, 11.22, 5.99, 46, 48, 55, 11.9, 45
+        /*
+        double mi = SolarSystem.Singleton.TotalAlignmentIndex * SolarSystem.Singleton.TotalPerihelionIndex;
+        double q = 0;
+        if (mi > 0) {
+            q = Math.Sqrt(mi);
+        }
+
+        if (q < 6.0) { //// 5.99, 46, 48, 55, 11.9, 45
+            return;
+        }*/
+
+        /*
+        if (SolarSystem.Singleton.TotalPerihelionIndex < 3.6) { //// 3.8 5.99, 46, 48, 55, 11.9, 45
+            return;
+        }
+        */
+        /*
+        if (SolarSystem.Singleton.TotalQuadratureIndex < 1) { //// 45
+            return;
+        }*/
+
+        var diff1 = julianDate - this.lastJulianDateV;
+            /*
+            var Lm = SolarSystem.Singleton.Mercury.Longitude;
+            var Lv = SolarSystem.Singleton.Venus.Longitude;
+            var Le = SolarSystem.Singleton.Earth.Longitude;
+            */
+            var Lj = SolarSystem.Singleton.Jupiter.Longitude;
+            var Ls = SolarSystem.Singleton.Saturn.Longitude;
+            var Lu = SolarSystem.Singleton.Uranus.Longitude;
+            var Ln = SolarSystem.Singleton.Neptune.Longitude;
+            /*
+            var Lja = SolarSystem.Singleton.Jupiter.Point.ActualLongitude;
+            var Lsa = SolarSystem.Singleton.Saturn.Point.ActualLongitude;
+            var Lua = SolarSystem.Singleton.Uranus.Point.ActualLongitude;
+            var Lna = SolarSystem.Singleton.Neptune.Point.ActualLongitude;
+            */
+            /*
+                        if (Constellation.IsConjunction(Lj, Ls, 10.0)) {
+                            return;
+                        }*/
+            /*
+
+            
+            var dwarf = SolarSystem.Singleton.Oileus;
+            var L1 = dwarf.Longitude;
+            */
+            ////this.List.AppendFormat("{0,8:F2} \t{1,8:F2} \t{2,8:F2} \t", Math.Round(diff1 / timeUnit, 3), Math.Round(diff1, 2), Julian.Year(julianDate));
+
+            //// this.List.AppendFormat("{0,8:F2}", Julian.Year(julianDate));
+            this.List.AppendFormat("{0,8:F2} \t{1,8:F2} \t",  Math.Round(diff1 / timeUnit, 3),   Julian.Year(julianDate));
+            this.List.Append(Julian.CalendarDate(julianDate, false));
+           
+            this.List.AppendFormat(
+                    CultureInfo.InvariantCulture,
+                    "\t{0,4:F0} {1,4:F0} {2,4:F0} {3,4:F0}",
+                    Lj,
+                    Ls,
+                    Lu,
+                    Ln);
+            /*
+            this.List.AppendFormat(
+                    CultureInfo.InvariantCulture,
+                    "\tActual\t{0,4:F0} {1,4:F0} {2,4:F0} {3,4:F0}",
+                    Lja,
+                    Lsa,
+                    Lua,
+                    Lna);
+            
+            this.List.AppendFormat(
+                    CultureInfo.InvariantCulture,
+                    "\t{0,5:F1}\t{1,5:F1}\t{2,5:F1}",
+                    Lj,
+                    Ij,
+                    L1);
+
+            this.List.AppendFormat(
+                    CultureInfo.InvariantCulture,
+                    "\tP{0,5:F1}\t{1,5:F1}\t{2,5:F1}\t{3,5:F1}",
+                        dwarf.LP,
+                        dwarf.PerihelionIndex,
+                        dwarf.Point.Latitude,
+                        dwarf.Point.RT / AstroMath.AstroUnit);
+            */
+
+            /*
+            this.List.AppendFormat(
+                CultureInfo.InvariantCulture,
+                " dP {0,5:F1} {1,5:F1} {2,5:F1} {3,5:F1} ",
+            Angles.Mod360(Lj - SolarSystem.Singleton.Jupiter.LP),
+            Angles.Mod360(Ls - SolarSystem.Singleton.Saturn.LP),
+            Angles.Mod360(Lu - SolarSystem.Singleton.Uranus.LP),
+            Angles.Mod360(Ln - SolarSystem.Singleton.Neptune.LP));
+            */
+
+            /*
+            var sUJ = 100 * Angles.Sinus(2 * dUJ);
+            var sNJ = 100 * Angles.Sinus(2 * dNJ); 
+            var total = Math.Abs(sUJ) + Math.Abs(sNJ);
+            //// var total = sUJ + sNJ;
+            */
+
+            /*
+            var dUN = Angles.Mod360(Lu - Ln);
+            var dUJ = Angles.Mod360(Lu - Lj);
+            var dNJ = Angles.Mod360(Lj - Ln); //// Ln - Lj
+            var axUN = Angles.Mod360((Lu + Ln) / 2);
+            var dax = Angles.Mod360(axUN - Lj);
+            var fceUN = 10 * Angles.Sinus(dUN);
+            var fcedax = 10 * Angles.Sinus(2 * dax);
+            var total = 2*Math.Abs(fceUN * fcedax);
+            this.List.AppendFormat(
+                CultureInfo.InvariantCulture,
+                    " J {0,5:F1} S {1,5:F1} axUN {2,5:F1} {3,5:F1} \t# U-J {4,5:F1} J-N {5,5:F1}",
+            Lj,
+            Ls,
+            axUN,
+            dax,
+            dUJ,
+            dNJ);
+
+            this.List.AppendFormat(
+                CultureInfo.InvariantCulture,
+                " \t# {0,5:F1} {1,5:F1} # {2,5:F1}",
+            fceUN,
+            fcedax,
+            total);
+            */
+            /*
+            this.List.AppendFormat(
+                CultureInfo.InvariantCulture,
+                " \t# {0,5:F1} {1,5:F1} # {2,5:F1}",
+            sUJ,
+            sNJ,
+            total); */
+
+            var Ij = SolarSystem.Singleton.Jupiter.PerihelionIndex;
+            var Is = SolarSystem.Singleton.Saturn.PerihelionIndex;
+            var Iu = SolarSystem.Singleton.Uranus.PerihelionIndex;
+            var In = SolarSystem.Singleton.Neptune.PerihelionIndex;
+
+            this.List.AppendFormat(
+                    CultureInfo.InvariantCulture,
+                        "\t{0,7:F3} {1,7:F3} {2,7:F3} {3,7:F3}",
+                        Ij,
+                        Is,
+                        Iu,
+                        In);
+
+            /*
+            this.List.AppendFormat(
+                    CultureInfo.InvariantCulture,
+                        "\tL {0,5:F1} A{1,6:F4} P{2,6:F4}",
+                        SolarSystem.Singleton.MeanAlignmentLongitude, SolarSystem.Singleton.TotalAlignmentIndex, 
+                        SolarSystem.Singleton.TotalPerihelionIndex); //// q
+             */
+            
+            this.List.AppendFormat(CultureInfo.InvariantCulture, "\t {0,7:F4} ", SolarSystem.Singleton.TotalPerihelionIndex);
+            /*
+            this.List.AppendFormat(
+                CultureInfo.InvariantCulture,
+                "\t{0,5:F1} \t{1,5:F1}", SolarSystem.Singleton.TotalAlignmentIndex, SolarSystem.Singleton.TotalQuadratureIndex);
+
+            this.List.AppendFormat(
+                    CultureInfo.InvariantCulture,
+                    "\t{0,5:F1}\t{1,5:F1}\t{2,5:F1}",
+                    Lv,
+                    Le,
+                    Lj);
+            */
+            /* Angle index for testing solar extremes .... (quadratures...)
+            var djs = Angles.Mod360(Lj - Ls ); //// -30
+            var mjs = Math.Round(djs / 30);
+
+            this.List.AppendFormat(
+                    CultureInfo.InvariantCulture,
+                    "\t{0,5:F1}\t{1,5:F1}\t{2,5:F1}\t{3,5:F0}\t{4,5:F0}",
+                    Lj,
+                    Ls,
+                    djs,
+                    mjs * 30,
+                    mjs);
+            */
+
+            this.List.AppendFormat("\n ");
+            this.lastJulianDateV = julianDate;
+        }
+
+
+
+        /// <summary>
+        /// Outputs the experiment.
+        /// </summary>
+        /// <param name="julianDate">The julian date.</param>
+        private void OutputExperiment(double julianDate) {
+            var Lj = SolarSystem.Singleton.Jupiter.Longitude;
+            var Ls = SolarSystem.Singleton.Saturn.Longitude;
+            var Lu = SolarSystem.Singleton.Uranus.Longitude;
+            var Ln = SolarSystem.Singleton.Neptune.Longitude;
+
+            ////  this.List.AppendFormat("{0}\t", Julian.CalendarDate(julianDate, false));
+            var y = Julian.Year(julianDate);
+            this.List.AppendFormat(CultureInfo.CurrentCulture, "{0,7:F2}\t", y);
+
+            var d1 = Angles.Mod360Sym(Lj - Ls);
+            var d2 = Angles.Mod360Sym(Lj - Lu);
+            var d3 = Angles.Mod360Sym(Lj - Ln);
+            
+            var f1 = Angles.Cosin(d1);
+            var f2 = -Angles.Sinus(d2);
+            var f3 = -Angles.Sinus(d3);
+
+            var c1 = 50 * f1 * f1 * f1;
+            var c2 = 50 * f2 * f2 * f2;
+            var c3 = 100 * f3 * f3 * f3;
+
+            var f = 1.5*(c1 + c2 + c3);
+
+            this.List.AppendFormat(CultureInfo.CurrentCulture, "{0,7:F2}\t", f);
+            this.List.AppendFormat(CultureInfo.CurrentCulture, "{0,7:F2}\t", c1);
+            this.List.AppendFormat(CultureInfo.CurrentCulture, "{0,7:F2}\t", c2);
+            this.List.AppendFormat(CultureInfo.CurrentCulture, "{0,7:F2}", c3);
+            this.List.AppendFormat(CultureInfo.InvariantCulture, "\n ");
+
+            /*
+            var f1 = Angles.Mod360Sym(Lj - Ls);
+            var f2 = Angles.Mod360Sym(Lj - Lu - 90);
+            var f = 0.0000;
+            if (f1 < 45) {
+                f += 2*(45 - f1);
+            }
+
+            if (f2 < 45) {
+                f += Math.Abs(45 - f2);
+            }
+            */
+        }
+
+        /// <summary>
+        /// Outputs the experiment outher cosines.
+        /// </summary>
+        /// <param name="julianDate">The julian date.</param>
+        private void OutputExperimentOutherCosines(double julianDate) {
+            var Lj = SolarSystem.Singleton.Jupiter.Longitude;
+            var Ls = SolarSystem.Singleton.Saturn.Longitude;
+            var Lu = SolarSystem.Singleton.Uranus.Longitude;
+            var Ln = SolarSystem.Singleton.Neptune.Longitude;
+            var Lp = BodyPluto.EclipticLongitude(julianDate);
+
+            ////  this.List.AppendFormat("{0}\t", Julian.CalendarDate(julianDate, false));
+            var y = Julian.Year(julianDate);
+            this.List.AppendFormat(CultureInfo.CurrentCulture, "{0,7:F2}\t", y);
+
+            this.List.AppendFormat("{0,4:F0}\t", Lu);
+            this.List.AppendFormat("{0,4:F0}\t", Ln);
+            this.List.AppendFormat("{0,4:F0}\t", Lp);
+
+            this.List.AppendFormat(CultureInfo.InvariantCulture, "\t");
+
+            var value1 = 25 * Angles.Cosin(Lu - Ln);  //// 60, 100
+            var value2 = 50 * Angles.Cosin(Lu - Lp);  //// 80, 40
+            var value3 = 100 * Angles.Cosin(Ln - Lp);  //// 100, 60
+
+            this.List.AppendFormat("{0,7:F2}\t", value1);
+            this.List.AppendFormat("{0,7:F2}\t", value2);
+            this.List.AppendFormat("{0,7:F2}\t", value3);
+
+            this.List.AppendFormat("{0,7:F2}\t", value1 + value2 + value3);
+
+            this.List.AppendFormat(CultureInfo.InvariantCulture, "\n ");
+        }
+
+--------------------------------------------------
+********* Interval *************
+--------------------------------------------------
+
+                        /*
+                        result = ( Constellation.IsConjunction(Lj, Ln, 20.0)
+                                   || Constellation.IsConjunction(Lj, Lu, 20.0)
+                                   || Constellation.IsConjunction(Lj, Ls, 20.0))
+                                && Constellation.IsOpposition(Lj, Le, 10.0);
+                        */
+                        /*
+                        result = Constellation.IsRightAngle(Lj, Ln, 20.0)
+                                   && Constellation.IsConjunction(Lj, Lu, 20.0);
+
+                        result = Constellation.IsTrigAspect(Ln, Ls, 40.0)
+                                    && Constellation.IsTrigAspect(Lj, Ls, 40.0)
+                                    && Constellation.IsTrigAspect(Lj, Ln, 40.0)
+                                    && !Constellation.IsConjunction(Lj, Ls, 30.0)
+                                    && !Constellation.IsConjunction(Lj, Ln, 30.0)
+                                    && !Constellation.IsConjunction(Ls, Ln, 30.0);
+                        */
+                        //// && Constellation.IsConjunction(Lj, Lu, 30.0);
+
+                        /*
+                        result = Constellation.IsAspect(Lu, Ln, 10.0)
+                                    && Constellation.IsOpposition(Lj, Ls, 20.0);
+                        */
+                        /* pro Filipa a Tynu
+                        result = Constellation.IsConjunction(Lj, Ls, 8.0)
+                            && Constellation.IsConjunction(Lj, Le, 10.0);                        
+                            */
+                        /*
+                        result = Constellation.IsConjunction(Lj, Ls, 10.0)
+                                && Constellation.IsOpposition(Lj, Le, 40.0);
+                                */
+                        ////        && Constellation.IsRightAngle(Lj, Ln, 15.0)
+
+
+                        //// result = Constellation.IsConjunction(Lj, Ls, 3.0);
+                        //&& Constellation.IsConjunction(Lj, Lu, 90)
+                        //&& Constellation.IsConjunction(Lj, Ln, 90);
+
+                        /*
+                        result = Constellation.IsAspect(Lj, Lu, 1.0)
+                                && Constellation.IsRightAngle(Lj, Ln, 15.0);
+                         */
+                        /*
+                        result = Constellation.IsConjunction(Lj, Lu, 1.0)
+                                && Constellation.IsConjunction(Lj, Ln, 30);
+                        */
+
+                        //// result = Constellation.IsConjunction(Lu, Ln, 0.5);
+
+                        //// result = Constellation.IsAspect(Lj, Lu, 2.0);
+
+                        /*
+                        result = Constellation.IsAspect(Lj, Lu, 3.0)
+                              && Constellation.IsConjunction(Lj, Ln, 5.0);
+                        */
+
+                        //// && Constellation.IsConjunction(Ln, Lu, 5.0);
+
+                        /*
+                        var a = Math.Abs(Math.Sin(Lj - Ljp));
+                        var b = Math.Abs(Math.Sin(Lj - Ls));
+                        var f = a + b;
+                        result = f > 1.5f;
+
+
+                        var f = Math.Abs(Angles.Mod360Sym(Lj - Ljp)) + Math.Abs(Angles.Mod180Sym(Lj - Ls + 90));
+                        result = f > 210;
+
+
+                        result = Constellation.IsConjunction(Lj, Ls, 10.0)
+                                && Constellation.IsConjunction(Le, Lr, 10.0)
+                                && Constellation.IsRightAngle(Lj, Le, 10.0);
+                        */
+
+                        /*
+                        var axUN = Angles.AxisOf(Lu, Ln);
+                        var diffAxJ = Angles.Mod360Sym(axUN/2 - Lj);
+                        result = Constellation.IsConjunction(axUN, diffAxJ, 20.0);
+                        */
+                        /*
+                        result = Constellation.IsConjunction(SolarSystem.Singleton.Jupiter.Longitude 
+                                                                  + SolarSystem.Singleton.Uranus.Longitude 
+                                                                  - SolarSystem.Singleton.Neptune.Longitude, 
+                                                                  SolarSystem.Singleton.Jupiter.LP - 180.0, 5.0); 
+
+                        //// var alpha = Angles.Mod360(1 * Lj - 1 * Ls - 1 * Lu + 1 * Ln);
+                        var alpha = Angles.Mod360(1 * Lj - 4 * Lu + 3 * Lx + 90);
+                        //// var alpha = Angles.Mod360(2 * Lj - 1 * Ls - 5 * Lu + 1 * Ln + 3 * Lx);
+                        result = Constellation.IsAspect(alpha, 0, 1);
+
+                        result = Constellation.IsOpposition(Ls, Lx, 20.0)
+                                && Constellation.IsConjunction(Lu, Lx, 20.0)
+                                && Constellation.IsConjunction(Ln, Lx, 20.0);
+                                */
+
+                        //// result = Constellation.IsConjunction(Lj, Lx, 20.0) && Constellation.IsConjunction(Lu, Lx, 20.0);
+                        //// result = Constellation.IsOpposition(Lu, Lx, 15.0) && Constellation.IsConjunction(Ln, Lx, 15.0);
+                        //// result = Constellation.IsOpposition(Ln, Lx, 10.0) && Constellation.IsConjunction(Lu, Lx, 10.0);
+                        //// result = Constellation.IsConjunction(Lj, Lx, 20.0) && Constellation.IsConjunction(Ls, Lx, 20.0);
+                        //// result = Constellation.IsConjunction(Lu, Lx, 10.0) && Constellation.IsConjunction(Ln, Lx, 10.0);
+                        //// result = Constellation.IsConjunction(Lj, Lx, 2.0);
+                        //// result = Constellation.IsConjunction(Ls, Lx, 1.0);
+                        //// result = Constellation.IsConjunction(Lu, Lx, 1.0);
+                        //// result = Constellation.IsConjunction(Ln, Lx, 1.0);
+
+                        //// result = Constellation.IsAspect(Ls, Lu, 3.0);
+                        //// result = Constellation.IsRightAngle(Ls, Ln, 3.0);
+
+                        /*
+                    var axisUN = Angles.AxisOf(Lu, Ln);
+                    result = Constellation.IsAspect(Ljp, axisUN, 5.0);
+
+                         var axisUN = Angles.AxisOf(Lu, Ln);
+                         result = Constellation.IsAspect(Lj, axisUN, 5.0);
+                         * 
+                         result = Constellation.IsConjunction(Lj, Lu, 45.0)
+                              && Constellation.IsConjunction(Lj, Ln, 45.0)
+                              && !Constellation.IsConjunction(Lu, Ln, 45.0);
+                              */
+
+                        /*
+                        var axisJS = Angles.AxisOf(Lj, Ls);
+                        var axisUN = Angles.AxisOf(Lu, Ln);
+                        result = Constellation.IsAspect(axisJS, axisUN, 5.0);
+                        */
+                        /*
+                        result = Constellation.IsConjunction(Lj, Ln, 30.0)
+                                 && Constellation.IsConjunction(Ls, Lu, 30.0);
+                         */        //// && Constellation.IsRightAngle(Lj, Ls, 20.0);
+
+                        //// result = Constellation.IsConjunction(2 * Lj + 180, 5 * Ls, 1.0);
+                        //// result = Constellation.IsConjunction(1 * Ls, 3 * Lu, 1.0);
+
+                        /*
+                            result = Constellation.IsAspect(Lj, Ln, 20.0)
+                                 && Constellation.IsRightAngle(Lj, Ls, 20.0);
+                          */
+                        //// && Constellation.IsTrigAspect(Ls, Lu, 10.0);
+
+                        /*
+                  result = Constellation.IsOpposition(Lj, Lu, 15.0)
+                              && Constellation.IsAspect(Ls, Lu, 15.0);
+
+                  result = Constellation.IsConjunction(1 * Lj + 180, 3 * Ls, 1.0);
+                  */
+                        /*
+                        result = Constellation.IsConjunction(Lj, Ls, 30.0)
+                             && Constellation.IsConjunction(Lv, Lj, 30.0)
+                             && Constellation.IsConjunction(Le, Lj, 30.0)
+                             && Constellation.IsConjunction(Lr, Lj, 30.0);
+                            ////  && Constellation.IsConjunction(Lm, Lj, 30.0)
+                        */
+                        //// var axisUN = Angles.AxisOf(Lu, Ln);
+                        /*
+                        result = Constellation.IsConjunction(Lj, Lu, 120.0)
+                              && Constellation.IsConjunction(Ls, Ln, 120.0)
+                              && Constellation.IsConjunction(Lj, Ls, 150.0)
+                              && Constellation.IsConjunction(Lu, Ln, 150.0)
+                              && (Constellation.IsConjunction(Lj, Ls, 30.0) || Constellation.IsConjunction(Lu, Ln, 30.0));
+                        */
+                        /*
+                         result = Constellation.IsOpposition(Lj, Ls, 45.0)
+                               && Constellation.IsOpposition(Lj, Lu, 45.0)
+                               && Constellation.IsOpposition(Lj, Ln, 45.0)
+                                 && Constellation.IsApocentre(Lj, Ljp, 30.0);
+                         */
+                        /*
+                        result = Constellation.IsOpposition(Lj, Ls, 15.0)
+                              && Constellation.IsOpposition(Lj, Lu, 60.0)
+                              && Constellation.IsOpposition(Lj, Ln, 60.0)
+                              && Constellation.IsPericentre(Lj, Ljp,15.0);
+                              */
+                        /*
+                        result = Constellation.IsConjunction(Lj, Ls, 10.0)
+                              && Constellation.IsRightAngle(Lj, axisUN, 10.0);
+                              */
+                        /*
+                                                result = Constellation.IsTrigMultiple(Lj, Ls, 10.0)
+                                                      && Constellation.IsTrigMultiple(Lu, Ln, 10.0);
+                        */
+                        /*
+///// var alpha = Angles.Mod360(12 * Lj - 12 * Ls - 8*12 * Lu + 8*12 * Ln);
+var alpha = Angles.Mod360(1 * Lj - 1 * Ls - 8 * Lu + 8 * Ln); //// + 90
+//// var alpha = Angles.Mod360(Lj/24 - Ls/24 - Lu/3 + Ln/3);
+result = Constellation.IsAspect(alpha, 0, 0.5);
+*/
+
+                        /*
+                         * 
+                        result = Constellation.IsOpposition(Le, Lj, 80.0)
+                                    && Constellation.IsOpposition(Le, Ls, 80.0)
+                                    && Constellation.IsOpposition(Le, Lu, 80.0)
+                                    && Constellation.IsOpposition(Le, Ln, 80.0);
+                         * 
+                        var alpha = Angles.Mod360(1 * Lj - 1 * Ls - 1 * Lu + 1 * Ln);
+                        result = Constellation.IsAspect(alpha, 0, 5.0);
+                        */
+
+                        //// var Lx = SolarSystem.Singleton.PlanetX.Longitude;
+
+                        //// result = Constellation.IsConjunction(Lj, Ljp+90, 1.0);
+                        //// result = Constellation.IsApocentre(Lj, Ljp, 1.0);
+                        /*
+                    result = Constellation.IsRightAngle(Lj, Ln, 25.0)
+                            && Constellation.IsConjunction(Ln, Le, 25.0)
+                            && Constellation.IsConjunction(Lm, Le, 25.0);
+                            */
+                        /*
+                        result = ((Constellation.IsOpposition(Lv, Le, 35.0) && Constellation.IsOpposition(Lm, Lr, 35.0))
+                                || (Constellation.IsOpposition(Lm, Le, 35.0) && Constellation.IsOpposition(Lv, Lr, 35.0))
+                                || (Constellation.IsOpposition(Lr, Le, 35.0) && Constellation.IsOpposition(Lm, Lv, 35.0)));
+                       */
+                        ////    && Constellation.IsConjunction(Lj, Ls, 30.0);
+
+                        /*
+                        var rAB = Angles.Mod360(1 * Lj - 3 * Ls);
+                        result = Angles.EqualDeg(rAB, -120, 0.60);
+                        */
+
+                        //// result = Constellation.IsConjunction(Lv, Le, 10.0)
+                        ////         && Constellation.IsOpposition(Lj, Lr, 30.0);
+
+                        //// result = Constellation.IsConjunction(1 * Lu, -1 * Ln, 1.0);
+                        //// result = Constellation.IsConjunction(2 * Lj, 5 * Ls, 1.0);
+                        //// result = Constellation.IsConjunction(3 * Lj, 8 * Ls, 1.0);
+
+                        /*
+                        //// var axisJS = Angles.AxisOf(Lj, Ls);
+                        //// var axisUN = Angles.AxisOf(Lu, Ln);
+                        //// var axisUP = Angles.AxisOf(Lu, Lp);
+                        //// var axisUP = Angles.Mod360Sym(Lu-Lp);
+                        var JS = Angles.Mod360Sym(Lj-Ls);
+                        result = Constellation.IsRightAngle(Lj, Lp, 10.0)
+                                && Constellation.IsConjunction(Lj, Ls, 30.0);
+
+                        //// result = Constellation.IsOpposition(Lx, Ln, 1.0);
+                        */
+                        /*
+                        result = Constellation.IsApocentre(Lj, SolarSystem.Singleton.Jupiter.LP, 20.0)
+                                 && Constellation.IsAspect(Lj, Lu, 20.0);
+
+                         result = Constellation.IsAspect(Le, Lm, 5.0)
+                                 && Constellation.IsAspect(Lr, Lv, 5.0); 
+                        
+                        result = Constellation.IsApocentre(Lj, SolarSystem.Singleton.Jupiter.LP, 20.0)
+                                 && Constellation.IsAspect(Lj, Le, 20.0);
+
+                        result = Constellation.IsConjunction(Le, Lr, 5.0)
+                                 && Constellation.IsApocentre(Lj, SolarSystem.Singleton.Jupiter.LP, 20.0)
+                                 && Constellation.IsOpposition(Lj, Le, 20.0);
+
+                        result = Constellation.IsAspect(Lj, Ls, 5.0)
+                                 && Constellation.IsRightAngle(Lj, Lu, 10.0);
+
+          result = Constellation.IsAspect(Lj, Ls, 5.0)
+                   && Constellation.IsRightAngle(Lj, Lu, 10.0);
+        
+         result = Constellation.IsRightAngle(Lj, Ls, 5.0)
+                   && Constellation.IsAspect(Lu, Ls, 10.0);
+
+         result = Constellation.IsAspect(Lj, Ls, 5.0)
+                   && Constellation.IsAspect(Lj, Lu, 10.0)
+                   && Constellation.IsAspect(Ls, Lu, 10.0);
+
+         result = Constellation.IsConjunction(Lj, Ls, 5.0)
+                   && Constellation.IsRightAngle(Lj, Lu, 10.0)
+                   && Constellation.IsRightAngle(Ls, Lu, 10.0);
+
+          ----
+          result = Constellation.IsAspect(Lu, Lp, 3.0);
+
+          result = Constellation.IsConjunction(Lu, Ln, 15.0)
+                   && Constellation.IsAspect(Lu, Lp, 15.0)
+                   && Constellation.IsAspect(Ln, Lp, 15.0);
+                   */
+                        /*
+                        result = Constellation.IsOpposition(Lj, Lp, 5.0)
+                                 && Constellation.IsRightAngle(Lj, Ls, 10.0);
+                                 */
+                        /*
+                        result = Constellation.IsAspect(Lj, Lu, 30.0)
+                                 && Constellation.IsAspect(Lj, Ln, 30.0)
+                                 && Constellation.IsRightAngle(Lj, Ls, 10.0);
+                         */
+                        /*
+                        result = Constellation.IsAxialRightAngle(
+                            SolarSystem.Singleton.Jupiter, SolarSystem.Singleton.Saturn,
+                            SolarSystem.Singleton.Uranus, SolarSystem.Singleton.Neptune, julianDate, 1);
+                        */
+                        /*
+                        var Lr = SolarSystem.Singleton.Mars.Longitude;
+                        var Le = SolarSystem.Singleton.Earth.Longitude;
+                        var Lv = SolarSystem.Singleton.Venus.Longitude;
+                        var Lm = SolarSystem.Singleton.Mercury.Longitude;                  
+                        */
+                        /*
+                        result = Constellation.IsConjunction(Lm, Lj, 20.0)
+                            && Constellation.IsConjunction(Lv, Lr, 20.0)
+                            && Constellation.IsOpposition(Lj, Lu, 40.0);
+                        */
+                        /*
+                        result = Constellation.IsAspect(Lj, Lu, 25.0)
+                              && Constellation.IsAspect(Lj, Ln, 25.0)
+                              && Constellation.IsAspect(Lu, Ln, 25.0);
+                        */
+                        ////      && Constellation.IsRightAngle(Ls, Lj, 30.0);
+                        /*
+                        result = Constellation.IsOpposition(Lj, Lu, 45.0)
+                              && Constellation.IsOpposition(Ls, Ln, 45.0)
+                              && Constellation.IsRightAngle(Ls, Lj, 30.0);
+                        */
+                        /*
+                       result = Constellation.IsConjunction(Lj, Lu, 15.0)
+                               && Constellation.IsConjunction(Ls, Ln, 15.0);
+                       */
+                        /*
+                        var Lbary = SolarSystem.Singleton.Barycentre.Longitude;
+
+                        //// var alpha = Angles.Mod180(2 * Lj - 2 * Ls + 1 * Lu - 3.5 * Ln);
+                        var alpha = Angles.Mod360(2 * Lj - 2 * Ls  + 1 * Lu - 3.5 * Ln);
+                        //// var alpha = Angles.Mod360(2 * Lj - 2 * Ls - 1 * Lu + 3.5 * Ln);
+                        //// var alpha = Angles.Mod360(3.5 * Lj - 6 * Ls);
+                        result = Angles.EqualDeg(alpha, 0, 3);
+                        */
+                        /*
+                        result = Constellation.IsConjunction(Lm, Le, 30.0)
+                                && Constellation.IsOpposition(Lm, Lv, 30.0)
+                                && Constellation.IsOpposition(Le, Lv, 30.0)
+                                && Constellation.IsConjunction(Lv, Lj, 60.0)
+                                && Constellation.IsConjunction(Lj, Ls, 40.0);
+                        ////   && Constellation.IsRightAngle(Le, Lbary, 20.0);
+                        */
+
+                        /*
+                        result = Constellation.IsAspect(Lv, Le, 20.0)
+                                && Constellation.IsRightAngle(Le, Lj, 20.0)
+                                && Constellation.IsRightAngle(Lv, Lj, 20.0);
+                        */
+                        /*
+                        result = Constellation.IsRightAngle(Lj, Ls, 15.0)
+                                && Constellation.IsRightAngle(Lv, Le, 5.0);
+                        */
+                        /*
+                        result = Constellation.IsConjunction(Lj, Le, 3.0)
+                                && Constellation.IsOpposition(Lj, Ls, 30.0)
+                                && Constellation.IsOpposition(Lj, Lu, 30.0)
+                                && Constellation.IsOpposition(Lj, Ln, 30.0);
+                        
+                        result = Constellation.IsOpposition(Lj, Le, 30.0)
+                               && Constellation.IsConjunction(Lj, Lv, 30.0)
+                               && Constellation.IsConjunction(Lj, Ls, 50.0)
+                               && !Constellation.IsConjunction(Lj, Ls, 5.0);
+                        */
+                        /*
+                        result = Constellation.IsOpposition(Lj, Lu, 20.0)
+                               && Constellation.IsConjunction(Lj, Le, 20.0)
+                               && Constellation.IsConjunction(Lj, Ls, 50.0)
+                               && !Constellation.IsConjunction(Lj, Ls, 5.0);
+                               */
+                        /*        
+                        result = Constellation.IsOpposition(Lj, Lu, 20.0)
+                               && Constellation.IsConjunction(Lj, Le, 20.0)
+                               && Constellation.IsRightAngle(Le, Lv, 20.0);
+                               */
+                        /*
+                        result = Constellation.IsConjunction(Ls, Lr, 20.0)
+                                && Constellation.IsConjunction(Lj, Le, 10.0)
+                                && Constellation.IsApocentre(Ls,SolarSystem.Singleton.Saturn.LP, 30.0);
+                                */
+                        /*
+                        result = Constellation.IsOpposition(Ls, Lr, 5.0)
+                               && Constellation.IsOpposition(Lj, Le, 5.0);
+                               */
+                        /*        
+                        result = Constellation.IsConjunction(Ls, Lr, 20.0)
+                                   && Constellation.IsConjunction(Lj, Le, 10.0)
+                                   && Constellation.IsConjunction(Lv, Lm, 20.0);
+                                   */
+                        /*
+                        result = Constellation.IsOpposition(Lm, Lv, 20.0)
+                               && Constellation.IsConjunction(Lj, Le, 10.0)
+                               && Constellation.IsRightAngle(Le, Lv, 20.0);
+                               */
+                        //// result = Constellation.IsTrigAspect(Lj+60, Ls, 1.0);
+                        //// && Constellation.IsTrigAspect(Lj, Le, 6.0);
+
+                        //// result = Constellation.IsAspect(Lj, Lv, 25.0)
+                        ////     && Constellation.IsAspect(Lj, Le, 25.0);
+                        ////     && Constellation.IsConjunction(Lj, Lr, 30.0);
+
+                        //// var alpha = Angles.Mod360(Lm - 5 * Le + 4 * Lv);
+                        /*var alpha = Angles.Mod360(Lv - Lj - 180);
+                        var beta = Angles.Mod360(Le - Lj);
+
+                        var alpha = Angles.Mod360(Lv - Lj - 180);
+                        var beta = Angles.Mod360(Le - Lj); 
+
+                        var alpha = Angles.Mod360(Lv - Lj);
+                        var beta = Angles.Mod360(Le - Lj - 180);
+
+                        var alpha = Angles.Mod360(Lv - Lj - 180);
+                        var beta = Angles.Mod360(Le - Lj - 180);
+                        
+                        var alpha = Angles.Mod180(Lj - Lv);
+                        var alpha = Angles.Mod360(Lj - Le);
+                        var beta = Angles.Mod360(Lm - Lv);
+                        var gama = Angles.Mod360(Le - Lv - 180);
+                        var alpha = Angles.Mod360(Lm - Lv);
+                        var beta = Angles.Mod360(Le - Lv-180);
+
+                        var alpha = Angles.Mod360(Lj - Lv - 90);
+                        var beta = Angles.Mod360(Lj - Ls - 90); 
+
+                        var alpha = Angles.Mod360(Lm - 4 * Lv + 2 * Le + Lr);
+                        
+                        var alpha = Angles.Mod360(3*Lv - 5*Le + 2*Lj);
+                        var beta = Angles.Mod360(41 * Lv - 69 * Le + 28 * Lj+180);
+                        */
+
+                        /*
+                        var alpha = Angles.Mod360(Lm - Lv);
+                        result = Angles.EqualDeg(alpha, 0, 5);
+                        */
+
+                        //// var alpha = Angles.Mod360(Lm/15 - Lv/4 + Le/5);
+                        //// var alpha = Angles.Mod360(1 * Lm - 5 * Lv + 4 * Le);
+                        //// var alpha = Angles.Mod360(3 * Lv - 5 * Le + 2 * Lj);
+                        //// var alpha = Angles.Mod360(1 * Lv - 2 * Le + 1 * Lr);
+                        //// var alpha = Angles.Mod360(8 * Lv - 12 * Le - 3 * Lr + 7 * Lj +180);
+                        //// var alpha = Angles.Mod360(1 * Lm - 5 * Lv + 4 * Le);
+                        //// var alpha = Angles.Mod360(8 * Lv - 12 * Le + 4 * Lr);
+                        //// var alpha = Angles.Mod360(2 * Lv - 3 * Le + 1 * Lr);
+                        /* var alpha = Angles.Mod360(3 * Lj - 4 * Ls);
+                        result = Angles.EqualDeg(alpha, 0, 1);
+                        */
+                        /*
+                        var alpha = Angles.Mod360(Lj - Le);
+                        var beta = Angles.Mod360(Lj - Ls - 90);
+
+                        result = Angles.EqualDeg(alpha, 0, 2)
+                                    && Angles.EqualDeg(beta, 0, 30);    */
+                        /*  && Angles.EqualDeg(beta, 0, 5);
+                         && Angles.EqualDeg(gama, 0, 60); */
+                        //// result = Angles.EqualDeg(alpha, 0, 1);
+--------------------------------------------------
+*********Planet X*************
+--------------------------------------------------
+                        ////  result = Constellation.IsConjunction(Lx, 127, 1.0);
+
+                        //// result = Constellation.IsRightAngle(Lu, Lx, 1.0);
+
+                        //// result = Constellation.IsConjunction(Lu, Lx, 30.0) && Constellation.IsConjunction(Ln, Lx, 30.0);
+                        //// result = Constellation.IsConjunction(Lu, Lx, 10.0) && Constellation.IsConjunction(Ln, Lx, 10.0);
+                        /*
+                        var a = Angles.Mod360Sym((1 * Lj - 1 * Ls - 1 * Ln + 1 * Lx)*2); ////  - 30
+                        result = Math.Abs(a) < 3;
+                        */
+                        /*
+                        //// var a = Angles.Mod360Sym(3 * Lj - 2 * Ls - 2 * Lx);
+                        var a = Angles.Mod360Sym(2 * Lj - 2 * Ls - 1 * Lu + 1 * Lx); ////  - 30
+                        var a = Angles.Mod360Sym(2 * Lj - 2 * Ls - 1 * Lu + 1 * Lx - 220); ////  - 30
+                        //// var a = Angles.Mod360Sym(2 * Lj - 2 * Ls - 2 * Ln + 1 * Lx);
+                        //// var a = Angles.Mod360Sym(4 * Lj - 4 * Ls - 1*Lu - 2 * Ln + 2 * Lx);
+
+                        result = Math.Abs(a) < 3;
+                        */
+                        ////result = Constellation.IsConjunction(Lu, Lx, 3.0);
+                        //// result = Constellation.IsOpposition(Lu, Lx, 3.0);
+                        ////result = Constellation.IsConjunction(Ln, Lx, 3.0);
+                        //// result = Constellation.IsOpposition(Ln, Lx, 3.0);
+
+                        /*
+                        var Lv = SolarSystem.Singleton.Venus.Longitude;
+                        var Le = SolarSystem.Singleton.Earth.Longitude;
+                        var Lr = SolarSystem.Singleton.Mars.Longitude;
+
+                        result = Constellation.IsAspect(Le, Lr, 20.0)
+                                 && Constellation.IsAspect(Le, Lv, 30.0)
+                                 && Constellation.IsAspect(Lr, Lv, 30.0);
+                                 */
+                        /*    
+                        result = Constellation.IsPericentre(Lj, Ljp, 10.0)
+                                 && Constellation.IsPericentre(Lu, Lup, 30.0)
+                                 && Constellation.IsOpposition(Lj, Lu, 30.0);
+
+
+                        result = Constellation.IsConjunction(Lj, Le, 15.0)
+                                 && Constellation.IsConjunction(Lv, Lr, 15.0)
+                                 && Constellation.IsAspect(Lj, Ls, 15.0)
+                                 && Constellation.IsAspect(Lu, Ln, 30.0);
+
+                        result = Constellation.IsOpposition(Lj, Ls, 1.0)
+                                 && Constellation.IsOpposition(Lj, Lu, 30.0)
+                                 && Constellation.IsOpposition(Lj, Ln, 45.0);
+
+                        var dj = Angles.Mod360(Lj - Ljp);
+                        var du = Angles.Mod360(Ljp - Lu);
+
+                        result = Constellation.IsConjunction(dj, du, 5.0);
+                        */
+                        //// result = Constellation.IsRightAngle(Lu, Lx, 1.0);
+
+                        //// result = Constellation.IsOpposition(Ln, Lx, 1.0);
+                        //// result = Constellation.IsConjunction(Ln, Lx, 1.0);
+                        //// result = Constellation.IsRightAngle(Ln, Lx, 1.0);
+
+                        //// result = Constellation.IsOpposition(Ln, Lx, 1.0);
+                        //// result = Constellation.IsOpposition(Ln, Lx, 1.0);
+                        //// result = Constellation.IsConjunction(Ln, Lx, 1.0);
+
+                        /*
+                        result = Constellation.IsOpposition(Lu, Lx, 20.0)
+                                    && Constellation.IsOpposition(Ln, Lx, 20.0);
+                        */
+                        //// result = Constellation.IsOpposition(Ls, Ln, 2.0);
+                        //// result = Constellation.IsConjunction(Lj, Lx, 2.0);
+
+--------------------------------------------------
+*********Solar-Impulses*************
+--------------------------------------------------
+
+/*
+                    result = Constellation.IsConjunction(SolarSystem.Singleton.Venus.Longitude, SolarSystem.Singleton.Jupiter.Longitude, 20.0)
+                        && Constellation.IsConjunction(SolarSystem.Singleton.Venus.Longitude, SolarSystem.Singleton.Earth.Longitude, 20.0)
+                        && Constellation.IsConjunction(SolarSystem.Singleton.Earth.Longitude, SolarSystem.Singleton.Jupiter.Longitude, 20.0);
+                    */
+                    /*
+                    result = Constellation.IsConjunction(SolarSystem.Singleton.Mercury.Longitude, SolarSystem.Singleton.Earth.Longitude, 45.0)
+                        && Constellation.IsConjunction(SolarSystem.Singleton.Venus.Longitude, SolarSystem.Singleton.Earth.Longitude, 45.0)
+                        && Constellation.IsConjunction(SolarSystem.Singleton.Jupiter.Longitude, SolarSystem.Singleton.Earth.Longitude, 30.0); */
+                    ////    && Constellation.IsConjunction(SolarSystem.Singleton.Saturn.Longitude, SolarSystem.Singleton.Earth.Longitude, 80.0);
+                    //// result = Constellation.IsConjunction(SolarSystem.Singleton.Mercury.Longitude, SolarSystem.Singleton.Earth.Longitude, 5.0);
+                    //// result = Constellation.IsConjunction(SolarSystem.Singleton.Mercury.Longitude, SolarSystem.Singleton.Venus.Longitude, 5.0);
+
+--------------------------------------------------
+**********************
+--------------------------------------------------
+//// result = IsPericentre(SolarSystem.Jupiter, date, 1);
+////Angles.AxisOf( SolarSystem.Saturn.Longitude,SolarSystem.Neptune.Longitude) 
+/* result = IsConjunction(SolarSystem.Saturn, SolarSystem.Neptune, date, 30)
+      && IsRightAngle(SolarSystem.Jupiter, SolarSystem.Saturn, date, 30) 
+      && IsRightAngle(SolarSystem.Jupiter, SolarSystem.Neptune, date, 30); 
+
+result = IsApocentre(SolarSystem.Jupiter, date, 1)
+    && IsConjunction(SolarSystem.Jupiter, SolarSystem.Mars, date, 10);
+ * 
+result = IsApocentre(SolarSystem.Jupiter, date, 1)
+    && (IsConjunction(SolarSystem.Uranus, SolarSystem.Neptune, date, 45));
+                    
+result = IsApocentre(SolarSystem.Jupiter, date, 1)
+    && (IsConjunction(SolarSystem.Saturn, SolarSystem.Neptune, date, 60));
+                    
+result = IsApocentre(SolarSystem.Jupiter, date, 1)
+    && (IsConjunction(SolarSystem.Saturn, SolarSystem.Uranus, date, 45)); 
+
+result = IsApocentre(SolarSystem.Jupiter, date, 1)
+   && (IsConjunction(SolarSystem.Uranus, SolarSystem.Neptune, date, 45)
+   || IsConjunction(SolarSystem.Saturn, SolarSystem.Neptune, date, 45)
+   || IsConjunction(SolarSystem.Saturn, SolarSystem.Uranus, date, 45));
+
+//// result = IsRightAngle(SolarSystem.Jupiter, SolarSystem.Saturn, date, 1); 
+////  2009,00 J:301,96 S:165,84 U:351,68 N:323,55 H:165,66 2008 Dec 28
+////  2009,00 M:348,42 V: 42,69 E: 97,06 R:266,63 2008 Dec 28  0 AD
+ result = IsConjunction(SolarSystem.Saturn.Longitude - SolarSystem.Jupiter.Longitude, 165.84 - 301.96, 5) // 45
+     && IsConjunction(SolarSystem.Uranus.Longitude - SolarSystem.Jupiter.Longitude, 351.68 - 301.96, 45)
+     && IsConjunction(SolarSystem.Neptune.Longitude - SolarSystem.Jupiter.Longitude, 323.55 - 301.96, 45); 
+////  result = IsOpposition(SolarSystem.Jupiter, SolarSystem.Saturn, date, 30) // 45
+////     && IsAspect(SolarSystem.Jupiter, SolarSystem.Sun, date, 15); //30
+////   result = IsAspect(SolarSystem.Jupiter, SolarSystem.Saturn, date, 2);
+////  result = IsOpposition(SolarSystem.Uranus, SolarSystem.Saturn, date, 30)
+////       && IsOpposition(SolarSystem.Uranus, SolarSystem.Neptune, date, 30);
+ result = IsOpposition(SolarSystem.Jupiter, SolarSystem.Saturn, date, 80)
+      && IsOpposition(SolarSystem.Jupiter, SolarSystem.Uranus, date, 80)
+      && IsOpposition(SolarSystem.Jupiter, SolarSystem.Neptune, date, 80)
+      && IsConjunction(SolarSystem.Uranus, SolarSystem.Neptune, date, 160)
+      && IsConjunction(SolarSystem.Saturn, SolarSystem.Neptune, date, 160)
+      && IsConjunction(SolarSystem.Saturn, SolarSystem.Uranus, date, 160);
+
+////  result = this.IsVernalPoint(SolarSystem.Jupiter, date, 0.005);
+    result = IsConjunction(SolarSystem.Earth, SolarSystem.Mars, date, 1)
+        && IsLine(SolarSystem.Earth, SolarSystem.Venus, SolarSystem.Mars, date + 520, 10); 
+result = IsLine(SolarSystem.Earth, SolarSystem.Venus, SolarSystem.Mars, date, 10)
+        && IsLine(SolarSystem.Earth, SolarSystem.Venus, SolarSystem.Mars, date+260, 10);
+                    
+result = IsConjunction(SolarSystem.Earth, SolarSystem.Mars, date, 1) 
+        && IsLine(SolarSystem.Earth, SolarSystem.Venus, SolarSystem.Mars, date+260, 10)
+        && IsLine(SolarSystem.Earth, SolarSystem.Venus, SolarSystem.Mars, date-260, 10);
+                   
+result = IsConjunction(SolarSystem.Earth, SolarSystem.Mars, date, 1)
+    || IsOpposition(SolarSystem.Earth, SolarSystem.Mars, date, 1)
+        || IsLine(SolarSystem.Earth, SolarSystem.Venus, SolarSystem.Mars, date, 5);
+                    
+//// result = IsConjunction(SolarSystem.Earth, SolarSystem.Venus, date, 1)
+////        && EarthSystem.IsNewMoon(date, 5);
+////result = IsPericentre(SolarSystem.Jupiter, date, 20.0)
+////        && IsAspect(SolarSystem.Earth, SolarSystem.Jupiter, date, 20);
+//// result = EarthSystem.IsFullMoon(date, 0.3);
+//// result = EarthSystem.IsAnyEclipse(date, 0.5, 10.0);
+//// result = EarthSystem.IsNewMoon(date, 0.1);
+//// result = IsConjunction(SolarSystem.Jupiter.Longitude + SolarSystem.Uranus.Longitude - SolarSystem.Neptune.Longitude, SolarSystem.Jupiter.LP - 180.0, 0.3);
+//// result = IsConjunction(SolarSystem.Jupiter.Longitude + SolarSystem.Uranus.Longitude - SolarSystem.Neptune.Longitude, SolarSystem.Jupiter.LP, 0.3);
+
+////result = IsConjunction(SolarSystem.Jupiter, SolarSystem.Saturn, date, 0.2);
+                    
+result = IsApocentre(SolarSystem.Jupiter, date, 1.0)
+            && IsApocentre(SolarSystem.Saturn, date, 20.0)
+            && IsPericentre(SolarSystem.Uranus, date, 30.0);
+
+result = IsOpposition(SolarSystem.Jupiter, SolarSystem.Uranus, date, 5.0)
+        && IsRightAngle(SolarSystem.Saturn, SolarSystem.Jupiter, date, 15.0)
+        && IsRightAngle(SolarSystem.Saturn, SolarSystem.Uranus, date, 15.0);
+                    
+result = IsPericentre(SolarSystem.Jupiter, date, 5.0)
+&& IsPericentre(SolarSystem.Saturn, date, 20.0)
+&& IsPericentre(SolarSystem.Uranus, date, 20.0);
+
+//// result = IsNodalAspect(SolarSystem.Earth, SolarSystem.Saturn, date, 0.5);
+//// result = IsConjunction(SolarSystem.Jupiter, SolarSystem.Saturn, date, 35.0) && IsConjunction(SolarSystem.Jupiter, SolarSystem.Uranus, date, 45.0);
+//// && IsOpposition(SolarSystem.Jupiter, SolarSystem.Neptune, date, 80.0);
+
+//// && IsConjunction(SolarSystem.Neptune, SolarSystem.Saturn, date, 30.0)
+    && IsPericentre(SolarSystem.Jupiter, date, 10.0)
+    && IsRightAngle(SolarSystem.Jupiter, SolarSystem.Neptune, date, 30.0);
+
+    * result = IsConjunction(SolarSystem.Jupiter, SolarSystem.Saturn, date, 30)
+    && IsConjunction(SolarSystem.Uranus, SolarSystem.Neptune, date, 30.0)
+    && IsPericentre(SolarSystem.Jupiter, date, 10.0)
+    && IsRightAngle(SolarSystem.Jupiter, SolarSystem.Neptune, date, 30.0);
+
+var ju = Angles.BalancedAxisOf(SolarSystem.Jupiter.Longitude, 1.0, SolarSystem.Uranus.Longitude, 1.0);
+var sn = Angles.BalancedAxisOf(SolarSystem.Saturn.Longitude, 1.0, SolarSystem.Neptune.Longitude, 1.0);
+return Angles.EqualDeg180(ju, sn, 1.0);
+
+result = IsConjunction(SolarSystem.Mercury, SolarSystem.Earth, date, 30)
+        && IsConjunction(SolarSystem.Venus, SolarSystem.Mars, date, 30)
+        && IsOpposition(SolarSystem.Venus, SolarSystem.Earth, date, 30);
+                   
+////        && IsRightAngle(SolarSystem.Jupiter, SolarSystem.Earth, date, 30)                           
+////        && IsRightAngle(SolarSystem.Jupiter, SolarSystem.Venus, date, 30);
+result = IsConjunction(SolarSystem.Mercury, SolarSystem.Venus, date, 30)
+        && IsConjunction(SolarSystem.Mercury, SolarSystem.Earth, date, 30)
+        && IsConjunction(SolarSystem.Venus, SolarSystem.Earth, date, 30);
+    * 
+result = IsOpposition(SolarSystem.Jupiter, SolarSystem.Saturn, date, 30)
+            && IsOpposition(SolarSystem.Jupiter, SolarSystem.Uranus, date, 60)
+            && IsOpposition(SolarSystem.Jupiter, SolarSystem.Neptune, date, 60); 
+//// result = IsRightAngle(SolarSystem.Uranus, SolarSystem.Neptune, date, 1);
+//// result = IsPericentre(SolarSystem.Uranus, date, 3.0) && IsPericentre(SolarSystem.Neptune, date, 3.0); 
+//// result = IsPericentre(SolarSystem.Jupiter, date, 1.0);
+//// result = IsOrbitalResonance(1, SolarSystem.Jupiter, +1, SolarSystem.Uranus, -1, SolarSystem.Neptune, 180, 360, date, 1.0);
+//// result = IsPericentre(SolarSystem.Mars, date, 0.9);
+//// result = IsApocentre(SolarSystem.Mars, date, 0.1);
+//// result = IsPericentre(SolarSystem.Mars, date, 0.4);
+//// result = IsResonance(1, SolarSystem.Mercury, -5, SolarSystem.Venus, -4, SolarSystem.Earth, +15, SolarSystem.Mars, 0, 360, date, 5.0);
+////           && IsResonance(5, SolarSystem.Venus, -15, SolarSystem.Mars, 0, 360, date, 5.0);
+
+////result = IsConjunction(SolarSystem.Jupiter, SolarSystem.Saturn, date, 5);
+////
+//// result = IsOrbitalResonance(1, SolarSystem.Jupiter, +1, SolarSystem.Uranus, -1, SolarSystem.Neptune,180, 360, date, 1.0);
+//// result = IsOrbitalResonance(2, SolarSystem.Jupiter, 3, SolarSystem.Venus, -5, SolarSystem.Earth, 0, 180, date, 1.0);
+
+//// result = IsPericentre(SolarSystem.Jupiter, date, 1.0); ////  && IsPericentre(SolarSystem.Jupiter, date, 5.0);
+//// result = IsOrbitalResonance(1, SolarSystem.Jupiter, +1, SolarSystem.Uranus, -1, SolarSystem.Neptune, 180, 360, date, 0.3);
+
+result = IsOrbitalResonance(2, SolarSystem.Jupiter, 3, SolarSystem.Venus, -5, SolarSystem.Earth, 0, 180, date, 1.0);
+result = IsOrbitalResonance(2, SolarSystem.Jupiter, 3, SolarSystem.Venus, -5, SolarSystem.Earth, 90, 180, date, 1.0);
+
+result = IsOrbitalResonance(1, SolarSystem.Jupiter, +1, SolarSystem.Uranus, -1, SolarSystem.Neptune, 180, 360, date, 0.3);                     
+result = IsOrbitalResonance(1, SolarSystem.Jupiter, +1, SolarSystem.Uranus, -1, SolarSystem.Neptune, 0, 360, date, 0.3);
+//// result = IsConjunction(SolarSystem.Jupiter.Longitude + SolarSystem.Uranus.Longitude - SolarSystem.Neptune.Longitude, SolarSystem.Jupiter.LP - 180, 5);
+
+//// result = IsResonance(1, SolarSystem.Jupiter, +1, SolarSystem.Uranus, -1, SolarSystem.Neptune, 180, 360, date, 0.3);
+//// result = IsResonance(1, SolarSystem.Jupiter, +1, SolarSystem.Uranus, -1, SolarSystem.Neptune, 0, 360, date, 0.3);
+//// result = IsResonance(1, SolarSystem.Saturn, -1, SolarSystem.Uranus, 1, SolarSystem.Neptune, 90, 360, date, 0.2);
+//// result = IsResonance(1, SolarSystem.Saturn, -1, SolarSystem.Uranus, 1, SolarSystem.Neptune, -90, 360, date, 0.2);
+//// result = IsPericentre(SolarSystem.Jupiter, date, 0.5);
+//// result = IsPericentre(SolarSystem.Mars, date, 0.5); //// || IsApocentre(SolarSystem.Jupiter, date, 0.5); 
+//// result = IsPericentre(SolarSystem.Saturn, date, 0.5) || IsApocentre(SolarSystem.Saturn, date, 0.5); 
+//// result = IsPericentre(SolarSystem.Jupiter, date, 0.5);//// || IsApocentre(SolarSystem.Jupiter, date, 0.5); 
+//// result = IsResonance(SolarSystem.Jupiter, SolarSystem.Neptune, SolarSystem.Uranus, date, 0.4);
+//// result = IsResonance(SolarSystem.Jupiter, SolarSystem.Uranus, SolarSystem.Neptune, date, 0.4);
+////result = IsResonance(SolarSystem.Saturn, SolarSystem.Uranus, SolarSystem.Neptune, date, 0.2);
+
+//// result = IsConjunction(SolarSystem.Earth, SolarSystem.Venus, date, 1);
+//// result = IsResonance(SolarSystem.Jupiter, SolarSystem.Uranus, SolarSystem.Neptune, date, 1)
+////         && IsConjunction(SolarSystem.Earth, SolarSystem.Venus, date, 30);
+//// result = IsResonance(SolarSystem.Saturn, SolarSystem.Uranus, SolarSystem.Neptune, date, 0.5);
+//// result = IsResonance(SolarSystem.Jupiter, SolarSystem.Neptune, SolarSystem.Uranus, date, 1);
+////result = IsConjunction(SolarSystem.Jupiter, SolarSystem.Uranus, date, 10)
+////           && IsRightAngle(SolarSystem.Jupiter, SolarSystem.Neptune, date, 5);
+//// result = IsRightAngle(SolarSystem.Uranus, SolarSystem.Neptune, date, 1)  && IsConjunction(SolarSystem.Jupiter, SolarSystem.Neptune, date, 1);
+//// result = IsRightAngle(SolarSystem.Uranus, SolarSystem.Neptune, date, 0.2);
+////  result = IsRightAngle(SolarSystem.Jupiter, SolarSystem.Saturn, date, 10)
+////        && IsRightAngle(SolarSystem.Saturn, SolarSystem.Uranus, date, 20); 
+//// double value = SolarMaxApproxValue(date,0);
+//// result = value > 10;
+//// result = IsConjunction(SolarSystem.Jupiter.Longitude + SolarSystem.Uranus.Longitude - SolarSystem.Neptune.Longitude, SolarSystem.Jupiter.LP - 180, 5);
+//// result = true;
+                    
+Mayan
+date = shift + Julian.MayanDay(9, 15, 6, 13, 1);
+x = IsConjunction(SolarSystem.Mercury, SolarSystem.Earth, date, 20); ////15
+if (!x) {
+    return false;
+} 
+ * 
+date = shift + Julian.MayanDay(8, 17, 11, 3, 0);
+x = IsAspect(SolarSystem.Earth, SolarSystem.Mars, date, 30); ////30
+if (!x) {
+    return false;
+}
+ * 
+ * 
+date = shift + Julian.MayanDay(9, 13, 17, 15, 12);
+x = IsAspect(SolarSystem.Jupiter, SolarSystem.Saturn, date, 45); //// 90
+if (!x) {
+    return false;
+} 
+
+ * 
+var rec = new MayanRecord(6, 1, 11, 3, 1, "RJS-a", true);
+date = shift + rec.MayanDay();
+bool p = IsConjunction(SolarSystem.Jupiter, SolarSystem.Saturn, date, 40); //// 90
+bool q = IsConjunction(SolarSystem.Mars, SolarSystem.Jupiter, date, 40);  //// 40
+bool r = IsConjunction(SolarSystem.Mars, SolarSystem.Saturn, date, 40);  //// 40
+x = p && q && r;
+if (!x) {
+    return false;
+}
+
+ * 
+date = shift + Julian.MayanDay(8, 16, 14, 15, 4);
+bool a = IsConjunction(SolarSystem.Jupiter, SolarSystem.Saturn, date, 40); //// 90
+bool b = IsOpposition(SolarSystem.Earth, SolarSystem.Jupiter, date, 40);  //// 40
+bool c = IsOpposition(SolarSystem.Earth, SolarSystem.Saturn, date, 40);  //// 40
+x = a && b && c;
+if (!x) {
+    return false;
+} 
+ * 
+ * 
+date = shift + Julian.MayanDay(10, 17,  2, 15, 12);
+x = IsConjunction(SolarSystem.Mercury, SolarSystem.Earth, date, 30);
+if (!x) {
+    return false;
+}
+            
+date = shift + Julian.MayanDay(9, 18, 1, 7, 9);
+x = IsConjunction(SolarSystem.Venus, SolarSystem.Mars, date, 45);
+if (!x) {
+    return false;
+}
+            
+date = shift + Julian.MayanDay(9, 16, 8, 16, 10);
+bool f1 = IsConjunction(SolarSystem.Mercury, SolarSystem.Earth, date, 40);
+bool g1 = IsOpposition(SolarSystem.Mars, SolarSystem.Earth, date, 40);
+x = x && f1 && g1;
+
+date = shift + Julian.MayanDay(9, 17, 4, 15, 3);
+bool f2 = IsConjunction(SolarSystem.Mercury, SolarSystem.Earth, date, 40);
+bool g2 = IsOpposition(SolarSystem.Mars, SolarSystem.Earth, date, 40);
+x = x && f2 && g2;
+            //// return IsConjunction(SolarSystem.Venus, SolarSystem.Earth, date + 85970.0, this.DegEps);
+    Mayan
+date = shift + Julian.MayanDay(8, 16, 14, 15, 4);
+bool a = IsConjunction(SolarSystem.Jupiter, SolarSystem.Saturn, date, 90); //// 90
+bool b = IsAspect(SolarSystem.Earth, SolarSystem.Jupiter, date, 40);  //// 40
+bool c = IsAspect(SolarSystem.Earth, SolarSystem.Saturn, date, 40);  //// 40
+x = a && b && c;
+if (!x) {
+    return false;
+}
+
+double date = shift + Julian.MayanDay(9, 13, 17, 15, 12);
+bool x = IsConjunction(SolarSystem.Jupiter, SolarSystem.Saturn, date, 15);
+
+date = shift + Julian.MayanDay(9, 14, 17, 15, 11);
+x = IsConjunction(SolarSystem.Jupiter, SolarSystem.Saturn, date, 15); */
+-----------------------------------------------
+
+        /// <summary>
+        /// Exports the data.
+        /// </summary>
+        private void ListMayanData()
+        {
+            //// this.ExportMayanData(null, null);  return;
+
+            SystemManager.CurrentSystem = AstSystem.Solar;
+            //// SolarSystem.Singleton.InitSolarSys(AlgVariant.VarBretagnon87, false, AstroSetup.vsopRootPath); //// AlgVariant.VarBretagnon82
+
+            var sb = new StringBuilder();
+
+            var mdates = EventList.AllMayanDates;
+            var mdatesrt = (from md in mdates orderby md.MayanDay select md).ToList();
+            long lastMayanDay = 0;
+            var correlationNumber = EventList.MayanCorrelationConstant;
+            foreach (var mayaRecord in mdatesrt) {
+                if (mayaRecord.MayanDay == lastMayanDay) {
+                    continue;
+                }
+
+                double julianDate = correlationNumber + mayaRecord.MayanDay;
+                SolarSystem.Singleton.SetJulianDate(julianDate);
+
+                var s = mayaRecord.ToString(correlationNumber);
+                var p = string.Format(
+                        "M{0,3:F0} V{1,3:F0} E{2,3:F0} R{3,3:F0} J{4,3:F0} S{5,3:F0}",
+                        SolarSystem.Singleton.Mercury.Longitude,
+                        SolarSystem.Singleton.Venus.Longitude,
+                        SolarSystem.Singleton.Earth.Longitude,
+                        SolarSystem.Singleton.Mars.Longitude,
+                        SolarSystem.Singleton.Jupiter.Longitude,
+                        SolarSystem.Singleton.Saturn.Longitude);
+                var r = (Angles.EqualDeg(SolarSystem.Singleton.Mercury.Longitude, SolarSystem.Singleton.Venus.Longitude, 20) ? "M-V," : string.Empty) +
+                        (Angles.EqualDeg(SolarSystem.Singleton.Mercury.Longitude, SolarSystem.Singleton.Earth.Longitude, 20) ? "M-E," : string.Empty) +
+                        (Angles.EqualDeg(SolarSystem.Singleton.Mercury.Longitude + 180, SolarSystem.Singleton.Earth.Longitude, 20) ? "MoE," : string.Empty) +
+                        (Angles.EqualDeg(SolarSystem.Singleton.Venus.Longitude, SolarSystem.Singleton.Earth.Longitude, 20) ? "V-E," : string.Empty) +
+                        (Angles.EqualDeg(SolarSystem.Singleton.Venus.Longitude + 180, SolarSystem.Singleton.Earth.Longitude, 20) ? "VoE," : string.Empty) +
+                        (Angles.EqualDeg(SolarSystem.Singleton.Venus.Longitude, SolarSystem.Singleton.Mars.Longitude, 20) ? "V-R," : string.Empty) +
+                        (Angles.EqualDeg(SolarSystem.Singleton.Venus.Longitude, SolarSystem.Singleton.Jupiter.Longitude, 20) ? "V-J," : string.Empty) +
+                        (Angles.EqualDeg(SolarSystem.Singleton.Earth.Longitude, SolarSystem.Singleton.Mars.Longitude, 20) ? "E-R," : string.Empty) +
+                        (Angles.EqualDeg(SolarSystem.Singleton.Earth.Longitude + 180, SolarSystem.Singleton.Mars.Longitude, 20) ? "EoR," : string.Empty) +
+                        (Angles.EqualDeg(SolarSystem.Singleton.Earth.Longitude, SolarSystem.Singleton.Jupiter.Longitude, 20) ? "E-J," : string.Empty) +
+                        (Angles.EqualDeg(SolarSystem.Singleton.Earth.Longitude + 180, SolarSystem.Singleton.Jupiter.Longitude, 20) ? "EoJ," : string.Empty) +
+                        (Angles.EqualDeg(SolarSystem.Singleton.Earth.Longitude, SolarSystem.Singleton.Saturn.Longitude, 20) ? "E-S," : string.Empty) +
+                        (Angles.EqualDeg(SolarSystem.Singleton.Earth.Longitude + 180, SolarSystem.Singleton.Saturn.Longitude, 20) ? "EoS," : string.Empty) +
+                        (Angles.EqualDeg(SolarSystem.Singleton.Mars.Longitude, SolarSystem.Singleton.Jupiter.Longitude, 20) ? "R-J," : string.Empty) +
+                        (Angles.EqualDeg(SolarSystem.Singleton.Mars.Longitude, SolarSystem.Singleton.Saturn.Longitude, 20) ? "R-S," : string.Empty) +
+                        (Angles.EqualDeg(SolarSystem.Singleton.Jupiter.Longitude, SolarSystem.Singleton.Saturn.Longitude, 20) ? "J-S," : string.Empty) +
+                        (Angles.EqualDeg(SolarSystem.Singleton.Jupiter.Longitude + 180, SolarSystem.Singleton.Saturn.Longitude, 20) ? "JoS" : string.Empty);
+
+                var x = s.Replace("###", r + ";" + p);
+                var g1 = Julian.Year(julianDate) + ";";
+                var g2 = Julian.CalendarDate(julianDate, false) + ";";
+                sb.AppendLine(g1 + g2 + x);
+
+                lastMayanDay = mayaRecord.MayanDay;
+            }
+
+            var path = Path.Combine(@"d:\Temp", "MayanDates.csv");
+            //// SupportFiles.StringToFile(sb.ToString(), path);
+        }
+--------------------------------------------------
+        #region Private methods - Export
+        /// <summary>
+        /// Exports the mayan data.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        [UsedImplicitly]
+        private void ExportMayanData(object sender, RoutedEventArgs e)
+        {
+            var decl = new XDeclaration("1.0", "utf-8", "no");
+            var comment = new XComment("Mayan dates");
+            var xdoc = new XDocument(decl, comment);
+            var xlist = new XElement("Dates");
+            xdoc.Add(xlist);
+
+            var mdates = EventList.AllMayanDates;
+            var mdatesrt = (from md in mdates orderby md.MayanDay select md).ToList();
+            long lastMayanDay = 0;
+            foreach (var mayaRecord in mdatesrt) {
+                if (mayaRecord.MayanDay == lastMayanDay) {
+                    continue;
+                }
+
+                xlist.Add(mayaRecord.GetXElement);
+                lastMayanDay = mayaRecord.MayanDay;
+            }
+
+            var s = Path.Combine(@"d:\Temp", "MayanDates.xml");
+            xdoc.Save(s);
+        }
+        #endregion
+-------------------------------------------------------
+            //// interval.DateList.AddDates(dateFrom, dateTo, 3 / 365.25);
+            //// interval.DateList.AddDates(dateFrom, dateTo, 15 / 365.25);
+            //// interval.DateList.AddDates(dateFrom, dateTo, 30.43685 / 365.25);
+            //// interval.DateList.AddDates(dateFrom, dateTo, 91.31055 / 365.25);
+            //// interval.DateList.AddDates(dateFrom, dateTo, 0.5);
+            //// interval.DateList.AddDates(dateFrom, dateTo, 1.0); //// 5.0
+
+            //// interval.DateList.AddDates(dateFrom, dateTo, 15 / 365.25);
+            //// interval.DateList.AddDates(dateFrom, dateTo, 25.38 / 365.25);
+            //// interval.DateList.PassDates();
+
+            //// interval.InitWith(dateFrom, dateTo, 365.25, 1, 1);
+--------------------------------------------------------
+
+        #region Moon
+
+        /// <summary>
+        /// Tests the moon.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
+        private void TestMoon(object sender, RoutedEventArgs e)
+        {
+            //// DataLink.InitDataLink();
+            //// this.CompleteAstroEvents();
+            //// this.TestEarthquakesPeriod();
+            //// this.TestEarthquakeRegions(); 
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Observe Moon In Years.
+        /// </summary>
+         [UsedImplicitly]
+        private void ObserveMoonInYears()
+        {
+            SystemManager.CurrentSystem = AstSystem.Earth;
+            //// MoonInfluence mi = new MoonInfluence { Extremes = new List<ExtremeInfluence>() };
+            //// year = 571; year < 572, year = 844; year < 845
+            for (int year = (int)this.dateFrom; year < (int)this.dateTo; year++) {
+                MoonInfluence.InsertEarthStatus(year);
+            }
+        }
+
+--------------------------------------------------------
+
+            /* Alignment longitudes function     * var ratio = 360.0 * 100.0 / 4130.0;
+            for (int i = 1300; i < 2300; i++) {
+                var v = i * 1.000 / 100.0 * ratio;
+                this.InfoText.Text += string.Format("{0,5:F1} {1,5:F1} \n", 878 + i, 8.9 + v);
+            }   return;  */
+--------------------------------------------------------
+            //// string s1 = Resonances.Resonant(4, true, 900, 1000000, j, s, u, n, w / 2);
+            //// string s1 = Resonances.Resonant(3, false, 900, 1000000, j, u, n, 0, -w);
+            //// string s2 = Resonances.Resonant(4, true, 900, 1000000, j, s, u, n, 2 * w);
+            //// string s3 = Resonances.Resonant(4, true, 900, 1000000, j, s, u, n, 3 * w);
+            //// string s4 = Resonances.Resonant(4, true, 900, 1000000, j, s, u, n, 4 * w);
+            //// string s5 = Resonances.Resonant(4, true, 900, 1000000, j, s, u, n, 5 * w);
+            //// string s8 = Resonances.Resonant(4, true, 900, 1000000, j, s, u, n, 8 * w);
+            //// string s16 = Resonances.Resonant(4, true, 900, 1000000, j, s, u, n, 16 * w);
+--------------------------------------------------------
+/* Jupiter-Saturn Triple Conjunctions (in Longitude) 563 B.C. to 3000 A.D
+Year of Triple Years Until Next Conjunction Order of conjunction
+563 - 562 B.C. 40
+523 - 522 B.C. 377
+146 - 145 B.C. 139 1 (146/145 BC)       1
+7 B.C.         338      1 (0) 7 BC (17) 2
+332 - 333 A.D.  79      2 (1)           3
+411 - 412 A.D.  41      3               4
+452 A.D.       257      4               5
+709 - 710 A.D. 258      5               6
+967 - 968 A.D.  40      6               7
+1007 - 1008 A.D. 298     7               8
+1305 - 1306 A.D. 20      8               9
+1425 A.D. 257            9               10
+1682 - 1683 A.D. 258     10              11
+1940 - 1941 A.D.  40     11              12
+1980 - 1981 A.D. 258     12(11)   (28)   13
+2238 - 2239 A.D. 41      13              14
+2279 A.D. 376            14              15
+2655 - 2656 A.D. 139     15              16
+2794 - 2795 A.D. 119     16              17
+2913 - 2914 A.D. --      17              18
+Reproduced from the   Planetarian , Vol. 10 #3, Third Quarter 1981.   Copyright 1981 International Planetarium Society. 
+ */
+
+--------------------------------------------------------
+
+            /*
+            var orbitA = SolarSystem.Singleton.Orbit[(int)n1];
+            var orbitB = SolarSystem.Singleton.Orbit[(int)n2];
+            if (((int)n1 < (int)AstPlanet.Jupiter) || ((int)n2 < (int)AstPlanet.Jupiter)) {
+                if (accuracy) {
+                    this.StepDays = 0.5;
+                    this.SkipDays = 10;
+                    this.DegEps = 0.1; // inner planets
+                } else {
+                    this.StepDays = 1;
+                    this.SkipDays = 10;
+                    this.DegEps = 0.5;
+                }
+            } else {
+                if (accuracy) {
+                    this.StepDays = 10;
+                    this.SkipDays = 100;
+                    this.DegEps = 0.5; // outer planets
+                } else {
+                    this.StepDays = 100;
+                    this.SkipDays = 100;
+                    this.DegEps = 1.0;
+                }
+            } */
+--------------------------------------------------------
+
+
+--------------------------------------------------------
+
+
+--------------------------------------------------------
+
+
+--------------------------------------------------------
+
+
+--------------------------------------------------------
+
+
+--------------------------------------------------------
+
+
+--------------------------------------------------------
+
+
+--------------------------------------------------------
+
+
+--------------------------------------------------------
+
+
+--------------------------------------------------------
+
+
+--------------------------------------------------------
+
+--------------------------------------------------------
+
+
+--------------------------------------------------------
+
+
+--------------------------------------------------------
+
+
+--------------------------------------------------------
+
+
+--------------------------------------------------------
+
+
+--------------------------------------------------------
+
+
+--------------------------------------------------------
+
+
+--------------------------------------------------------
+
+
+--------------------------------------------------------
+
+
+--------------------------------------------------------
+
+
+--------------------------------------------------------

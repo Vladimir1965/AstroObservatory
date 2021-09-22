@@ -71,14 +71,14 @@ namespace AstroSharedEvents.Geology
         /// <value>
         /// The astronomical event list.
         /// </value>
-        public static List<AstroEvent> AstroEventList { get; set; }
+        public static List<GeoEvent> AstroEventList { get; set; }
         */
 
         /// <summary>
-        /// Gets or sets the text.
+        /// Gets or sets the this.Text.
         /// </summary>
         /// <value>
-        /// The text.
+        /// The this.Text.
         /// </value>
         public string Text { get; set; }
         #endregion
@@ -234,6 +234,41 @@ namespace AstroSharedEvents.Geology
             }
         }
 
+        /// <summary>
+        /// Adds the earthquake dates.
+        /// </summary>
+        /// <param name="records">The records.</param>
+        [UsedImplicitly]
+        public void AddEarthquakeDates(IEnumerable<EarthquakeRecord> records)
+        {
+            foreach (var r in records) {
+                //// this.Info.Add(r.ToString());
+                var date = Julian.JulianDay(r.Day, r.Month, r.Year);
+                var dfrac = Julian.DayFraction(r.Hour, r.Minute, 0);
+                date += dfrac;
+                var localtime = Math.Round((r.Longitude / 360) * 48, 0) / 48;  //// Longitude to half-hour multiple
+
+                switch (r.Time) {
+                    case "IST": {
+                            date -= 5.5 / 24;
+                            break;
+                        }
+
+                    case "LOCAL": {
+                            date -= localtime;
+                            break;
+                        }
+
+                    case "UTC+8": {
+                            date -= 8.0 / 24;
+                            break;
+                        }
+                }
+
+                //// this.AddDate(date);
+            }
+        }
+
         #region Earthquakes-Period
 
         /* Earthquakes
@@ -382,7 +417,7 @@ namespace AstroSharedEvents.Geology
         /// </summary>
         [UsedImplicitly]
         private void EarthquakeRegions() {
-            //// StringBuilder text = new StringBuilder();
+            //// StringBuilder this.Text = new StringBuilder();
             var earthquakes = (from te in this.EarthquakeList
                                orderby te.EventTime ascending, te.Latitude, te.Longitude
                                select te).ToList(); //// te.EventTime
@@ -540,46 +575,6 @@ namespace AstroSharedEvents.Geology
             this.Text += sb.ToString();
         }
         #endregion
-
-        /// <summary>
-        /// Adds the earthquake dates.
-        /// </summary>
-        /// <param name="records">The records.</param>
-        [UsedImplicitly]
-        public void AddEarthquakeDates(IEnumerable<EarthquakeRecord> records)
-        {
-            foreach (var r in records)
-            {
-                //// this.Info.Add(r.ToString());
-                var date = Julian.JulianDay(r.Day, r.Month, r.Year);
-                var dfrac = Julian.DayFraction(r.Hour, r.Minute, 0);
-                date += dfrac;
-                var localtime = Math.Round((r.Longitude / 360) * 48, 0) / 48;  //// Longitude to half-hour multiple
-
-                switch (r.Time)
-                {
-                    case "IST":
-                        {
-                            date -= 5.5 / 24;
-                            break;
-                        }
-
-                    case "LOCAL":
-                        {
-                            date -= localtime;
-                            break;
-                        }
-
-                    case "UTC+8":
-                        {
-                            date -= 8.0 / 24;
-                            break;
-                        }
-                }
-
-                //// this.AddDate(date);
-            }
-        }
 
         /// <summary>
         /// Loads the locations.

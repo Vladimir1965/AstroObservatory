@@ -11,6 +11,7 @@ namespace AstroSharedEvents.Geology
     using AstroSharedClasses.Calendars;
     using AstroSharedEvents.Crossing;
     using AstroSharedOrbits.Systems;
+    using JetBrains.Annotations;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -40,14 +41,14 @@ namespace AstroSharedEvents.Geology
         /// <value>
         /// The volcano record list.
         /// </value>
-        [JetBrains.Annotations.UsedImplicitlyAttribute]
+        [UsedImplicitly]
         public List<VolcanoRecord> VolcanoRecordList { get; set; }
 
         /// <summary>
-        /// Gets or sets the text.
+        /// Gets or sets the this.Text.
         /// </summary>
         /// <value>
-        /// The text.
+        /// The this.Text.
         /// </value>
         public string Text { get; set; }
 
@@ -57,7 +58,8 @@ namespace AstroSharedEvents.Geology
         public void PassVolcanoes()
         {
             var list = from r in this.EruptionRecordList
-                       orderby r.StartYear, r.StartMonth  select r;
+                       orderby r.StartYear, r.StartMonth 
+                       select r;
             foreach (var record in list)
             {
                 var julianDate = Julian.JulianDay(record.StartDay, record.StartMonth, record.StartYear);
@@ -101,7 +103,7 @@ namespace AstroSharedEvents.Geology
         /// <summary>
         /// Stores to XML.
         /// </summary>
-        [JetBrains.Annotations.UsedImplicitlyAttribute]
+        [UsedImplicitly]
         public void StoreToXml()
         {
             string path1 = @"c:\Private\SOLUTIONS-2020\PrivateWPF\AstroData2018\Eruptions.xml";
@@ -121,7 +123,7 @@ namespace AstroSharedEvents.Geology
         /// <summary>
         /// Loads the volcanoes.
         /// </summary>
-        [JetBrains.Annotations.UsedImplicitlyAttribute]
+        [UsedImplicitly]
         public void LoadFromXls()
         {
             //// this.LoadLocations();
@@ -132,8 +134,9 @@ namespace AstroSharedEvents.Geology
             //// ImportVolcanoes.InsertVolcanoes(pathVolcanoes);
             ImportEruptions.InsertEruptions(pathEruptions, string.Empty); //// Vesuvius
             this.EruptionRecordList  = ImportEruptions.List;
-        } 
-                    /*
+        }
+         
+        /*
             //// List selected eruptions
             var list = ImportVolcanoes.ListEruptions;
             //// var list = from r in origlist where r.VolcanoName=="Vesuvius" select r;
@@ -180,7 +183,7 @@ namespace AstroSharedEvents.Geology
         /// Adds the eruption dates.
         /// </summary>
         /// <param name="records">The records.</param>
-        [JetBrains.Annotations.UsedImplicitlyAttribute]
+        [UsedImplicitly]
         public void AddEruptionDates(IEnumerable<EruptionRecord> records)
         {
             foreach (var r in records)

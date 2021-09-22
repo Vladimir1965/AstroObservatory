@@ -67,7 +67,7 @@ namespace AstroSharedOrbits.Systems {
         /// <param name="rootPath">The root path.</param>
         [UsedImplicitly]
         public static void InitSystem(string rootPath) {
-            SystemManager.VsopPath = rootPath + "\\Data\\Vsop87\\";
+            SystemManager.VsopPath = rootPath + "\\Vsop87\\";
             MakeBodies();
             InitBodies(); 
         }

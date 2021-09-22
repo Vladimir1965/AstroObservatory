@@ -7,6 +7,7 @@
 // <summary>Part of Astro Observatory</summary>
 
 namespace AstroSharedClasses.Computation {
+    using JetBrains.Annotations;
     using System;
 
     /// <summary>
@@ -19,7 +20,7 @@ namespace AstroSharedClasses.Computation {
         /// <value>
         /// The moon declination.
         /// </value>
-        [JetBrains.Annotations.UsedImplicitlyAttribute]
+        [UsedImplicitly]
         public decimal MoonDeclination { get; set; }
 
         /// <summary>
@@ -28,7 +29,7 @@ namespace AstroSharedClasses.Computation {
         /// <value>
         /// The moon ascension.
         /// </value>
-        [JetBrains.Annotations.UsedImplicitlyAttribute]
+        [UsedImplicitly]
         public decimal MoonAscension { get; set; }
 
         /// <summary>
@@ -37,7 +38,7 @@ namespace AstroSharedClasses.Computation {
         /// <value>
         /// The sun declination.
         /// </value>
-        [JetBrains.Annotations.UsedImplicitlyAttribute]
+        [UsedImplicitly]
         public decimal SunDeclination { get; set; }
 
         /// <summary>
@@ -46,7 +47,7 @@ namespace AstroSharedClasses.Computation {
         /// <value>
         /// The sun ascension.
         /// </value>
-        [JetBrains.Annotations.UsedImplicitlyAttribute]
+        [UsedImplicitly]
         public decimal SunAscension { get; set; }
 
         /// <summary>
@@ -55,7 +56,7 @@ namespace AstroSharedClasses.Computation {
         /// <value>
         /// The characteristic.
         /// </value>
-        [JetBrains.Annotations.UsedImplicitlyAttribute]
+        [UsedImplicitly]
         public string Characteristic { get; set; }
 
         /// <summary>
@@ -64,7 +65,7 @@ namespace AstroSharedClasses.Computation {
         /// <value>
         /// The place.
         /// </value>
-        [JetBrains.Annotations.UsedImplicitlyAttribute]
+        [UsedImplicitly]
         public string Place { get; set; }
 
         /// <summary>
@@ -73,7 +74,7 @@ namespace AstroSharedClasses.Computation {
         /// <value>
         /// The event time.
         /// </value>
-        [JetBrains.Annotations.UsedImplicitlyAttribute]
+        [UsedImplicitly]
         public DateTime EventTime { get; set; }
 
         /// <summary>
@@ -82,7 +83,7 @@ namespace AstroSharedClasses.Computation {
         /// <value>
         /// The angle ve.
         /// </value>
-        [JetBrains.Annotations.UsedImplicitlyAttribute]
+        [UsedImplicitly]
         public decimal AngleVE { get; set; }
 
         /// <summary>
@@ -91,7 +92,7 @@ namespace AstroSharedClasses.Computation {
         /// <value>
         /// The angle je.
         /// </value>
-        [JetBrains.Annotations.UsedImplicitlyAttribute]
+        [UsedImplicitly]
         public decimal AngleJE { get; set; }
 
         /// <summary>
@@ -100,7 +101,7 @@ namespace AstroSharedClasses.Computation {
         /// <value>
         /// The angle er.
         /// </value>
-        [JetBrains.Annotations.UsedImplicitlyAttribute]
+        [UsedImplicitly]
         public decimal AngleER { get; set; }
 
         /// <summary>
@@ -109,7 +110,7 @@ namespace AstroSharedClasses.Computation {
         /// <value>
         /// The eruption identifier.
         /// </value>
-        [JetBrains.Annotations.UsedImplicitlyAttribute]
+        [UsedImplicitly]
         public int EruptionId { get; set; }
 
         /// <summary>
@@ -118,7 +119,7 @@ namespace AstroSharedClasses.Computation {
         /// <value>
         /// The earthquake identifier.
         /// </value>
-        [JetBrains.Annotations.UsedImplicitlyAttribute]
+        [UsedImplicitly]
         public int EarthquakeId { get; set; }
     }
 }

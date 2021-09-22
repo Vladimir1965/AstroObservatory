@@ -6,7 +6,8 @@
 // <date>2021-09-01</date>
 // <summary>Part of Astro Observatory</summary>
 
-namespace AstroSharedClasses.Calendars {
+namespace AstroSharedClasses.Calendars
+{
     using System;
     using System.Diagnostics;
     using System.Globalization;
@@ -17,7 +18,8 @@ namespace AstroSharedClasses.Calendars {
     /// <summary>
     /// Julian library.
     /// </summary>
-    public static class Julian {
+    public static class Julian
+    {
         #region Fields
         /// <summary>
         /// Tropical Year.
@@ -48,7 +50,8 @@ namespace AstroSharedClasses.Calendars {
         /// <returns>
         /// Returns value.
         /// </returns>
-        public static double Year(double givenJulianDay) {
+        public static double Year(double givenJulianDay)
+        {
             return (givenJulianDay - 1721057.5) / TropicalYear;
         }
 
@@ -59,7 +62,8 @@ namespace AstroSharedClasses.Calendars {
         /// <param name="minute">The minute.</param>
         /// <param name="second">The second.</param>
         /// <returns> Returns value. </returns>
-        public static double DayFraction(double hour, double minute, double second) {
+        public static double DayFraction(double hour, double minute, double second)
+        {
             return ((((second / 60) + minute) / 60) + hour) / 24;
         }
 
@@ -70,7 +74,8 @@ namespace AstroSharedClasses.Calendars {
         /// <returns>
         /// Returns value.
         /// </returns>
-        public static double JulYear(double tropicalYear) {
+        public static double JulYear(double tropicalYear)
+        {
             return 1721057.5 + (tropicalYear * TropicalYear);
         }
         #endregion
@@ -86,7 +91,8 @@ namespace AstroSharedClasses.Calendars {
         /// Returns value.
         /// </returns>
         [UsedImplicitly]
-        public static double JulianDay(double day, int month, int year) {
+        public static double JulianDay(double day, int month, int year)
+        {
             int b;
             var m = month;
             //// vla; Downey uses BeforeCriste convention  y = (year < 0) ? year + 1 : year;
@@ -98,8 +104,7 @@ namespace AstroSharedClasses.Calendars {
 
             if ((year < 1582) || (year == 1582 && (month < 10 || (month == 10 && day < 15)))) {
                 b = 0;
-            }
-            else {
+            } else {
                 var a = y / 100;
                 b = 2 - a + (a / 4);
             }
@@ -117,15 +122,15 @@ namespace AstroSharedClasses.Calendars {
         /// <param name="givenJulianDay">The given julianDay.</param>
         /// <param name="hoursNeeded">The hours needed.</param>
         /// <returns>Returns value.</returns>
-        public static string CalendarDate(double givenJulianDay, bool hoursNeeded) {
+        public static string CalendarDate(double givenJulianDay, bool hoursNeeded)
+        {
             var s = new StringBuilder(string.Empty);
             string era;
             CalendarNum(givenJulianDay, out var day, out var month, out var year);
             if (year < 0) {
                 year = -year;
                 era = "BC";
-            }
-            else {
+            } else {
                 era = "AD";
             }
             //// print(aFile, "%3.1f %2d %4d %2s", day, month, year, era);
@@ -140,8 +145,7 @@ namespace AstroSharedClasses.Calendars {
                 var isecond = (int)Math.Floor(second);
 
                 s.AppendFormat(CultureInfo.InvariantCulture, "{0,4} {1,3} {2,2} {3,2}:{4,2}:{5,2} {6,2}", year, MonthAbbrev[month - 1], Math.Floor(day), ihour, iminut, isecond, era);
-            }
-            else {
+            } else {
                 s.AppendFormat(CultureInfo.InvariantCulture, "{0,4} {1,3} {2,2} {3,2}", year, MonthAbbrev[month - 1], Math.Floor(day), era);
             }
             ////  print(aFile, "%4d %3s %2.0f %2dh %2s", );
@@ -157,7 +161,8 @@ namespace AstroSharedClasses.Calendars {
         /// Returns value.
         /// </returns>
         [UsedImplicitly]
-        public static int GregorianDayOfWeek(double givenJulianDay) {
+        public static int GregorianDayOfWeek(double givenJulianDay)
+        {
             //// cal_mjd() uses Gregorian dates on or after Oct 15, 1582.
             //// (Pope Gregory XIII dropped 10 days, Oct 5..14, and improved the leap-
             //// year algorithm). however, Great Britian and the colonies did not
@@ -188,7 +193,8 @@ namespace AstroSharedClasses.Calendars {
         /// Returns value.
         /// </returns>
         [UsedImplicitly]
-        public static double BeforeCriste(double year) {
+        public static double BeforeCriste(double year)
+        {
             return 1 - year;
         }
 
@@ -207,7 +213,8 @@ namespace AstroSharedClasses.Calendars {
         /// Returns value.
         /// </returns>
         [UsedImplicitly]
-        public static long MayanDay(int baktun, int katun, int tun, int uinal, int kin) {
+        public static long MayanDay(int baktun, int katun, int tun, int uinal, int kin)
+        {
             long d;
             checked {
                 long k = (baktun * 20) + katun;
@@ -228,7 +235,8 @@ namespace AstroSharedClasses.Calendars {
         /// <returns>
         /// Returns value.
         /// </returns>
-        public static double MayanCorrectedDay(int baktun, int katun, int tun, int uinal, int kin) {
+        public static double MayanCorrectedDay(int baktun, int katun, int tun, int uinal, int kin)
+        {
             long d;
             checked {
                 long k = (baktun * 20) + katun;
@@ -247,9 +255,10 @@ namespace AstroSharedClasses.Calendars {
         /// Returns value.
         /// </returns>
         [UsedImplicitly]
-        public static string MayanDateToString(long longcountNumber, double givenJulianDay) {
+        public static string MayanDateToString(long longcountNumber, double givenJulianDay)
+        {
             var mayanDay = givenJulianDay - longcountNumber;
-            mayanDay = (long) Math.Floor(((mayanDay / Tzolkin) * 260.0) + 0.5);
+            mayanDay = (long)Math.Floor(((mayanDay / Tzolkin) * 260.0) + 0.5);
             var kin = (int)(mayanDay % 20);
             mayanDay = mayanDay / 20;
             var uinal = (int)(mayanDay % 18);
@@ -268,7 +277,8 @@ namespace AstroSharedClasses.Calendars {
         /// <summary>Converts a fractional Julian Day to a .NET DateTime.</summary>
         /// <param name="julianDay">Fractional Julian Day to convert.</param>
         /// <returns>Date and Time in .NET DateTime format.</returns>
-        public static DateTime Julian2Date(double julianDay) {
+        public static DateTime Julian2Date(double julianDay)
+        {
             double a;
             int month, year;
             var jday = julianDay + 0.5;
@@ -279,8 +289,7 @@ namespace AstroSharedClasses.Calendars {
             if (z >= 2299161) {
                 var alpha = Math.Floor((z - 1867216.25) / 36524.25);
                 a = z + 1 + alpha - Math.Floor(alpha / 4);
-            }
-            else {
+            } else {
                 a = z;
             }
 
@@ -292,21 +301,17 @@ namespace AstroSharedClasses.Calendars {
 
             if (e < 14) {
                 month = (int)(e - 1.0);
-            }
-            else if (Math.Abs(e - 14) < tolerance || Math.Abs(e - 15) < tolerance) {
+            } else if (Math.Abs(e - 14) < tolerance || Math.Abs(e - 15) < tolerance) {
                 month = (int)(e - 13.0);
-            }
-            else {
+            } else {
                 throw new InvalidOperationException("Illegal month calculated.");
             }
 
             if (month > 2) {
                 year = (int)(c - 4716.0);
-            }
-            else if (month == 1 || month == 2) {
+            } else if (month == 1 || month == 2) {
                 year = (int)(c - 4715.0);
-            }
-            else {
+            } else {
                 throw new InvalidOperationException("Illegal year calculated.");
             }
 
@@ -332,7 +337,8 @@ namespace AstroSharedClasses.Calendars {
         /// <param name="d">DateTime object from which to calculate a Julian Day.</param>
         /// <returns>A fractional Julian Day value.</returns>
         /// <remarks>Tested against pg 61 input data.</remarks>
-        public static double Date2Julian(DateTime d) {
+        public static double Date2Julian(DateTime d)
+        {
             double b;
             var theMonth = d.Month;
             var theYear = d.Year;
@@ -345,25 +351,19 @@ namespace AstroSharedClasses.Calendars {
 
             if (d.Year < 1582) {
                 b = 0;
-            }
-            else if (d.Year > 1582) {
+            } else if (d.Year > 1582) {
                 b = 2 - a + Math.Floor(a / 4);
-            }
-            else {
+            } else {
                 if (d.Month < 10) {
                     b = 0;
-                }
-                else if (d.Month > 10) {
+                } else if (d.Month > 10) {
                     b = 2 - a + Math.Floor(a / 4);
-                }
-                else {
+                } else {
                     if (d.Day < 5) {
                         b = 0;
-                    }
-                    else if (d.Day >= 15) {
+                    } else if (d.Day >= 15) {
                         b = 2 - a + Math.Floor(a / 4);
-                    }
-                    else {
+                    } else {
                         throw new InvalidOperationException("Input day falls between 10/5/1582 and 10/14/1582, which does not exist in the Gregorian Calendar.");
                     }
                 } // end middle else
@@ -383,7 +383,8 @@ namespace AstroSharedClasses.Calendars {
         /// <param name="julianDay">A positive Julian Day number.</param>
         /// <returns>An AstroDate object equal to the date of the Julian Day number.</returns>
         [UsedImplicitly]
-        public static AstroDate ToDate(double julianDay) {
+        public static AstroDate ToDate(double julianDay)
+        {
             int yearA;
             var ad = new AstroDate();
 
@@ -395,8 +396,7 @@ namespace AstroSharedClasses.Calendars {
                 var a = (int)((z - 1867216.25) / 35624.25);
                 Debug.WriteLine("a\t= " + a);
                 yearA = z + 1 + a - a / 4;
-            }
-            else {
+            } else {
                 yearA = z;
             }
 
@@ -428,7 +428,8 @@ namespace AstroSharedClasses.Calendars {
         /// <param name="jd2">The given JulianDay2.</param>
         /// <returns> Returns value. </returns>
         [UsedImplicitly]
-        public static double Interval(double jd1, double jd2) {
+        public static double Interval(double jd1, double jd2)
+        {
             return jd2 - jd1;
         }
 
@@ -439,7 +440,8 @@ namespace AstroSharedClasses.Calendars {
         /// <param name="ad2">The given ad2.</param>
         /// <returns> Returns value. </returns>
         [UsedImplicitly]
-        public static double Interval(AstroDate ad1, AstroDate ad2) {
+        public static double Interval(AstroDate ad1, AstroDate ad2)
+        {
             var jd1 = FromDate(ad1.Year, ad1.Month, ad1.Day);
             var jd2 = FromDate(ad2.Year, ad2.Month, ad2.Day);
             return jd2 - jd1;
@@ -452,7 +454,8 @@ namespace AstroSharedClasses.Calendars {
         /// <returns>
         /// Julian Centuries (double) from the Epoch J2000.0 (JulianDaye 2451545.0).
         /// </returns>
-        public static double JulianCenturies(double julianDay) {
+        public static double JulianCenturies(double julianDay)
+        {
             return (julianDay - 2451545.0) / 36525.0;
         }
 
@@ -460,7 +463,8 @@ namespace AstroSharedClasses.Calendars {
         /// <param name="jd">Julian day.</param>
         /// <returns>Day of the week: 0 = Sunday...6 = Saturday.</returns>
         [UsedImplicitly]
-        public static int DayOfWeekInt(double jd) {
+        public static int DayOfWeekInt(double jd)
+        {
             return (int)(ZeroHourJulian(jd) + 1.5) % 7;
         }
 
@@ -470,7 +474,8 @@ namespace AstroSharedClasses.Calendars {
         /// <param name="ad">The ad.</param>
         /// <returns> Returns value. </returns>
         [UsedImplicitly]
-        public static Enums.DayOfWeek DayOfWeek(AstroDate ad) {
+        public static Enums.DayOfWeek DayOfWeek(AstroDate ad)
+        {
             return DayOfWeek(FromDate(ad.Year, ad.Month, ad.Day));
         }
 
@@ -480,7 +485,8 @@ namespace AstroSharedClasses.Calendars {
         /// <param name="ad">The ad.</param>
         /// <returns> Returns value. </returns>
         [UsedImplicitly]
-        public static int DayOfTheYear(AstroDate ad) {
+        public static int DayOfTheYear(AstroDate ad)
+        {
             var k = IsLeepYear(ad.Year) ? 1 : 2;
             var m = (int)ad.Month;
             var d = (int)ad.Day;
@@ -503,7 +509,8 @@ namespace AstroSharedClasses.Calendars {
                     double givenJulianDay,
                     out double day,
                     out int month,
-                    out int year) {
+                    out int year)
+        {
             var d = givenJulianDay + 0.5 - 2415020.0;
             var i = Math.Floor(d);
             var f = d - i;
@@ -539,7 +546,8 @@ namespace AstroSharedClasses.Calendars {
         /// </summary>
         /// <param name="julianDay">The julianDay.</param>
         /// <returns> Returns value. </returns>
-        private static Enums.DayOfWeek DayOfWeek(double julianDay) {
+        private static Enums.DayOfWeek DayOfWeek(double julianDay)
+        {
             var d = julianDay - Math.Floor(julianDay);
             var j = d - 0.5;
             julianDay = (julianDay - j) + 1.5;
@@ -551,7 +559,8 @@ namespace AstroSharedClasses.Calendars {
         /// </summary>
         /// <param name="year">The year.</param>
         /// <returns> Returns value. </returns>
-        private static bool IsLeepYear(int year) {
+        private static bool IsLeepYear(int year)
+        {
             if (year < 1582) { ////Julian Calendar
                 return (year % 4) == 0;
             }
@@ -571,7 +580,8 @@ namespace AstroSharedClasses.Calendars {
         /// </returns>
         /// <exception cref="System.ArgumentOutOfRangeException">Y - CE 1582 October 5-14 are not real dates</exception>
         /// <exception cref="ArgumentOutOfRangeException">CE 1582 October 5-14 are not real dates.</exception>
-        private static double FromDate(int y, Month m, double d) {
+        private static double FromDate(int y, Month m, double d)
+        {
             int b;
 
             if (m == Month.January || m == Month.February) {
@@ -584,11 +594,9 @@ namespace AstroSharedClasses.Calendars {
                 var a = y / 100;
                 b = 2 - a + (a / 4);
                 Debug.WriteLine("A\t= " + a);
-            }
-            else if (y < 1582 || (y == 1582 && m < Month.October) || (y == 1582 && m == Month.October && d <= 4)) { //// Gregorian dates are after CE 1582 October 4
+            } else if (y < 1582 || (y == 1582 && m < Month.October) || (y == 1582 && m == Month.October && d <= 4)) { //// Gregorian dates are after CE 1582 October 4
                 b = 0;
-            }
-            else { //// CE 1582 October 5-14 do not exist, there was a ten day overlay between the Gregorian and Julian calendars
+            } else { //// CE 1582 October 5-14 do not exist, there was a ten day overlay between the Gregorian and Julian calendars
                 throw new ArgumentOutOfRangeException(nameof(y), "CE 1582 October 5-14 are not real dates");
             }
 
@@ -602,7 +610,8 @@ namespace AstroSharedClasses.Calendars {
         /// <summary>Returns the julianDay value at 0 hour (midnight) of the given input Julian Day.</summary>
         /// <param name="jd">Julian day.</param>
         /// <returns>Julian day at midnight of the input Julian Day.</returns>
-        private static double ZeroHourJulian(double jd) {
+        private static double ZeroHourJulian(double jd)
+        {
             return Math.Floor(jd - 0.5) + 0.5;
         }
         #endregion

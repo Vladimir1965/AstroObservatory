@@ -13,16 +13,18 @@ using AstroSharedOrbits.Orbits;
 namespace AstroSharedOrbits.Dwarfs
 {
     /// <summary> Orbit Body Quaoar. </summary>
-    public sealed class BodyQuaoar : Orbit {
+    public sealed class BodyQuaoar : Orbit
+    {
         /// <summary>
         /// Initializes a new instance of the <see cref="BodyQuaoar"/> class.
         /// </summary>
         public BodyQuaoar()
-            : base("Quaoar", "Quaoar") {
-            this.Body.Radius = 555*1e3;        //// [m]
+            : base("Quaoar", "Quaoar")
+        {
+            this.Body.Radius = 555 * 1e3;        //// [m]
             this.Knke = 5;                     //// 
-            this.Body.Mass = 1.4*1e21;         //// [kg]
- 
+            this.Body.Mass = 1.4 * 1e21;         //// [kg]
+
             this.Time.EpochOrbit = 2458200.5;
             this.Time.EpochEquinox = 2458200.5;
             double[] lw = { 188.78, 0.0, 0.0, 0.0 };

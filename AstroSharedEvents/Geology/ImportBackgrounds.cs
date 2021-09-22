@@ -84,9 +84,9 @@ namespace AstroSharedEvents.Geology
             double tyear = dt.Year + ((dt.DayOfYear - 1 + (dt.Hour / 24.0)) / LargoBaseAstronomy.Julian.TropicalYear);
             double julianDate = LargoBaseAstronomy.Julian.JulYear(tyear);
 
-            SolarSystem.Singleton.Jupiter.SetJulianDate(julianDate);
-            SolarSystem.Singleton.Earth.SetJulianDate(julianDate);
-            //// SolarSystem.Mars.SetJulianDate(julianDate);
+            SolarSystem.Singleton.Jupiter.SetJulianDate(this.JulianDate);
+            SolarSystem.Singleton.Earth.SetJulianDate(this.JulianDate);
+            //// SolarSystem.Mars.SetJulianDate(this.JulianDate);
 
             EarthStatus st = MoonInfluence.GetEarthStatus(dt.Year, dt.DayOfYear, dt.Hour);
             string description = string.Empty;

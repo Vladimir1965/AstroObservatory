@@ -19,6 +19,10 @@ namespace AstroSharedClasses.Records
         public FlareDay() {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FlareDay"/> class.
+        /// </summary>
+        /// <param name="record">The record.</param>
         public FlareDay(string record) {
             var snum = record.Substring(13, 9).Trim();
             var snth = record.Substring(22, 8).Replace('.',',').Trim();
@@ -71,9 +75,20 @@ namespace AstroSharedClasses.Records
         /// </value>
         public float Total { get; set; }
 
+        /// <summary>
+        /// Converts to string.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
         public override string ToString() {
-            return string.Format(@"{0,8:F0} {1,10}: {2,7:F2} +  {3,7:F2} = {4,7:F2}", 
-                                    this.DayNumber, this.DayInfo, this.North, this.South, this.Total);
+            return string.Format(
+                @"{0,8:F0} {1,10}: {2,7:F2} +  {3,7:F2} = {4,7:F2}", 
+                       this.DayNumber, 
+                       this.DayInfo, 
+                       this.North, 
+                       this.South, 
+                       this.Total);
         }
     }
 }

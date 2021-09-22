@@ -11,6 +11,7 @@ namespace AstroSharedEvents.Lists
     using AstroSharedClasses.Calendars;
     using AstroSharedClasses.Computation;
     using AstroSharedOrbits.Systems;
+    using JetBrains.Annotations;
     using System;
     using System.Collections.Generic;
     using System.Globalization;
@@ -33,22 +34,25 @@ namespace AstroSharedEvents.Lists
         public void InsertSnapshot(double julianDate)
         {
             var abands = new AngleBands(julianDate);
-            foreach (var orbit in SolarSystem.Singleton.Orbit)
-            {
-                if (orbit == null) { continue; }
-                if (!orbit.Enabled) { continue; }
+            foreach (var orbit in SolarSystem.Singleton.Orbit) {
+                if (orbit == null) { 
+                    continue; 
+                }
+
+                if (!orbit.Enabled) { 
+                    continue; 
+                }
 
                 //// Tides
                 double E = orbit.Body.Mass / orbit.Point.RT / orbit.Point.RT / orbit.Point.RT;
                 var longitude = Angles.Mod180(orbit.Longitude);
                 int lidx = (int)Math.Round(longitude / 15);
-                if (lidx == 12)
-                {
+                if (lidx == 12) {
                     lidx = 0;
                 }
 
-                abands.band[(lidx +12 -2) % 12] += E * 1e11 / 16;
-                abands.band[(lidx +12 - 1) % 12] += E * 1e11 / 4;
+                abands.band[(lidx + 12 - 2) % 12] += E * 1e11 / 16;
+                abands.band[(lidx + 12 - 1) % 12] += E * 1e11 / 4;
                 abands.band[lidx] += E * 1e11;
                 abands.band[(lidx + 1) % 12] += E * 1e11 / 4;
                 abands.band[(lidx + 2) % 12] += E * 1e11 / 16;
@@ -61,14 +65,13 @@ namespace AstroSharedEvents.Lists
         /// <summary>
         /// Passes the dates.
         /// </summary>
-        [JetBrains.Annotations.UsedImplicitlyAttribute]
+        [UsedImplicitly]
         public void PassDates()
         {
             this.Snapshots = new List<AngleBands>();
 
             //// foreach (double julianDate in this.Date) {
-            for (var i = 0; i < this.Date.Count; i++)
-            {
+            for (var i = 0; i < this.Date.Count; i++) {
                 var julianDate = this.Date[i];
                 SolarSystem.Singleton.SetJulianDate(julianDate);
                 EarthSystem.SetJulianDate(julianDate);
@@ -80,14 +83,13 @@ namespace AstroSharedEvents.Lists
         /// Outputs the snapshots.
         /// </summary>
         /// <returns>Returns value.</returns>
-        [JetBrains.Annotations.UsedImplicitlyAttribute]
+        [UsedImplicitly]
         public string OutputSnapshots()
         {
             /*AngleBands snap1 = null;
             AngleBands snap2 = null;*/
 
-            foreach (var snap in this.Snapshots)
-            {
+            foreach (var snap in this.Snapshots) {
                 var julianDate = snap.julianDate;
                 SolarSystem.Singleton.SetJulianDate(julianDate);
                 EarthSystem.SetJulianDate(julianDate);
@@ -127,18 +129,17 @@ namespace AstroSharedEvents.Lists
                     var m3 = snap2.MaxValue + snap1.MaxValue + snap.MaxValue;
                     var it3 = (t3 > 1400) ? "*" : " ";
                     var im3 = (m3 > 2000) ? "*" : " ";
-                    this.List.AppendFormat("\t{0,5:F0}\t{1}\t{2,5:F0}\t{3}",  t3, it3, m3, im3);
+                    this.Text.AppendFormat("\t{0,5:F0}\t{1}\t{2,5:F0}\t{3}",  t3, it3, m3, im3);
                 }
                 else {
-                    this.List.AppendFormat("\t{0,5:F0}\t{1}\t{2,5:F0}\t{3}", 0, " ", 0, " ");
+                    this.Text.AppendFormat("\t{0,5:F0}\t{1}\t{2,5:F0}\t{3}", 0, " ", 0, " ");
                 } */
 
                 var it = (snap.Total > 1000) ? "*" : " ";
                 var im = (snap.MaxValue > 800) ? "*" : " ";
                 this.List.AppendFormat("\t{0,5:F0}\t{1}\t{2,5:F0}\t{3}", snap.Total, it, snap.MaxValue, im);
 
-                for (int i = 0; i < 12; i++)
-                {
+                for (int i = 0; i < 12; i++) {
                     var v = (snap.band[i] > 200 || snap.band[i] < 1) ? snap.band[i] : 1;
                     this.List.AppendFormat("\t {0,4:F0} ", v);
                 }

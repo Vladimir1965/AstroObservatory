@@ -62,7 +62,7 @@ namespace AstroSharedClasses.Computation
         /// </summary>
         public void Recompute()
         {
-            this.Total = ((from x in this.band where x > 200 select x).Sum()); //// 700 ////this.band.Sum();
+            this.Total = (from x in this.band where x > 200 select x).Sum(); //// 700 ////this.band.Sum();
             this.MaxValue = (from x in this.band select x).Max();
         }
     }
