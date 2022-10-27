@@ -50,8 +50,33 @@ namespace AstroResponder
         public ResponderWindow()
         {
             this.InitializeComponent();
-            this.TBDateFrom.Text = "1750,0"; ////  "-3000,00"; "1749,00"; //// "1950,0";
-            this.TBDateTo.Text = "2050,0"; //// "-2650,00"; "2020,0";   //// "2000,0";
+            var s = new SolarSystem(AstroSetup.vsopRootPath);
+            SystemManager.CurrentSystem = AstSystem.Solar;
+
+            //// this.ListForGraph();
+            this.SpecialList();
+
+            //// this.TestSolarSystem(null, null);
+            //// this.TestDateList();
+            //// this.ListPerihelia(SolarSystem.Singleton.Jupiter);
+            //// this.ListAphelia(SolarSystem.Singleton.Jupiter);
+        }
+
+        private void ListForGraph()
+        {
+            this.TBDateFrom.Text = "1,5";  ////  "-3000,00"; "1749,00"; //// "1950,0";
+            //// this.TBDateFrom.Text = "1000,0";  ////  "-3000,00"; "1749,00"; //// "1950,0";
+            this.TBDateTo.Text = "2100,0"; //// "-2650,00"; "2020,0";   //// "2000,0";
+            this.ListSelectData("Raster", AstCharacteristic.DateDiffs);
+        }
+
+        private void SpecialList()
+        {
+            this.TBDateFrom.Text = "1600,049"; ////  "-3000,00"; "1749,00"; //// "1950,0";
+            this.TBDateTo.Text = "2100,0"; //// "-2650,00"; "2020,0";   //// "2000,0";
+            this.dateFrom = double.Parse(this.TBDateFrom.Text, CultureInfo.CurrentCulture.NumberFormat);
+            this.dateTo = double.Parse(this.TBDateTo.Text, CultureInfo.CurrentCulture.NumberFormat);
+            this.ListSpecialDates("Quadra");
         }
         #endregion
 
@@ -98,6 +123,18 @@ namespace AstroResponder
         /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void ListSelectData(object sender, RoutedEventArgs e)
         {
+            AstCharacteristic result = AstCharacteristic.DateDiffs;
+            var astTag = (string)((ComboBoxItem)this.outputBox1.SelectedItem).Tag;
+            if (!Enum.TryParse(astTag, out result)) {
+                result = AstCharacteristic.DateDiffs;
+            }
+
+            string tabTag = (string)((TabItem)this.tabControl1.SelectedItem).Tag;
+            this.ListSelectData(tabTag, result);
+        }
+
+        private void ListSelectData(string tabTag, AstCharacteristic result)
+        {
             var s = new SolarSystem(AstroSetup.vsopRootPath);
             //// SolarSystem.Singleton.InitSolarSys(AlgVariant.VarBretagnon87, false, AstroSetup.vsopRootPath);
             EarthSystem.InitSystem(AstroSetup.vsopRootPath);
@@ -105,16 +142,9 @@ namespace AstroResponder
 
             this.dateFrom = double.Parse(this.TBDateFrom.Text, CultureInfo.CurrentCulture.NumberFormat);
             this.dateTo = double.Parse(this.TBDateTo.Text, CultureInfo.CurrentCulture.NumberFormat);
-            AstCharacteristic result = AstCharacteristic.DateDiffs;
-            var astTag = (string)((ComboBoxItem)this.outputBox1.SelectedItem).Tag;
-            if (!Enum.TryParse(astTag, out result)) {
-                result = AstCharacteristic.DateDiffs;
-            }
-
-            var tabTag = (string)((TabItem)this.tabControl1.SelectedItem).Tag;
             switch (tabTag) {
                 case "Raster": {
-                        var eventList = this.GetEventList();
+                        var eventList = this.GetEventList(tabTag);
                         this.InfoText.Text = eventList.PrintCharacteristic(result);
                         break;
                     }
@@ -197,11 +227,11 @@ namespace AstroResponder
         }
 
         #region Private methods - DateLists
-        private EventList GetEventList() {
+        private EventList GetEventList(string tabTag) {
             EventList dateList = new EventList();
             Interval interval = new Interval(dateList);
 
-            if ((string)((TabItem)this.tabControl1.SelectedItem).Tag != "Raster") {
+            if (tabTag != "Raster") {
                 return null; 
             }
 
@@ -450,6 +480,7 @@ namespace AstroResponder
         }
         #endregion
 
+        /*
         /// <summary>
         /// Special List.
         /// </summary>
@@ -568,7 +599,8 @@ namespace AstroResponder
             this.ListSpecialDates("Quadra");
             //// this.ListSpecialDates(dateFrom, dateTo, "PlanetX");
         }
-
+*/
+        
         #region Private methods
         /// <summary>
         /// List Special Dates.
@@ -585,20 +617,23 @@ namespace AstroResponder
             //// interval.InitWith(dateFrom, dateTo, 3, 0.3, 3600);
             //// interval.InitWith(dateFrom, dateTo, 20, 1, 60); //// 10,1,30
 
-            //// interval.InitWith(dateFrom, dateTo, 365.25, 1, 365.25); //// 10,1,30
+            interval.InitWith(dateFrom, dateTo, 30, 1, 90); //// 10,1,30
+            interval.DateList.AddDates(this.dateFrom, this.dateTo, 1.00/12);
+            ////interval.InitWith(dateFrom, dateTo, 365.25, 1, 30); //// 10,1,30
 
-            //// interval.InitWith(dateFrom, dateTo, 365.25, 1, 30); //// 10,1,30
             //// interval.InitWith(dateFrom, dateTo, 30.0, 1, 600); //// 30, 1, 120,  20,1,100  / 10,1,30
-            interval.InitWith(this.dateFrom, this.dateTo, 30, 1, 180); //// 30, 1, 120 / 10,1,30
+            //// interval.InitWith(this.dateFrom, this.dateTo, 10, 1, 180); //// 30, 1, 120 / 10,1,30
             //// interval.InitWith(dateFrom, dateTo, 15, 1, 15); //// 10,1,30
             //// interval.InitWith(dateFrom, dateTo, 30, 1, 180); //// 10,1,30
             //// interval.InitWith(dateFrom, dateTo, 30, 10, 90); //// 30,1,360 //// 10,1,30 //// 30,1,90
-
-            interval.SpecialDates(givenAstroType);
             //// this.InfoText.Text = interval.DateList.PrintCharacteristic(AstCharacteristic.LghInner);
-            //// this.InfoText.Text = interval.DateList.PrintCharacteristic(AstCharacteristic.LghOuter);
-            this.InfoText.Text = interval.DateList.PrintCharacteristic(AstCharacteristic.DateDiffs); //// AstSystem.Solar
+            //// this.InfoText.Text = interval.DateList.PrintCharacteristic(AstCharacteristic.LghOuter);            
             ////xxxx interval.DateList.WriteToAstroEvents(givenAstroType);
+
+            //// interval.SpecialDates(givenAstroType);
+            //// this.InfoText.Text = interval.DateList.PrintCharacteristic(AstCharacteristic.DateDiffs);
+            this.InfoText.Text = interval.DateList.PrintCharacteristic(AstCharacteristic.Tidal);
+            //// this.InfoText.Text = interval.DateList.PrintCharacteristic(AstCharacteristic.TidalExtreme);
         }
         #endregion
 

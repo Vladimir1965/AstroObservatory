@@ -219,7 +219,6 @@ namespace AstroSharedOrbits.Systems
         /// </value>
         public PeriodicBehavior BarycentreBehavior { get; }
 
-        /*
         /// <summary>
         /// Gets the gravi sun behavior.
         /// </summary>
@@ -235,7 +234,7 @@ namespace AstroSharedOrbits.Systems
         /// The tidal extreme behavior.
         /// </value>
         public PeriodicBehavior TidalExtremeBehavior { get; private set; }
-
+        /*
         public PeriodicBehavior DipoleExtremeBehavior { get; private set; }
         */
         #endregion
@@ -324,11 +323,10 @@ namespace AstroSharedOrbits.Systems
             this.DetermineGravicentre();
             //// this.DetermineOutercentre();
             //// this.DetermineStaticcentre();
-            /*
-            this.DetermineGravicentre();
+            
             this.DetermineTidalExtreme();
-            this.DetermineDipoleExtreme();
-            */
+            //// this.DetermineDipoleExtreme();
+          
 
             //// The Sun    
             this.Sun.Point.XH = -this.Barycentre.XH;

@@ -272,8 +272,12 @@ namespace AstroSharedOrbits.Systems
             this.Neptune = n;
             this.Orbit.Add(n);
 
+            
+            this.AdjustX(581.5f, 323.0f, 6.0f); /// 335, 155
+            //// this.AdjustX(575.5f, 155.0f, 6.0f); /// 335 /// 1779 st vernal zero
             //// 387.3
-            this.AdjustX(385.5f, 102.0f, 6.0f); //// 575.5 # 323, 320, 335
+            //// this.AdjustX(387.3f, 337.3f, 6.0f);  //// 90f, 385.5 # 102.0f,  575.5 # 323, 320, 335
+            ////  this.AdjustX(387.3f, 157.3f, 6.0f); //// 385.5 # 102.0f,  575.5 # 323, 320, 335
 
             //// this.AdjustX(18918f, 67.0f, 4.65f); 
 

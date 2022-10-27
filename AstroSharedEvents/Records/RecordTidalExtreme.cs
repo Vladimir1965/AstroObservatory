@@ -52,7 +52,7 @@ namespace AstroSharedEvents.Records
 
             this.Text.AppendFormat(
                                     CultureInfo.InvariantCulture,
-                                    "\t{0,5:F1}\t{1,5:F1}\t{2,5:F1}",
+                                    "\t{0,5:F1}\t{1,5:F1}",
                                     SolarSystem.Singleton.Barycentre.Longitude,
                                     Angles.Mod360(SolarSystem.Singleton.Gravicentre.Longitude));
 

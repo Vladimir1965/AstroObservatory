@@ -629,13 +629,52 @@ namespace AstroSharedEvents.Crossing {
         /// <param name="orbitA">The orbit A.</param>
         /// <param name="orbitB">The orbit B.</param>
         /// <param name="orbitC">The orbit C.</param>
+        /// <param name="epsilon">The epsilon.</param>
+        /// <returns>
+        /// Returns value.
+        /// </returns>
+        public static bool IsDirection(Orbit orbitA, Orbit orbitB, Orbit orbitC, double epsilon)
+        {
+            var r1 = new Relation();
+            var r2 = new Relation();
+            r1.SetBodies(orbitA, orbitB);
+            r2.SetBodies(orbitA, orbitC);
+            var rAB = Angles.Mod360(r1.DiffPhi - r2.DiffPhi);
+            return Angles.EqualDeg(rAB, 0, epsilon);
+        }
+
+        /// <summary>
+        /// Bodies make a Line.
+        /// </summary>
+        /// <param name="orbitA">The orbit A.</param>
+        /// <param name="orbitB">The orbit B.</param>
+        /// <param name="orbitC">The orbit C.</param>
+        /// <param name="epsilon">The epsilon.</param>
+        /// <returns>
+        /// Returns value.
+        /// </returns>
+        public static bool IsLine(Orbit orbitA, Orbit orbitB, Orbit orbitC, double epsilon)
+        {
+            var r1 = new Relation();
+            var r2 = new Relation();
+            r1.SetBodies(orbitA, orbitB);
+            r2.SetBodies(orbitA, orbitC);
+            var rAB = Angles.Mod180(r1.DiffPhi - r2.DiffPhi);
+            return Angles.EqualDeg180(rAB, 0, epsilon);
+        }
+
+        /// <summary>
+        /// Is Direction.
+        /// </summary>
+        /// <param name="orbitA">The orbit A.</param>
+        /// <param name="orbitB">The orbit B.</param>
+        /// <param name="orbitC">The orbit C.</param>
         /// <param name="date">The given date.</param>
         /// <param name="epsilon">The epsilon.</param>
         /// <returns>
         /// Returns value.
         /// </returns>
-        [UsedImplicitly]
-        public static bool IsDirection(Orbit orbitA, Orbit orbitB, Orbit orbitC, double date, double epsilon) {
+        public static bool IsDirectionAt(Orbit orbitA, Orbit orbitB, Orbit orbitC, double date, double epsilon) {
             var r1 = new Relation();
             var r2 = new Relation();
             orbitA.SetJulianDate(date);
@@ -658,8 +697,7 @@ namespace AstroSharedEvents.Crossing {
         /// <returns>
         /// Returns value.
         /// </returns>
-        [UsedImplicitly]
-        public static bool IsLine(Orbit orbitA, Orbit orbitB, Orbit orbitC, double date, double epsilon) {
+        public static bool IsLineAt(Orbit orbitA, Orbit orbitB, Orbit orbitC, double date, double epsilon) {
             var r1 = new Relation();
             var r2 = new Relation();
             orbitA.SetJulianDate(date);
@@ -839,6 +877,22 @@ namespace AstroSharedEvents.Crossing {
         }
 
         /// <summary>
+        /// Is Pericentre.
+        /// </summary>
+        /// <param name="longitudeA">The longitude a.</param>
+        /// <param name="periA">The peri a.</param>
+        /// <param name="epsilon">The epsilon.</param>
+        /// <returns>
+        /// Returns value.
+        /// </returns>
+        [UsedImplicitly]
+        public static bool IsPericentre(double longitudeA, double periA, double epsilon)
+        {
+            var rAB = Angles.Mod360(periA - longitudeA);
+            return Angles.EqualDeg(rAB, 0, epsilon);
+        }
+
+        /// <summary>
         /// Determines whether the specified longitude a is apocentre.
         /// </summary>
         /// <param name="longitudeA">The longitude a.</param>
@@ -852,20 +906,7 @@ namespace AstroSharedEvents.Crossing {
             return Angles.EqualDeg(rAB, 0, epsilon);
         }
 
-        /// <summary>
-        /// Is Pericentre.
-        /// </summary>
-        /// <param name="longitudeA">The longitude a.</param>
-        /// <param name="periA">The peri a.</param>
-        /// <param name="epsilon">The epsilon.</param>
-        /// <returns>
-        /// Returns value.
-        /// </returns>
-        [UsedImplicitly]
-        public static bool IsPericentre(double longitudeA, double periA, double epsilon) {
-            var rAB = Angles.Mod360(periA - longitudeA);
-            return Angles.EqualDeg(rAB, 0, epsilon);
-        }
+
         #endregion
 
         #region Special Functions

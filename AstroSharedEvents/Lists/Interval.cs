@@ -284,25 +284,375 @@ namespace AstroSharedEvents.Lists
 
             switch (givenAstroType) {
                 case "Quadra": {
-                        var Ln = SolarSystem.Singleton.Neptune.Longitude;
-                        var Lu = SolarSystem.Singleton.Uranus.Longitude;
-                        var Ls = SolarSystem.Singleton.Saturn.Longitude;
                         var Lj = SolarSystem.Singleton.Jupiter.Longitude;
+                        var Ls = SolarSystem.Singleton.Saturn.Longitude;
+                        var Lu = SolarSystem.Singleton.Uranus.Longitude;
+                        var Ln = SolarSystem.Singleton.Neptune.Longitude;
                         var Lp = BodyPluto.EclipticLongitude(julianDate);
-                        var Lr = SolarSystem.Singleton.Mars.Longitude;
-                        var Le = SolarSystem.Singleton.Earth.Longitude;
-                        var Lv = SolarSystem.Singleton.Venus.Longitude;
-                        var Lm = SolarSystem.Singleton.Mercury.Longitude;
-                        var Ljp = SolarSystem.Singleton.Jupiter.LP;
-
                         var Lx = SolarSystem.Singleton.PlanetX.Longitude;
 
-                        //// eruptions?
-                        result = Constellation.IsConjunction(Lj, Ls, 45.0)
-                                   ////   && Constellation.IsOpposition(Le, Lu, 20.0)
-                                   && ((Constellation.IsRightAngle(Ls, Lu, 25.0) && Constellation.IsRightAngle(Lj, Lu, 25.0))
-                                   || (Constellation.IsRightAngle(Ls, Ln, 25.0) && Constellation.IsRightAngle(Lj, Ln, 25.0)))
-                                    && (Constellation.IsAspect(Le, Lu, 10.0) || Constellation.IsAspect(Le, Ln, 10.0));
+                        var Ljp = SolarSystem.Singleton.Jupiter.LP;
+                        var Lsp = SolarSystem.Singleton.Saturn.LP;
+                        var Lup = SolarSystem.Singleton.Uranus.LP;
+                        var Lnp = SolarSystem.Singleton.Neptune.LP;
+
+                        var Lm = SolarSystem.Singleton.Mercury.Longitude;
+                        var Lv = SolarSystem.Singleton.Venus.Longitude;
+                        var Le = SolarSystem.Singleton.Earth.Longitude;
+                        var Lr = SolarSystem.Singleton.Mars.Longitude;
+
+                        result =
+                            /*
+                            (Constellation.IsAspect(Lj, Ls, 10)
+                            && Constellation.IsAspect(Lj, Lu, 10)
+                            && Constellation.IsRightAngle(Lj, Ln, 10))
+                            ||
+                            (Constellation.IsAspect(Lj, Ls, 10)
+                            && Constellation.IsAspect(Lj, Ln, 10)
+                            && Constellation.IsRightAngle(Lj, Lu, 10))
+                            ||
+                            (Constellation.IsAspect(Lj, Lu, 10)
+                            && Constellation.IsAspect(Lj, Ln, 10)
+                            && Constellation.IsRightAngle(Lj, Ls, 10))
+                            ||
+                            (Constellation.IsAspect(Ls, Lu, 10)
+                            && Constellation.IsAspect(Ls, Ln, 10)
+                            && Constellation.IsRightAngle(Ls, Lj, 10))
+                            || */
+                            (Constellation.IsAspect(Lj, Ls, 10)
+                            && Constellation.IsAspect(Lj, Lu, 10)
+                            && Constellation.IsAspect(Lj, Ln, 10))
+                            ||
+                            (Constellation.IsAspect(Lj, Ls, 10)
+                            && Constellation.IsAspect(Lj, Ln, 10)
+                            && Constellation.IsAspect(Lj, Lu, 10))
+                            ||
+                            (Constellation.IsAspect(Lj, Lu, 10)
+                            && Constellation.IsAspect(Lj, Ln, 10)
+                            && Constellation.IsAspect(Lj, Ls, 10))
+                            ||
+                            (Constellation.IsAspect(Ls, Lu, 10)
+                            && Constellation.IsAspect(Ls, Ln, 10)
+                            && Constellation.IsAspect(Ls, Lj, 10));
+
+
+
+                        /*
+                        result = Constellation.IsRightAngle(Lu, Ln, 10)
+                            && Constellation.IsRightAngle(Le, Ls, 30)
+                            && Constellation.IsAspect(Le, Lu, 30)
+                            && Constellation.IsAspect(Ls, Ln, 10);
+                            */
+
+                        /*
+                                                result = Constellation.IsAspect(Lj, Lv, 5)
+                                         && Constellation.IsAspect(Lj, Lu, 20);
+                                         */
+                        /*
+                        result = Constellation.IsAspect(Ls, Ln, 5)
+                 && Constellation.IsAspect(Lm, Lv, 20)
+                 && Constellation.IsAspect(Lv, Le, 20)
+                 && Constellation.IsAspect(Lm, Le, 20);
+
+                        
+                        result = Constellation.IsAspect(Lj, Ln, 10)
+                                 && Constellation.IsAspect(Ls, Lu, 10);
+                                 */
+                        ////result = Constellation.IsConjunction(Lj, Lx, 1.0);
+                        ////result = Constellation.IsRightAngle(Lj, Lx, 1.0);
+
+                        /*
+                                   result = Constellation.IsLine(SolarSystem.Singleton.Jupiter, SolarSystem.Singleton.Saturn, SolarSystem.Singleton.Uranus, 5)
+                                   && Constellation.IsLine(SolarSystem.Singleton.Jupiter, SolarSystem.Singleton.Saturn, SolarSystem.Singleton.Neptune, 5);
+           /*
+                                   result = Constellation.IsDirection(SolarSystem.Singleton.Jupiter, SolarSystem.Singleton.Saturn, SolarSystem.Singleton.Uranus, 20)
+           && Constellation.IsDirection(SolarSystem.Singleton.Jupiter, SolarSystem.Singleton.Saturn, SolarSystem.Singleton.Neptune, 20);
+           */
+                        /*
+                        result = Constellation.IsAspect(Lj, Ls, 5)
+                && (Constellation.IsAspect(Lj, Lu, 5) || Constellation.IsAspect(Lj, Ln, 5));
+                    */
+                        //// result = Constellation.IsRightAngle(Lu, Ln, 1);
+                        //// result = Constellation.IsConjunction(Lu, Ln, 1);
+                        /*
+                        result = Constellation.IsRightAngle(Lj, Ls, 10)
+                                    && Constellation.IsPericentre(Lj, Ljp, 10);
+                        //// result = Constellation.IsApocentre(Lj, Ljp, 1);
+                        //// result = Constellation.IsRightAngle(Lu, Ln, 10);
+                        
+                        result = Constellation.IsConjunction(Ls, Lu, 1);
+
+                        result = Constellation.IsApocentre(Lj, Ljp, 5)
+                                 && Constellation.IsRightAngle(Lu, Ln, 20);
+
+                        result = Constellation.IsConjunction(Lj, Ls, 20)
+                                 && Constellation.IsRightAngle(Lu, Ln, 20);
+
+                        result = Constellation.IsRightAngle(Lj, Ls, 10)
+                                 && Constellation.IsRightAngle(Lj, Ln, 10);
+                         * 
+                         *                         result = Constellation.IsRightAngle(Lu, Lj, 10)
+                                 && Constellation.IsRightAngle(Ln, Ls, 10)
+                                 && Constellation.IsOpposition(Lu, Ln, 20);
+
+
+                        result = Constellation.IsRightAngle(Lj, Ls, 15)
+                              && Constellation.IsConjunction(Ls, Lu, 25)
+                              && Constellation.IsConjunction(Ls, Ln, 25)
+                              && Constellation.IsConjunction(Lu, Ln, 25);
+                              */
+                        /*
+                                                result = Constellation.IsRightAngle(Lj, Ls, 40)
+                                      && Constellation.IsRightAngle(Lu, Ln, 40)
+                                      && ((Constellation.IsConjunction(Lj, Ln, 10)
+                                           && Constellation.IsConjunction(Ls, Lu, 10)) ||
+                                          (Constellation.IsConjunction(Lj, Lu, 10)
+                                           && Constellation.IsConjunction(Ls, Ln, 10)));
+
+
+                                                result = Constellation.IsApocentre(Lu, Lup, 20)
+                                                       && Constellation.IsApocentre(Lj, Ljp, 10);
+
+                                                result = Constellation.IsConjunction(Lu, Ln, 20)
+                                                       && Constellation.IsApocentre(Lu, Lup, 20);
+
+                                                result = Constellation.IsConjunction(Lj, Ln, 10)
+                                                       && Constellation.IsRightAngle(Lj, Ls, 10);
+
+                                                result = Constellation.IsConjunction(Lj, Ln, 20)
+                                                       && Constellation.IsPericentre(Lj, Ljp, 20);
+
+                                                result = Constellation.IsOpposition(Lj, Ls, 10)
+                                                        && Constellation.IsApocentre(Ls, Lsp, 10);
+                                                        result = Constellation.IsConjunction(Lj, Lu, 10)
+                                                        && Constellation.IsApocentre(Lj, Ljp, 10);
+
+                                                result = Constellation.IsOpposition(Lj, Ls, 25)
+                                                    && Constellation.IsOpposition(Lj, Lu, 25)
+                                                    && Constellation.IsOpposition(Lj, Ln, 25)
+                                                    && Constellation.IsConjunction(Ls, Lu, 25)
+                                                    && Constellation.IsConjunction(Ls, Ln, 25);
+                                                    */
+                        /*
+                                        result = Constellation.IsRightAngle(Lj, Ls, 25)
+                                                && Constellation.IsRightAngle(Lj, Lu, 25)
+                                                && Constellation.IsRightAngle(Lj, Ln, 25)
+                                                && Constellation.IsConjunction(Ls, Lu, 25)
+                                                && Constellation.IsConjunction(Ls, Ln, 25);
+                          */
+                        /*
+                                      result = Constellation.IsRightAngle(Lj, Ls, 10)
+                                              && Constellation.IsRightAngle(Lu, Ln, 10);
+                                  /*
+                                      result = Constellation.IsRightAngle(Lj, Ls, 10)
+                                              && Constellation.IsRightAngle(Lj, Lu, 20)
+                                              && Constellation.IsRightAngle(Lj, Ln, 20);
+
+                                       *
+                                       *                        result = Constellation.IsRightAngle(Lj, Ls, 3)
+                                              && (Constellation.IsConjunction(Lj, Lu, 5)
+                                                  || Constellation.IsConjunction(Ls, Lu, 5));
+
+
+                                       *                         result = Constellation.IsRightAngle(Lj, Ls, 5)
+                                              && Constellation.IsRightAngle(Lu, Ln, 10)
+                                              && (Constellation.IsAspect(Lj, Ln, 20)
+                                                  || Constellation.IsAspect(Ls, Ln, 20));
+
+
+                                      result = Constellation.IsRightAngle(Lj, Ls, 5)
+                                              && Constellation.IsPericentre(Lj, Ljp, 25)
+                                              && Constellation.IsPericentre(Ls, Lsp, 25);
+                                              */
+                        /*
+                         *result = Constellation.IsApocentre(Ls, Lsp, 10)
+                            && (Constellation.IsConjunction(Ls, Lu, 30) || Constellation.IsConjunction(Ls, Ln, 30));
+                    /*
+                    result = Constellation.IsConjunction(Lj, Ls, 15)
+                            && Constellation.IsConjunction(Lu, Ln, 15)
+                            && Constellation.IsRightAngle(Lj, Lu, 15);
+                            */
+                        /*
+                        result = Constellation.IsAspect(Le, Lv, 5)
+                                    && Constellation.IsRightAngle(Le, Lj, 5);
+                                    */
+                        /*
+           result = Constellation.IsAspect(Ls, Ln, 15) 
+                       && Constellation.IsApocentre(Lj, Ljp, 5);
+
+
+           result = Constellation.IsConjunction(Lu, Ln, 60) && Constellation.IsAspect((Lu + Ln) / 2, Lj, 15)
+               && Constellation.IsApocentre(Lj, Ljp, 30);
+           result = Constellation.IsConjunction(Lu, Ln, 60) && Constellation.IsPericentre(Lj, Ljp, 30)
+               && Constellation.IsConjunction(Lj, Lu, 60) && Constellation.IsConjunction(Lj, Ln, 60)
+               && Constellation.IsConjunction(Ls, Lu, 60) && Constellation.IsConjunction(Ls, Ln, 60);
+           */
+                        //// result = Constellation.IsAspect(Lj, Ls, 15) && Constellation.IsPericentre(Lj, Ljp, 15);
+                        ////                                 && Constellation.IsPericentre(Lj, Ljp, 10)
+
+                        /*
+                        result = Constellation.IsConjunction(Ls, Ljp, 30)
+                            && Constellation.IsConjunction(Lu, Ljp, 30)
+                            && Constellation.IsConjunction(Ln, Ljp, 30);
+                            */
+                        //// result = Constellation.IsApocentre(Ls, Lsp, 5);
+                        //// result = Constellation.IsPericentre(Lj, Ljp, 30) && Constellation.IsApocentre(Ls, Lsp, 30);
+
+                        //// result = Constellation.IsPericentre(Lj, Ljp, 15) && Constellation.IsConjunction(Lu, Ln, 15.0);
+
+                        ////  result = Constellation.IsApocentre(Ls, Lsp, 15) && Constellation.IsConjunction(Lu, Ln, 15.0);
+
+                        /*
+                        result = Constellation.IsOpposition(Lj, Ls, 15.0)
+                                && Constellation.IsPericentre(Lj, Ljp, 45);
+                                */
+                        /*
+                        result = Constellation.IsOpposition(Lj, Ls, 20.0)
+                                    && Constellation.IsOpposition(Lu, Ln, 20.0);
+                        */
+                        /*
+                        result = Constellation.IsAspect(Lj, Lu, 20.0)
+                                && Constellation.IsAspect(Lj, Ln, 20.0)
+                                && Constellation.IsRightAngle(Lj, Ls, 20.0);
+
+                        result = Constellation.IsAspect(Lj, Lu, 20.0)
+                                && Constellation.IsAspect(Lj, Ln, 20.0)
+                                && Constellation.IsAspect(Lj, Ls, 20.0);
+                        
+                        result = Constellation.IsAspect(Ls, Lu, 20.0)
+                                && Constellation.IsAspect(Ls, Ln, 20.0)
+                                && Constellation.IsRightAngle(Ls, Lj, 20.0);
+                        */
+
+
+                        /*
+                        result = Constellation.IsConjunction(Lj, Ls, 25.0)
+                                && Constellation.IsConjunction(Lu, Ln, 25.0)
+                                && Constellation.IsRightAngle(Lj, Lu, 25.0);
+                        */
+                        //// return Constellation.IsPericentre(Lj, Ljp, 30) && Constellation.IsPericentre(Lu, Lup, 30);
+
+                        //// return Constellation.IsPericentre(Lj, Ljp, 15) && Constellation.IsRightAngle(Lj, Ls, 15.0);
+                        //// return Constellation.IsRightAngle(Lj, Ls, 3.0);
+                        //// return Constellation.IsPericentre(Lj, Ljp, 15) && Constellation.IsPericentre(Ln, Lnp, 75);
+                        //// return Constellation.IsApocentre(Lj, Ljp, 15) && Constellation.IsApocentre(Ln, Lnp, 75);
+                        //// Constellation.IsApocentre(Lj, Ljp, 40) && Constellation.IsApocentre(Ls, Lsp, 40);
+                        //// return Constellation.IsPericentre(Lj, Ljp, 30) && Constellation.IsApocentre(Lu, Lup, 30);
+
+                        /* 1894-1898 
+                        var dJS = Angles.Mod360(Lj - Ls);
+                        var dJN = Angles.Mod360(Lj - Ln);
+                        var dUS = Angles.Mod360(Lu - Ls);
+                        var dNS = Angles.Mod360(Ln - Ls);
+
+                        var sJS = Math.Abs(Angles.Sinus(dJS));
+                        var sJN = Math.Abs(Angles.Sinus(dJN));
+                        var sUS = Math.Abs(Angles.Sinus(dUS));
+                        var sNS = Math.Abs(Angles.Sinus(dNS));
+
+                        var total = sJS + sJN - 2*sUS + 2*sNS;
+                        return total > 2.0; */
+
+                        /* Aphelia / Perihelia */
+                        /*
+                        var dJ = Angles.Mod360(Lj - Ljp + 180);
+                        var dS = Angles.Mod360(Ls - Lsp + 180);
+                        var dU = Angles.Mod360(Lu - Lup + 180);
+                        var dN = Angles.Mod360(Ln - Lnp + 180);
+
+                        var sJ = -Angles.Cosin(dJ);
+                        var sS = -Angles.Cosin(dS);
+                        var sU = -Angles.Cosin(dU);
+                        var sN = -Angles.Cosin(dN);
+                        var totalJS = sJ + sS;
+                        var totalJU = sJ + sU;
+                        var totalJN = sJ + sN;
+                        var totalSU = sS + sU;
+                        var totalSN = sS + sN;
+                        var totalUN = sU + sN;
+
+                        return totalJS > 1.85 || totalJU > 1.85 || totalJN > 1.85
+                                || totalSU > 1.85 || totalSN > 1.85 || totalUN > 1.85;
+                        */
+                        /*
+                        var d1 = Angles.Mod180(Lu - Lj);
+                        var d2 = Angles.Mod180(Lj - Ln);
+                        var d3 = Angles.Mod180(Ln - Ls);
+
+                        var d1 = Angles.Mod180(Ls - Lj);
+                        var d2 = Angles.Mod180(Lj - Lu);
+                        var d3 = Angles.Mod180(Lu - Ln);
+                        */
+                        /*
+                        result = Angles.EqualDeg(d1, d2, 10) && Math.Abs(d1) < 90 && Math.Abs(d3) < 90;
+                        */
+                        /*
+                        var angJS = Math.Abs(Angles.Mod360Sym(Lj - Ls));
+                        result = Angles.EqualDeg(angJS, 120, 10);
+                        */
+                        //// result = Constellation.IsRightAngle(Ls, Lu, 5.0);
+
+                        /*
+                         var sJS = Math.Abs(Angles.Sinus(Lj - Ls));
+                         var sJU = Math.Abs(Angles.Sinus(Lj - Lu));
+                         var sJN = Math.Abs(Angles.Sinus(Lj - Ln));
+                         var sSU = Math.Abs(Angles.Sinus(Ls - Lu));
+                         var sSN = Math.Abs(Angles.Sinus(Ls - Ln));
+                         var total = sJS + 0.3 * sSU + 0.3 * sSN;
+
+                         return total > 1.55;
+                         */
+
+                        /*
+                        result = Constellation.IsConjunction(Lj, Ls, 30.0)
+                                && Constellation.IsConjunction(Lu, Ln, 30.0)
+                                && Constellation.IsRightAngle(Lj, Lu, 30.0)
+                                && Constellation.IsRightAngle(Ls, Ln, 30.0);
+                        
+                        
+                        result = Constellation.IsAspect(Lj, Ls, 30.0)
+                                && Constellation.IsOpposition(Lv, Le, 3.0);
+                       */
+                        ////     && Constellation.IsRightAngle(Lj, Le, 30.0);
+                        ////    && Constellation.IsRightAngle(Ls, Le, 20.0);
+                        /*
+                        result = Constellation.IsRightAngle(Lj, Lx, 30.0)
+                            && Constellation.IsRightAngle(Ls, Lx, 30.0);
+                        
+                        //// planet x
+                        result = Constellation.IsConjunction(Lj, Lx, 10.0)
+                            && Constellation.IsRightAngle(Lj, Ls, 30.0);
+                        */
+
+                        /*
+                        //// sola eruptions? 1861 
+                        result = Constellation.IsConjunction(Lj, Ls, 10.0)
+                               && Constellation.IsAspect(Lj, Lx, 10.0);
+                        */
+                        /*
+                        var t = 20.0f;
+                        var m = (Lj + Ls) / 2;
+                        result = Constellation.IsConjunction(Lj, Ls, t)
+                                && (Constellation.IsAspect(m - 60, Lu, t) || Constellation.IsAspect(m + 60, Lu, t))
+                                && (Constellation.IsAspect(m - 60, Ln, t) || Constellation.IsAspect(m + 60, Ln, t));
+                        */
+                        /* EQ tidal 
+                        result = Constellation.IsConjunction(Lm, Lj, 30.0)
+                               && Constellation.IsConjunction(Lv, Lj, 30.0)
+                               && Constellation.IsOpposition(Lj, Le, 30.0);
+                        */
+                        /*
+                        //// EQ 2021 Japan 
+                        result = Constellation.IsConjunction(Lm, Lj, 25.0)
+                               && Constellation.IsConjunction(Lv, Lj, 25.0)
+                               && Constellation.IsAspect(Lj, Ls, 30.0);
+                               */
+                        /*
+                       ////   && Constellation.IsOpposition(Le, Lu, 20.0)
+                         && ((Constellation.IsRightAngle(Ls, Lu, 25.0) && Constellation.IsRightAngle(Lj, Lu, 25.0))
+                          || (Constellation.IsRightAngle(Ls, Ln, 25.0) && Constellation.IsRightAngle(Lj, Ln, 25.0)))
+                            && (Constellation.IsAspect(Le, Lu, 10.0) || Constellation.IsAspect(Le, Ln, 10.0));
+                         */
                     }
 
                     break;

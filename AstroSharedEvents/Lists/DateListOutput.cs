@@ -39,7 +39,6 @@ namespace AstroSharedEvents.Lists
         /// </summary>
         /// <param name="charact">The charact.</param>
         /// <returns>Returns value.</returns>
-        [UsedImplicitly]
         public string PrintCharacteristic(AstCharacteristic charact)
         { 
             //// this.List.Append("<HTML>\n\r");  this.List.Append("<PRE>\n\r");
